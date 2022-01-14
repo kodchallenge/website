@@ -70,3 +70,7 @@ a.active {
 .track:hover {
     transform: scale(1.02);
 }
+
+.joined.track-list .track {
+    
+}

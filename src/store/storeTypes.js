@@ -12,3 +12,5 @@ const types = {
         GETALL_PROBLEMS: "GETALL_PROBLEMS",
     }
 }
+
+export default types
