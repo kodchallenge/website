@@ -1,7 +1,10 @@
+import Navbar from "./components/navbar/Navbar";
+import Layout from "./layout/Layout";
+
 function App() {
   return (
     <div className="App">
-      <h1 className="text-danger">Kod Challenge React App</h1>
+      <Layout />
     </div>
   );
 }
