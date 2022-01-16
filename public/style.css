@@ -33,6 +33,7 @@ a.active {
 
 .top-navbar {
     background-color: var(--bg);
+    border-bottom: 1px solid var(--body-bg);
 }
 
 .top-navbar  li {
@@ -73,4 +74,85 @@ a.active {
 
 .joined.track-list .track {
     
+}
+
+.problem-card {
+    background-color: var(--bg);
+    box-shadow: 0px 0px 10px rgba(207, 207, 207, 0.43);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.bg-green {
+    color: #53A756;
+    border: 1px solid #A9D6AB;
+    background: rgba(112, 228, 117, 0.46);
+}
+.bg-light-blue {
+    color: #529FA4;
+    background: rgba(112, 221, 228, 0.46);
+    border: 1px solid #B0DDE0;
+}
+.bg-purple {
+    color: #4952A3;
+    background: rgba(105, 118, 233, 0.46);
+    border: 1px solid #A4AADC;
+}
+
+.bg-orange {
+    color: #FF7B01;
+    background: rgba(255, 124, 2, 0.38);
+    border: 1px solid #E7BA91;
+}
+
+.btn {
+    transition: transform 0.3s ease;
+}
+.btn:hover {
+    transform: scale(1.05);
+}
+.btn:focus {
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-orange{
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background: #FF7C02;
+    color: #fff4ea
+}
+.btn-orange:hover{
+    color: #ffffff
+}
+.btn-sec{
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background: rgba(137, 147, 206, 0.24);
+    color: #484D68;
+}
+.btn-sec:hover{
+    color: #484D68;
+}
+.btn-sec.active {
+    background: rgba(0, 40, 255, 0.61);
+    color: white;
+}
+.leader-board {
+    background: var(--bg);
+    box-shadow: 0px 0px 10px 2px rgba(255, 0, 0, 0.25);
+    border-radius: 15px;
+    padding: 20px 30px;
+}
+.leader-board li {
+    margin: 10px 0px;
+}
+
+.shadow-bottom {
+    box-shadow: -1px 8px 10px 1px rgba(0,0,0,0.05);
+}
+
+.problem-description {
+    background: var(--bg);
+    box-shadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 200%;
 }

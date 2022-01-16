@@ -6,6 +6,7 @@ const types = {
     
     TRACKS: {
         GETALL_TRACK: "TRACK",
+        //CURRENT_TRACK: "CURRENT_TRACK"
     },
 
     PROBLEMS: {

@@ -21,7 +21,7 @@ const Navbar = () => {
                         </div>
                         <div className='col-md-3 text-end'>
                             <ul>
-                                <li>Test</li>
+                                <li className='p-0'>Test</li>
                             </ul>
                         </div>
                     </div>
