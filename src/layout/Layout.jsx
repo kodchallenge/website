@@ -1,6 +1,7 @@
 import React from "react"
 import Navbar from "../components/navbar/Navbar"
 import ProblemDetailPage from "../pages/ProblemDetailPage"
+import ProblemEditor from "../pages/ProblemEditor"
 import ProblemListPage from "../pages/ProblemListPage"
 import TrackListPage from "../pages/TrackListPage"
 
@@ -10,7 +11,8 @@ const Layout = () => {
             <Navbar />
             {/* <TrackListPage /> */}
             {/* <ProblemListPage /> */}
-            <ProblemDetailPage />
+            {/* <ProblemDetailPage /> */}
+            {/* <ProblemEditor /> */}
         </> 
     )
 }
