@@ -3,6 +3,7 @@ import React, { useCallback, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import SplitPane from "react-split-pane";
 import api from "../../services/api";
+import CodeService from "../../services/code.service";
 import Button from "../buttons/Button";
 import CodeEditor from "../editor/CodeEditor";
 
@@ -12,17 +13,17 @@ const Compiler = () => {
     const [runResult, setRunResult] = useState("")
     const editor = useSelector(state => state.editor)
 
+    const codeService = new CodeService()
     //region Run Code
     const handleRunCodeClick = useCallback(() => {
         setRunning(true)
-        api().post("/code/resruncode", {language: editor?.language, code: editorRef.current.getValue()})
+        codeService.runCode({language: editor?.language, code: editorRef.current.getValue()})
             .then(res => {
-                console.log(res)
-                setRunResult(res.data)
+                //console.log(res.data)
+                setRunResult((res.data+"").replaceAll('\n', "<br />"))
             })
             .catch(err => {
-                console.log(err)
-                setRunResult(err + "<br/>Sunucuya bağlanılamadı")
+                setRunResult(err)
             })
             .finally(() => {
                 setRunning(false)
@@ -38,8 +39,8 @@ const Compiler = () => {
                         <Button className="btn-orange mx-1">Testleri Başlat</Button>
                         <Button className="btn-green active mx-1">Gönder</Button>
                     </div>
-                    <div className="p-5" dangerouslySetInnerHTML={
-                        {__html:running ? "<p>Çalışıyor</p>" : runResult+"".replaceAll('\n', "<br/>")}
+                    <div style={{padding: 20, fontSize: 14}} dangerouslySetInnerHTML={
+                        {__html:running ? "<p>Çalışıyor</p>" : runResult}
                     }>
                     </div>
                 </div>
