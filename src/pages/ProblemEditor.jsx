@@ -3,24 +3,10 @@ import React, { useCallback, useRef, useState } from "react";
 import SplitPane from "react-split-pane";
 import SplitDivider from "../components/utils/SplitDivider";
 import Button from '../components/buttons/Button'
+import axios from "axios";
+import CodeEditor from "../components/editor/CodeEditor";
+import Compiler from "../components/compiler/Compiler";
 const ProblemEditor = () => {
-    
-    const editorRef = useRef(null)
-
-    //region Editor
-    const SplitEditor = React.useMemo(() => {
-        return (
-            <Editor
-                height="90vh"
-                defaultLanguage="javascript"
-                defaultValue="//test"
-                onMount={(editor, monaco) => {
-                    editorRef.current = editor
-                }}
-            />
-        )
-    }, [])
-    //end region
 
     //region problem description
     const SplitProblemDesc = React.useMemo(() => {
@@ -41,24 +27,6 @@ const ProblemEditor = () => {
     }, [])
     //end region
 
-    //region Run Code - Test Cases - Submit Code
-    const handleRunCodeClick = useCallback(() => {
-        console.log(editorRef.current.getValue())
-    }, [])
-    const SplitRunCase = React.useMemo(() => {
-        return (
-            <div className="split-run w-100">
-                <div className="run-test-body">
-                    <div className="px-md-3">
-                        <Button className="btn-orange mx-1" onClick={handleRunCodeClick}>Çalıştır</Button>
-                        <Button className="btn-orange mx-1">Testleri Başlat</Button>
-                        <Button className="btn-green active mx-1">Gönder</Button>
-                    </div>
-                </div>
-            </div>
-        )
-    }, [])
-    //end region
     return (
         <div id="problem-editor" className="fullscreen">
             <div>
@@ -77,10 +45,7 @@ const ProblemEditor = () => {
                 </div>
                 <SplitPane split="vertical" minSize={400} maxSize={600} className="split-panel">
                     {SplitProblemDesc}
-                    <SplitPane split="vertical" minSize={800} maxSize={980}>
-                        {SplitEditor}
-                        {SplitRunCase}
-                    </SplitPane>
+                    <Compiler />
                 </SplitPane>
             </div>
         </div>
