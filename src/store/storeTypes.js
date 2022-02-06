@@ -11,6 +11,10 @@ const types = {
 
     PROBLEMS: {
         GETALL_PROBLEMS: "GETALL_PROBLEMS",
+    },
+
+    EDITOR: {
+        CHANGE_LANGUAGE: "CHANGE_EDITOR_LANGUAGE",
     }
 }
 
