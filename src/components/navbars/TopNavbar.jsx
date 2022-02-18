@@ -22,6 +22,7 @@ import {
 } from "reactstrap";
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Brand from '../Brand';
 const TopNavbar = () => {
     const [collapseClasses, setCollapseClasses] = useState("")
 
@@ -46,7 +47,7 @@ const TopNavbar = () => {
                 <Container>
                     <div className='d-flex align-items-center'>
                         <NavbarBrand className="mr-lg-5" to="/" tag={Link} >
-                            KodChallenge
+                            <Brand bold Type="h5"/>
                             {/* <img
                                 alt="Brand Logo"
                                 src={require("../../assets/img/kodchallenge_logo.png")}
@@ -169,17 +170,14 @@ const TopNavbar = () => {
                                     </UncontrolledTooltip>
                                 </NavItem>
                                 <NavItem className="d-none d-lg-block ml-lg-4">
-                                    <Button
-                                        className="btn-neutral btn-icon"
-                                        color="default"
-                                        href="https://www.creative-tim.com/product/argon-design-system-react?ref=adsr-navbar"
-                                        target="_blank"
-                                    >
-                                        <span className="btn-inner--icon">
-                                            <i className="fa fa-cloud-download mr-2" />
+                                    <Button color="default" >
+                                        <span className="btn-inner--text">
+                                            Üye Ol
                                         </span>
-                                        <span className="nav-link-inner--text ml-1">
-                                            Download
+                                    </Button>{" "}
+                                    <Button color="warning" >
+                                        <span className="btn-inner--text">
+                                            Giriş Yap
                                         </span>
                                     </Button>
                                 </NavItem>
