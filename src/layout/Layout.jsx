@@ -1,4 +1,5 @@
 import React from "react"
+import { Outlet, Route, Router, Routes } from "react-router"
 import Navbar from "../components/navbar/Navbar"
 import ProblemDetailPage from "../pages/ProblemDetailPage"
 import ProblemEditor from "../pages/ProblemEditor"
@@ -9,6 +10,7 @@ const Layout = () => {
     return (
         <>
             <Navbar />
+            <Outlet />
             {/* <TrackListPage /> */}
             {/* <ProblemListPage /> */}
             {/* <ProblemDetailPage /> */}
