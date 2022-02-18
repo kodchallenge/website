@@ -11039,6 +11039,9 @@
   .fill-opacity-8 {
     fill-opacity: .8; }
   
+  .floating-x {
+    animation: floating-x 3s ease infinite;
+    will-change: transform; }
   .floating {
     animation: floating 3s ease infinite;
     will-change: transform; }
@@ -11066,6 +11069,14 @@
       transform: translateY(10px); }
     100% {
       transform: translateY(0px); } }
+    
+    @keyframes floating-x {
+      0% {
+        transform: translateX(0px); }
+      50% {
+        transform: translateX(10px); }
+      100% {
+        transform: translateX(0px); } }
   
   @keyframes floating-sm {
     0% {
@@ -15331,7 +15342,7 @@
   .headroom--not-top {
     padding-top: .5rem;
     padding-bottom: .5rem;
-    background-color: #172b4d !important;
+    background-color: #222222 !important;
     box-shadow: 0 1px 10px rgba(130, 130, 134, 0.1); }
   
   .ct-clipboard {
