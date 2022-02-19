@@ -13017,9 +13017,13 @@
     top: 0;
     width: 100%;
     z-index: 100;
-    background-color: transparent !important;
+    background-color: transparent;
     border: 0;
     box-shadow: none; }
+    .navbar-transparent.dark {
+      background-color: #222222 !important;
+      
+    }
     .navbar-transparent .navbar-brand {
       color: white; }
     .navbar-transparent .navbar-toggler {
