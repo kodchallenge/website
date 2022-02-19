@@ -73,7 +73,7 @@ const TrackListPage = () => {
                                         </div>
                                         <div className="col-10">
                                             <h3>{item.name}</h3>
-                                            <p>Toplam <strong>58</strong> problem bulunuyor.</p>
+                                            <p>Toplam <strong>58</strong> soru bulunuyor.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -81,27 +81,177 @@ const TrackListPage = () => {
                         </div> */}
 
                         <Row>
-                            {[1,2,3,4,5,6,7,8, 9].map(x => (
-                                <Col lg="6">
-                                    <Card className="card-lift--hover shadow border-0 my-3">
-                                        <Link to="#">
-                                            <CardBody className="p-3 text-dark">
-                                                <div className="row">
-                                                    <div className="col-2">
-                                                        <div className="track-logo">
-                                                            <img src="https://dg8krxphbh767.cloudfront.net/tracks/javascript.svg" className="img img-fluid" />
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-10">
-                                                        <h3 className="text-dark bold">Javascript</h3>
-                                                        <p>Toplam <strong>{x*10}</strong> problem bulunuyor.</p>
+                            <Col lg="6">
+                                <Card className="card-lift--hover shadow border-0 my-3">
+                                    <Link to="#">
+                                        <CardBody className="p-3 text-dark">
+                                            <div className="row">
+                                                <div className="col-2">
+                                                    <div className="track-logo">
+                                                        <img src="https://dg8krxphbh767.cloudfront.net/tracks/javascript.svg" className="img img-fluid" />
                                                     </div>
                                                 </div>
-                                            </CardBody>
-                                        </Link>
-                                    </Card>
-                                </Col>
-                            ))}
+                                                <div className="col-10">
+                                                    <h3 className="text-dark bold">Algoritma</h3>
+                                                    <p>Toplam <strong>42</strong> soru bulunuyor.</p>
+                                                </div>
+                                            </div>
+                                        </CardBody>
+                                    </Link>
+                                </Card>
+                            </Col>
+                            <Col lg="6">
+                                <Card className="card-lift--hover shadow border-0 my-3">
+                                    <Link to="#">
+                                        <CardBody className="p-3 text-dark">
+                                            <div className="row">
+                                                <div className="col-2">
+                                                    <div className="track-logo">
+                                                        <img src="https://dg8krxphbh767.cloudfront.net/tracks/javascript.svg" className="img img-fluid" />
+                                                    </div>
+                                                </div>
+                                                <div className="col-10">
+                                                    <h3 className="text-dark bold">Veri Yapıları</h3>
+                                                    <p>Toplam <strong>27</strong> soru bulunuyor.</p>
+                                                </div>
+                                            </div>
+                                        </CardBody>
+                                    </Link>
+                                </Card>
+                            </Col>
+                            <Col lg="6">
+                                <Card className="card-lift--hover shadow border-0 my-3">
+                                    <Link to="#">
+                                        <CardBody className="p-3 text-dark">
+                                            <div className="row">
+                                                <div className="col-2">
+                                                    <div className="track-logo">
+                                                        <img src="https://dg8krxphbh767.cloudfront.net/tracks/javascript.svg" className="img img-fluid" />
+                                                    </div>
+                                                </div>
+                                                <div className="col-10">
+                                                    <h3 className="text-dark bold">C</h3>
+                                                    <p>Toplam <strong>23</strong> soru bulunuyor.</p>
+                                                </div>
+                                            </div>
+                                        </CardBody>
+                                    </Link>
+                                </Card>
+                            </Col>
+                            <Col lg="6">
+                                <Card className="card-lift--hover shadow border-0 my-3">
+                                    <Link to="#">
+                                        <CardBody className="p-3 text-dark">
+                                            <div className="row">
+                                                <div className="col-2">
+                                                    <div className="track-logo">
+                                                        <img src="https://dg8krxphbh767.cloudfront.net/tracks/javascript.svg" className="img img-fluid" />
+                                                    </div>
+                                                </div>
+                                                <div className="col-10">
+                                                    <h3 className="text-dark bold">C++</h3>
+                                                    <p>Toplam <strong>33</strong> soru bulunuyor.</p>
+                                                </div>
+                                            </div>
+                                        </CardBody>
+                                    </Link>
+                                </Card>
+                            </Col>
+                            <Col lg="6">
+                                <Card className="card-lift--hover shadow border-0 my-3">
+                                    <Link to="#">
+                                        <CardBody className="p-3 text-dark">
+                                            <div className="row">
+                                                <div className="col-2">
+                                                    <div className="track-logo">
+                                                        <img src="https://dg8krxphbh767.cloudfront.net/tracks/javascript.svg" className="img img-fluid" />
+                                                    </div>
+                                                </div>
+                                                <div className="col-10">
+                                                    <h3 className="text-dark bold">C#</h3>
+                                                    <p>Toplam <strong>37</strong> soru bulunuyor.</p>
+                                                </div>
+                                            </div>
+                                        </CardBody>
+                                    </Link>
+                                </Card>
+                            </Col>
+                            <Col lg="6">
+                                <Card className="card-lift--hover shadow border-0 my-3">
+                                    <Link to="#">
+                                        <CardBody className="p-3 text-dark">
+                                            <div className="row">
+                                                <div className="col-2">
+                                                    <div className="track-logo">
+                                                        <img src="https://dg8krxphbh767.cloudfront.net/tracks/javascript.svg" className="img img-fluid" />
+                                                    </div>
+                                                </div>
+                                                <div className="col-10">
+                                                    <h3 className="text-dark bold">Java</h3>
+                                                    <p>Toplam <strong>28</strong> soru bulunuyor.</p>
+                                                </div>
+                                            </div>
+                                        </CardBody>
+                                    </Link>
+                                </Card>
+                            </Col>
+                            <Col lg="6">
+                                <Card className="card-lift--hover shadow border-0 my-3">
+                                    <Link to="#">
+                                        <CardBody className="p-3 text-dark">
+                                            <div className="row">
+                                                <div className="col-2">
+                                                    <div className="track-logo">
+                                                        <img src="https://dg8krxphbh767.cloudfront.net/tracks/javascript.svg" className="img img-fluid" />
+                                                    </div>
+                                                </div>
+                                                <div className="col-10">
+                                                    <h3 className="text-dark bold">Javascript</h3>
+                                                    <p>Toplam <strong>49</strong> soru bulunuyor.</p>
+                                                </div>
+                                            </div>
+                                        </CardBody>
+                                    </Link>
+                                </Card>
+                            </Col>
+                            <Col lg="6">
+                                <Card className="card-lift--hover shadow border-0 my-3">
+                                    <Link to="#">
+                                        <CardBody className="p-3 text-dark">
+                                            <div className="row">
+                                                <div className="col-2">
+                                                    <div className="track-logo">
+                                                        <img src="https://dg8krxphbh767.cloudfront.net/tracks/javascript.svg" className="img img-fluid" />
+                                                    </div>
+                                                </div>
+                                                <div className="col-10">
+                                                    <h3 className="text-dark bold">Python</h3>
+                                                    <p>Toplam <strong>17</strong> soru bulunuyor.</p>
+                                                </div>
+                                            </div>
+                                        </CardBody>
+                                    </Link>
+                                </Card>
+                            </Col>
+                            <Col lg="6">
+                                <Card className="card-lift--hover shadow border-0 my-3">
+                                    <Link to="#">
+                                        <CardBody className="p-3 text-dark">
+                                            <div className="row">
+                                                <div className="col-2">
+                                                    <div className="track-logo">
+                                                        <img src="https://dg8krxphbh767.cloudfront.net/tracks/javascript.svg" className="img img-fluid" />
+                                                    </div>
+                                                </div>
+                                                <div className="col-10">
+                                                    <h3 className="text-dark bold">Kotlin</h3>
+                                                    <p>Toplam <strong>23</strong> soru bulunuyor.</p>
+                                                </div>
+                                            </div>
+                                        </CardBody>
+                                    </Link>
+                                </Card>
+                            </Col>
                         </Row>
                     </div>
                 </div>
