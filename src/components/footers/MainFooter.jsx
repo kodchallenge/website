@@ -38,9 +38,10 @@ function MainFooter() {
                                 <p className='text-warning font-weight-bold pt-5 mt-5'>
                                     &copy; 2022 Tüm Hakları Saklıdır.
                                     <Link to="/" className='text-white'>
-                                        KodChallenge
+                                        &nbsp;KodChallenge
                                     </Link> 
                                 </p>
+                                <p>v0.0.1 - Not Open Source</p>
                             </div>
                         </Container>
 
