@@ -85,8 +85,17 @@ const TopNavbar = () => {
                             <Nav className="navbar-nav-hover align-items-lg-center" navbar>
                                 <NavItem>
                                     <Link to="tracks" className='nav-link'>
-                                    <i className="ni ni-collection d-lg-none mr-1" />
-                                        <span className="nav-link-inner--text">Tracks</span>
+                                        Kategoriler
+                                    </Link>
+                                </NavItem>
+                                <NavItem>
+                                    <Link to="tracks" className='nav-link'>
+                                        Yarışmalar
+                                    </Link>
+                                </NavItem>
+                                <NavItem>
+                                    <Link to="tracks" className='nav-link'>
+                                        Etkinlikler
                                     </Link>
                                 </NavItem>
                             </Nav>
