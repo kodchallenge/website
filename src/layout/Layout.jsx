@@ -1,18 +1,15 @@
 import React from "react"
-import Navbar from "../components/navbar/Navbar"
-import ProblemDetailPage from "../pages/ProblemDetailPage"
-import ProblemEditor from "../pages/ProblemEditor"
-import ProblemListPage from "../pages/ProblemListPage"
+import { Outlet } from "react-router"
+import MainFooter from "../components/footers/MainFooter"
+import TopNavbar from "../components/navbars/TopNavbar"
 import TrackListPage from "../pages/TrackListPage"
 
 const Layout = () => {
     return (
         <>
-            <Navbar />
-            {/* <TrackListPage /> */}
-            {/* <ProblemListPage /> */}
-            {/* <ProblemDetailPage /> */}
-            {/* <ProblemEditor /> */}
+            <TopNavbar />
+            <Outlet />
+            <MainFooter />
         </> 
     )
 }
