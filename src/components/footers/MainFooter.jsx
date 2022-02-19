@@ -42,6 +42,7 @@ function MainFooter() {
                                     </Link> 
                                 </p>
                                 <p>v0.0.1 - Not Open Source</p>
+                                <p>Developer Mode</p>
                             </div>
                         </Container>
 
