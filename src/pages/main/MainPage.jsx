@@ -62,7 +62,6 @@ function MainPage() {
                                 </Row>
                             </div>
                         </Container>
-                        {/* SVG separator */}
                         <div className="separator separator-bottom separator-skew zindex-100">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
