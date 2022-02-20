@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Badge, Button, Card, CardBody, Col, Container, Row } from "reactstrap";
 import ProblemService from "../services/problem.service";
 
@@ -45,7 +46,7 @@ const ProblemListPage = () => {
                         <Col lg="4" className="order-lg-last">
                             <Card>
                                 <CardBody className="py-1">
-                                    <h3 className="text-center bold mb-3">Bu Bölümün Yıldızları</h3>
+                                    <h4 className="text-center mb-3">Bu Bölümün Yıldızları</h4>
                                     {[1,2,3].map((x, index) => (
                                         <>
                                         <div className="my-s">
@@ -78,7 +79,7 @@ const ProblemListPage = () => {
                                     <CardBody>
                                         <Row className="align-items-center">
                                             <Col md="9">
-                                                <h3 className="text-dark">{problem.name ?? "asdasd"}</h3>
+                                                <h3 className="text-dark">{problem.name ?? "Problem başlığı"}</h3>
                                                 <div className="text-white">
                                                     <Badge color="green">Kolay</Badge>
                                                     {" "}
@@ -89,7 +90,9 @@ const ProblemListPage = () => {
                                                 </div>
                                             </Col>
                                             <Col md="3">
-                                                <Button color="warning">Problemi Çöz</Button>
+                                                <Link to="/problem/1" className="btn btn-warning">
+                                                    Problemi Çöz
+                                                </Link>
                                             </Col>
                                         </Row>
                                     </CardBody>

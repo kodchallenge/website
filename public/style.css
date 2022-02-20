@@ -1,3 +1,7 @@
 .bold {
     font-weight: 500;
 }
+
+.problem-description {
+    line-height: 2.5;
+}
