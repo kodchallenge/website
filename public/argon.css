@@ -12843,6 +12843,8 @@
   .modal-darker .close > span:not(.sr-only) {
     color: #fff; }
   
+  
+
   .nav-link {
     color: #525f7f; }
     .nav-link:hover, .nav-link.active {
@@ -12850,6 +12852,14 @@
     .nav-link i:not(.fa) {
       position: relative;
       top: 2px; }
+
+  .nav-warning{
+    color: #fb6340 !important;
+  }
+  .nav-warning:hover, .nav-warning.active{
+    color: #fff !important;
+    background-color: #fb6340 !important;
+  }
   
   .nav-pills .nav-item:not(:last-child) {
     padding-right: 1rem; }
