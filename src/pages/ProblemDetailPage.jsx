@@ -1,7 +1,27 @@
 import React from "react"
-import Button from "../components/buttons/Button"
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import { Badge, Button, Card, CardBody, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap"
 
 const ProblemDetailPage = () => {
+    const [activeTab, setActiveTab] = useState(1)
+
+    const Tab = ({ index, children }) => {
+        return (
+            <NavItem className="mb-3">
+                <NavLink
+                    aria-selected={activeTab === index}
+                    onClick={e => setActiveTab(index)}
+                    href="#"
+                    role="tab"
+                    className={"nav-warning " + (activeTab === index ? " active" : "")}
+                >
+                    {children}
+                </NavLink>
+            </NavItem>
+        )
+    }
+
     return (
         <div>
             <section id="problem-detail-header" className="shadow-bottom">
@@ -11,56 +31,79 @@ const ProblemDetailPage = () => {
                             <div className="col-md-8">
                                 <div>
                                     <h3>Problem Başlığı</h3>
-                                    <div>
-                                        <span className="badge bg-green me-2">Kolay</span>
-                                        <span className="badge bg-orange ms-2">Skor: <strong>40</strong></span>
+                                    <div className="text-white">
+                                        <Badge color="success">Kolay</Badge>
+                                        {" "}
+                                        <Badge color="warning">Skor: <strong>40</strong></Badge>
                                     </div>
-                                    <div className="pt-3">
-                                        <Button className="btn-sec me-1 active">Genel Bakış</Button>
-                                        <Button className="btn-sec mx-1">Kodun</Button>
-                                        <Button className="btn-sec mx-1">Kullanıcı Çözümleri</Button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-4 text-end">
-                                <div>
-                                    <Button className="btn-orange">Editörü Aç</Button>
+                                    <hr />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section id="problem-desc">
-                <div className="container my-5">
-                    <div className="row">
-                        <div className="col-md-8">
-                            <div className="problem-description">
-                                <div className="p-5">
-                                    <div className="problem-content">
-                                        <h2>Problem</h2>
-                                        Toplamın karesi ile ilk N doğal sayının karelerinin toplamı arasındaki farkı bulun.<br />
+            <section>
+                <Container>
+                    <Row>
+                        <Col md="8">
+                            <Nav
+                                className="nav-fill flex-column flex-md-row"
+                                id="tabs-icons-text"
+                                pills
+                                role="tablist"
+                            >
+                                <Tab index={1}>GENEL BAKIŞ</Tab>
+                                <Tab index={2}>KODUN</Tab>
+                                <Tab index={3}>KULLANICI ÇÖZÜMLERİ</Tab>
+                            </Nav>
+                            <Card className="border-0">
+                                <CardBody>
+                                    <TabContent activeTab={"plainTabs" + activeTab}>
+                                        <TabPane tabId="plainTabs1">
+                                            <section id="problem-desc">
+                                                <div className="problem-description">
+                                                    <div>
+                                                        <div className="problem-content">
+                                                            <h2>Problem</h2>
+                                                            Toplamın karesi ile ilk N doğal sayının karelerinin toplamı arasındaki farkı bulun.<br />
 
-                                        İlk on doğal sayının toplamının karesi (1 + 2 + ... + 10)² = 55² = 3025'tir.<br />
+                                                            İlk on doğal sayının toplamının karesi (1 + 2 + ... + 10)² = 55² = 3025'tir.<br />
 
-                                        İlk on doğal sayının kareleri toplamı 1² + 2² + ... + 10² = 385'tir.<br />
+                                                            İlk on doğal sayının kareleri toplamı 1² + 2² + ... + 10² = 385'tir.<br />
 
-                                        Dolayısıyla ilk on doğal sayının toplamının karesi ile ilk on doğal sayının karelerinin toplamı arasındaki fark 3025 - 385 = 2640'tır.<br />
+                                                            Dolayısıyla ilk on doğal sayının toplamının karesi ile ilk on doğal sayının karelerinin toplamı arasındaki fark 3025 - 385 = 2640'tır.<br />
 
-                                        İlk ilkelerden buna etkili bir çözüm bulmanız beklenmez; araştırmaya izin verilir, hatta teşvik edilir. Problem için en iyi algoritmayı bulmak, yazılım mühendisliğinde önemli bir beceridir.<br />
+                                                            İlk ilkelerden buna etkili bir çözüm bulmanız beklenmez; araştırmaya izin verilir, hatta teşvik edilir. Problem için en iyi algoritmayı bulmak, yazılım mühendisliğinde önemli bir beceridir.<br />
 
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </section>
+                                        <div className="my-4">
+                                            <Link to="/editor" className="btn btn-danger">Editorü Aç</Link>
+                                        </div>
+                                    </TabPane>
+                                    <TabPane tabId="plainTabs2">
+                                        <p className="description">
+                                            Eğer kullanıcı problemi çözmüş ise kullanıcının yazdığı kod burada gösterilecek.
+                                        </p>
+                                    </TabPane>
+                                    <TabPane tabId="plainTabs3">
+                                        <p className="description">
+                                            Farklı kullanıcıların çözümleri burada gösterilecek.
+                                        </p>
+                                    </TabPane>
+                                </TabContent>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
+        </section>
 
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+        </div >
     )
 }
 

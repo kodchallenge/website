@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useCallback, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import SplitPane from "react-split-pane";
+import { Button } from "reactstrap";
 import api from "../../services/api";
 import CodeService from "../../services/code.service";
-import Button from "../buttons/Button";
 import CodeEditor from "../editor/CodeEditor";
 
 const Compiler = () => {
@@ -13,31 +13,31 @@ const Compiler = () => {
     const [runResult, setRunResult] = useState("")
     const editor = useSelector(state => state.editor)
 
-    const codeService = new CodeService()
+    // const codeService = new CodeService()
     //region Run Code
     const handleRunCodeClick = useCallback(() => {
         setRunning(true)
-        codeService.runCode({language: editor?.language, code: editorRef.current.getValue()})
-            .then(res => {
-                //console.log(res.data)
-                setRunResult((res.data+"").replaceAll('\n', "<br />"))
-            })
-            .catch(err => {
-                setRunResult(err)
-            })
-            .finally(() => {
-                setRunning(false)
-            })
+        // codeService.runCode({language: editor?.language, code: editorRef.current.getValue()})
+        //     .then(res => {
+        //         //console.log(res.data)
+        //         setRunResult((res.data+"").replaceAll('\n', "<br />"))
+        //     })
+        //     .catch(err => {
+        //         setRunResult(err)
+        //     })
+        //     .finally(() => {
+        //         setRunning(false)
+        //     })
     }, [editor.language])
     //endregion
     const SplitRunCase = React.useMemo(() => {
         return (
-            <div className="split-runs w-100 text-wrap">
+            <div className="mt-2 w-100">
                 <div className="run-test-body">
-                    <div className="px-md-3">
-                        <Button className="btn-orange mx-1" onClick={handleRunCodeClick}>Çalıştır</Button>
-                        <Button className="btn-orange mx-1">Testleri Başlat</Button>
-                        <Button className="btn-green active mx-1">Gönder</Button>
+                    <div className="">
+                        <Button onClick={handleRunCodeClick}>Çalıştır</Button>
+                        <Button>Testleri Başlat</Button>
+                        <Button color="success">Gönder</Button>
                     </div>
                     <div style={{padding: 20, fontSize: 14}} dangerouslySetInnerHTML={
                         {__html:running ? "<p>Çalışıyor</p>" : runResult}
@@ -50,10 +50,8 @@ const Compiler = () => {
 
     return (
         <div>
-            <SplitPane split="vertical" minSize={800} maxSize={980}>
-                <CodeEditor editorRef={editorRef}/>
-                {SplitRunCase}
-            </SplitPane>
+            <CodeEditor editorRef={editorRef} />
+            {SplitRunCase}
         </div>
     )
 }

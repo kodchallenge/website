@@ -41,8 +41,8 @@ function MainFooter() {
                                         &nbsp;KodChallenge
                                     </Link> 
                                 </p>
-                                <p>v0.0.1 - Not Open Source</p>
-                                <p>Developer Mode</p>
+                                <p>v0.0.2 - Not Open Source</p>
+                                <p>Developer Mode & Last Update: 20.02.2022</p>
                             </div>
                         </Container>
 
