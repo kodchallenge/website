@@ -34,7 +34,7 @@ const Compiler = () => {
         return (
             <div className="mt-2 w-100">
                 <div className="run-test-body">
-                    <div className="px-md-3">
+                    <div className="">
                         <Button onClick={handleRunCodeClick}>Çalıştır</Button>
                         <Button>Testleri Başlat</Button>
                         <Button color="success">Gönder</Button>

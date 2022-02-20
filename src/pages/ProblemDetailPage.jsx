@@ -1,5 +1,6 @@
 import React from "react"
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { Badge, Button, Card, CardBody, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap"
 
 const ProblemDetailPage = () => {
@@ -81,7 +82,7 @@ const ProblemDetailPage = () => {
                                                 </div>
                                         </section>
                                         <div className="my-4">
-                                            <Button color="danger">Editorü Aç</Button>
+                                            <Link to="/editor" className="btn btn-danger">Editorü Aç</Link>
                                         </div>
                                     </TabPane>
                                     <TabPane tabId="plainTabs2">
