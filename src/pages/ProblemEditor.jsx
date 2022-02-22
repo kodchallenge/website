@@ -161,7 +161,7 @@ const ProblemEditor = () => {
                         <Col sm="6" className="desc">
                             {SplitProblemDesc}
                         </Col>
-                        <Col sm="6">
+                        <Col sm="6" className="p-0">
                             <Compiler />
                         </Col>
                     </Row>

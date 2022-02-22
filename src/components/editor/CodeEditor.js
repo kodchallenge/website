@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 import { ChangeLanguage } from "../../store/actions/editorActions";
 
-const CodeEditor = ({ editorRef }) => {
+const CodeEditor = ({ editorRef, height }) => {
     const editor = useSelector(state => state.editor)
     const dispatch = useDispatch()
     const [language, setLanguage] = useState(editor.language ?? "javascript") //PS: state den gelecek.
@@ -13,7 +13,7 @@ const CodeEditor = ({ editorRef }) => {
 
     const Editor = React.useMemo(() => (
         <MonacoEditor
-            height={700}
+           // height={height}
             language={language}
             defaultValue="//test"
             onMount={(editor, monaco) => {
@@ -57,14 +57,12 @@ const CodeEditor = ({ editorRef }) => {
     ), [])
 
     return (
-        <div>
-            <div>
-                {SelectLanguage}
-            </div>
-            <div>
+        <>
+            {SelectLanguage}
+            <div id="code-editor" className="code-editor" style={{height: height, minHeight: 200, maxHeight: "70vh"}}>
                 {Editor}
             </div>
-        </div>
+        </>
     )
 }
 

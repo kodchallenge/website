@@ -76,3 +76,29 @@ html, body, #root, .App {
         display: none;
     }
   }
+
+
+.resizer {
+    min-width: 100%;
+    height: 6px;
+    background-color: #1f2227;
+}
+
+.resizer:hover {
+    cursor: row-resize;
+}
+
+.editor-root {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+.editor-root > div {
+    //flex: 1;
+}
+
+.code-editor  {
+    display: flex;
+    height: 100%;
+}

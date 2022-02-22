@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import SplitPane from "react-split-pane";
 import { Button } from "reactstrap";
@@ -12,6 +12,8 @@ const Compiler = () => {
     const [running, setRunning] = useState(false)
     const [runResult, setRunResult] = useState("")
     const editor = useSelector(state => state.editor)
+    const [editorHeight, setEditorHeight] = useState(300)
+    const [initialHeight, setInitialHeight] = useState(0)
 
     // const codeService = new CodeService()
     //region Run Code
@@ -48,9 +50,21 @@ const Compiler = () => {
         )
     }, [running, runResult, editor.language])
 
+    const resizeStart = (e) => {
+        const codeEditor = document.getElementById("code-editor")
+        setInitialHeight(codeEditor.clientHeight - e.clientY)
+    }
+
+    const resize = (e) => {
+        if(e && e.clientY != 0 ) {
+            setEditorHeight(initialHeight + e.clientY)
+        }
+    }
+
     return (
-        <div>
-            <CodeEditor editorRef={editorRef} />
+        <div className="editor-root">
+            <CodeEditor editorRef={editorRef} height={editorHeight}/>
+            <div className="resizer" draggable onDragStart={resizeStart} onDrag={resize}></div>
             {SplitRunCase}
         </div>
     )
