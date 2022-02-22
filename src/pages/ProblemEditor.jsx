@@ -8,8 +8,8 @@ const ProblemEditor = () => {
     //region problem description
     const SplitProblemDesc = React.useMemo(() => {
         return (
-            <div className="px-3 w-100 desc">
-                <div className="problem-content">
+            <div className="w-100">
+                <div className="problem-content px-3">
                     <h2>Problem</h2>
                     Toplamın karesi ile ilk N doğal sayının karelerinin toplamı arasındaki farkı bulun.<br />
 
@@ -130,7 +130,7 @@ const ProblemEditor = () => {
 
     return (
         <div id="problem-editor" className="fullscreen">
-            <div className="py-2 text-light" style={{background: "#1a1d21"}}>
+            <header className="py-2 text-light" style={{ background: "#1a1d21" }}>
                 <div className="mx-4">
                     <Row className="align-items-center">
                         <Col xs="4" className="">
@@ -153,17 +153,25 @@ const ProblemEditor = () => {
                         </Col>
                     </Row>
                 </div>
-            </div>
+            </header>
             <section id="editor">
-                <Row>
-                    <Col sm="6">
-                        {SplitProblemDesc}
-                    </Col>
-                    <Col sm="6">
-                        <Compiler />
-                    </Col>
-                </Row>
+                {/* <aside className="editor-side">L</aside> */}
+                <main className="editor-content">
+                    <Row>
+                        <Col sm="6" className="desc">
+                            {SplitProblemDesc}
+                        </Col>
+                        <Col sm="6">
+                            <Compiler />
+                        </Col>
+                    </Row>
+                </main>
+                {/* <aside className="editor-side">R</aside> */}
+
             </section>
+            <footer>
+                Yasin T.
+            </footer>
             {/* <div>
                 <div className="editor-navbar">
                     <div className="d-flex align-items-center justify-content-between">
