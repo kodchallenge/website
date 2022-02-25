@@ -7,4 +7,8 @@ export default class ProblemService {
         return api().get(api_url+"/getallbytrackid?trackId="+trackId)
     }
 
+    getByTrackName(trackName) {
+        return api().get(api_url+"/getallbytrackname?trackname="+trackName)
+    }
+
 }

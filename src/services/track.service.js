@@ -8,4 +8,8 @@ export default class TrackService {
     getAllTracks() {
         return api().get(this.api_url+"/getalltracks")
     }
+
+    getTrackBySlug(slug) {
+        return api().get(this.api_url+"/gettrackbyslug?slug="+slug)
+    }
 }
