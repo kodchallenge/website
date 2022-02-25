@@ -14,11 +14,11 @@ const ProblemListPage = () => {
             getDatas()
         }
     }, [])
-    
+
     const getDatas = async () => {
         const problemService = new ProblemService()
         const trackService = new TrackService()
-        await problemService.getByTrackName(trackName).then(res => {
+        problemService.getByTrackName(trackName).then(res => {
             setProblems(res.data.data)
         })
         await trackService.getTrackBySlug(trackName).then(res => {
