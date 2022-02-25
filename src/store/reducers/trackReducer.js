@@ -1,7 +1,7 @@
 import types from "../storeTypes"
 
 const trackState = {
-    tracks: [],
+    data: [],
     loading: false,
     error: "",
 }
@@ -15,7 +15,7 @@ export default function trackReducer(state = trackState, {type, payload}) {
             return {...state, loading: false, error: payload}
         
         case types.TRACKS.GETALL_TRACK:
-            return {...state, loading: false, tracks: payload}
+            return {...state, loading: false, data: payload}
     
         default:
             return {...state}
