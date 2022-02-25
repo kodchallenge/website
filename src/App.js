@@ -15,9 +15,9 @@ function App() {
           <Route path='editor' element={<ProblemEditor />}/>
           <Route path='/' element={<Layout />}>
             <Route path='' element={<MainPage />} />
-            <Route path='tracks' element={<TrackListPage />}/>
-            <Route path='problem' element={<ProblemListPage />}/>
-            <Route path='problem/:id' element={<ProblemDetailPage />}/>
+            <Route path='tracks/' element={<TrackListPage />}/>
+            <Route path='tracks/:trackName' element={<ProblemListPage />}/>
+            <Route path='tracks/:trackName/:problemName' element={<ProblemDetailPage />}/>
             <Route path='about-project' element={<AboutPage />}/>
           </Route>
         </Routes>
