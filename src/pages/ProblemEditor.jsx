@@ -157,7 +157,7 @@ const ProblemEditor = () => {
             <section id="editor">
                 {/* <aside className="editor-side">L</aside> */}
                 <main className="editor-content">
-                    <Row>
+                    <Row className="m-0">
                         <Col sm="6" className="desc">
                             {SplitProblemDesc}
                         </Col>
