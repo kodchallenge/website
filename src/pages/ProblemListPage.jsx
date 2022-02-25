@@ -100,7 +100,7 @@ const ProblemListPage = () => {
                                                         </div>
                                                     </Col>
                                                     <Col md="3">
-                                                        <Link to="/tracks/algoritma/" className="btn btn-warning">
+                                                        <Link to={`/tracks/${trackName}/${problem.name}-${problem.id}`} className="btn btn-warning">
                                                             Problemi Çöz
                                                         </Link>
                                                     </Col>
