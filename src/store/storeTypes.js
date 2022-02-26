@@ -11,6 +11,7 @@ const types = {
 
     PROBLEMS: {
         GETALL_PROBLEMS: "GETALL_PROBLEMS",
+        SET_PROBLEM: "SET_PROBLEM",
     },
 
     EDITOR: {
