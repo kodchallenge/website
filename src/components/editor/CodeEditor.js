@@ -2,7 +2,7 @@ import MonacoEditor from "@monaco-editor/react";
 import { editor } from "monaco-editor";
 import React, { useCallback, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
+import { DropdownItem, DropdownMenu, DropdownToggle, Input, UncontrolledDropdown } from "reactstrap";
 import { ChangeLanguage } from "../../store/actions/editorActions";
 
 const CodeEditor = ({ editorRef, height }) => {
@@ -13,7 +13,7 @@ const CodeEditor = ({ editorRef, height }) => {
 
     const Editor = React.useMemo(() => (
         <MonacoEditor
-           // height={height}
+            // height={height}
             language={language}
             defaultValue="//test"
             onMount={(editor, monaco) => {
@@ -47,19 +47,21 @@ const CodeEditor = ({ editorRef, height }) => {
 
 
     const SelectLanguage = React.useMemo(() => (
-        <select select className="px-md-3 mb-2" onChange={handleChangeLanguage} >
-            {
-                languages.map((lang, index) => (
-                    <option selected={editor.language === lang.value} key={index} value={lang.value}>{lang.text}</option>
-                ))
-            }
-        </select >
+        <div>
+            <Input type="select" className="px-md-3 mb-2" onChange={handleChangeLanguage} >
+                {
+                    languages.map((lang, index) => (
+                        <option selected={editor.language === lang.value} key={index} value={lang.value}>{lang.text}</option>
+                    ))
+                }
+            </Input>
+        </div>
     ), [])
 
     return (
         <>
             {SelectLanguage}
-            <div id="code-editor" className="code-editor" style={{height: height, minHeight: 200, maxHeight: "70vh"}}>
+            <div id="code-editor" className="code-editor" style={{ height: height, minHeight: 200, maxHeight: "70vh" }}>
                 {Editor}
             </div>
         </>
