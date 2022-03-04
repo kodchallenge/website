@@ -17,8 +17,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Outfit&family=Poppins:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <title>Kod Challenge - Dev YT</title>
+    
   </head>
   <body>
+    <div id="test"></div>
+    <div id="page-loader" class="loader-root">
+      <div class="loader">
+        <div class="spinner"></div>
+      </div>
+    </div>
     <div id="root"></div>
+    <script>
+      window.onload = () => {
+        const loader = document.getElementById("page-loader")
+        loader.classList.remove("loader-root")
+        document.getElementById("root").style.display = "block"
+      }
+    </script>
   </body>
 </html>
