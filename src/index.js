@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { configureStore } from './store/configureStore';
+import './assets/scss/kodchallenge.scss'
 
 const store = configureStore()
 

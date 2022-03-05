@@ -1,0 +1,22 @@
+/*
+    Css framework olarak bootstrap kullanıyoruz. 
+    Theme olarak creative-tim'in sunduğu ücretsiz react-bootstrap theme olan "argon theme" kullanıyoruz.
+    link: https://www.creative-tim.com/product/argon-design-system-react
+*/
+
+//Bootstrap functions
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "bootstrap/functions";
+
+//Theme veriables
+@import "argon-theme/variables";
+
+//Bootstrap core
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+//Theme core
+@import "argon-theme/theme";
+
+
+//Custom styling
+@import "kodchallenge/custom";
