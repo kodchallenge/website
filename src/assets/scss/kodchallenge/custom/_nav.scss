@@ -1,0 +1,3 @@
+@each $color, $value in $theme-colors {
+	@include nav-variant(".nav-#{$color}", $value);
+}
