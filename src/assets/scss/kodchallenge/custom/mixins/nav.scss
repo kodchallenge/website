@@ -1,0 +1,12 @@
+@mixin nav-variant($parent, $color) {
+    #{$parent} {
+        color: $color !important;
+        &:hover {
+            color: darken($color, 15%) !important;
+        }
+    }
+    #{$parent}.active, .show > .nav-link {
+        color: color-yiq($color) !important;
+        background-color: $color !important;
+    }
+}

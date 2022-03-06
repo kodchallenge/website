@@ -1,3 +1,5 @@
+//Mixins
+@import "custom/mixins/mixins.scss";
 // Custom components
 @import "custom/dropdown.scss";
 @import "custom/mixins.scss";
@@ -5,6 +7,7 @@
 @import "custom/popover.scss";
 @import "custom/separator.scss";
 @import "custom/types.scss";
+@import "custom/nav.scss";
 
 
 // Vendor
