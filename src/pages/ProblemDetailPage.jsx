@@ -17,12 +17,8 @@ const ProblemDetailPage = () => {
             window.location.pathname = "/"
             return;
         }
-        getProblemDetail(problemId)
-    }, [])
-
-    const getProblemDetail = React.useCallback((id) => {
         const problemService = new ProblemService()
-        problemService.getById(id).then(res => {
+        problemService.getById(problemId).then(res => {
             setProblem(res.data.data)
             setLoading(false)
         })
@@ -53,11 +49,14 @@ const ProblemDetailPage = () => {
                             <div className="row align-items-center">
                                 <div className="col-md-8">
                                     <div>
-                                        <h3>{problem?.name}</h3>
+                                        <h3>
+                                            <Link to={"/tracks/"+problem?.track?.slug}>{problem?.track?.name}</Link>
+                                            {" "} / {problem?.name}
+                                        </h3>
                                         <div className="text-white">
-                                            <Badge color="success">Kolay</Badge>
+                                            <Badge color="success">{problem?.difficulty ?? "Kolay"}</Badge>
                                             {" "}
-                                            <Badge color="warning">Skor: <strong>40</strong></Badge>
+                                            <Badge color="warning">Skor: <strong>{problem?.score ?? "0"}</strong></Badge>
                                         </div>
                                         <hr />
                                     </div>
