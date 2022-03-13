@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router';
 import Layout from './layout/Layout'
 import AboutPage from './pages/AboutPage';
@@ -7,7 +7,14 @@ import TrackListPage from './pages/TrackListPage';
 import ProblemListPage from './pages/ProblemListPage';
 import ProblemDetailPage from './pages/ProblemDetailPage';
 import ProblemEditor from './pages/ProblemEditor';
+import { useDispatch } from 'react-redux';
+import { getAllTrack } from './store/actions/trackActions';
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    //Base Configures
+    dispatch(getAllTrack())
+  }, [])
 
   return (
     <div className="App">

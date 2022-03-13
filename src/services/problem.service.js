@@ -1,17 +1,9 @@
 import api from "./api"
 
-const api_url = "/Problem"
+const api_url = "/problems"
 export default class ProblemService {
     
-    getByTrackId(trackId) {
-        return api().get(api_url+"/getallbytrackid?trackId="+trackId)
-    }
-
-    getByTrackName(trackName) {
-        return api().get(api_url+"/getallbytrackname?trackname="+trackName)
-    }
-
     getById(id) {
-        return api().get(api_url+"/getproblembyid?id="+id)
+        return api().get(api_url+"/"+id)
     }
 }

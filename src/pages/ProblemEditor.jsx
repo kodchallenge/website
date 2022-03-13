@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Col, Row, NavLink, Button } from "reactstrap";
 import Compiler from "../components/compiler/Compiler";
 import useQuery from "../hooks/useQuery";
@@ -13,6 +13,7 @@ const ProblemEditor = () => {
 
     const [problemId] = useQuery("problem")
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (!problemId) {
@@ -22,7 +23,7 @@ const ProblemEditor = () => {
         if(!problem) {
             dispatch(SetProblem(problemId))
         }
-    }, [])
+    }, [problemState.selectProblem])
 
     //region problem description
     const SplitProblemDesc = React.useMemo(() => {
@@ -46,10 +47,10 @@ const ProblemEditor = () => {
                         <Row className="align-items-center">
                             <Col xs="4" className="">
                                 <NavLink>
-                                    <Link to="/problem/1" className="text-light">
+                                    <div onClick={() => navigate(-1)} className="text-light hover-pointer">
                                         <i className="fa fa-arrow-left mr-2"></i>
                                         Geri Dön
-                                    </Link>
+                                    </div>
                                 </NavLink>
                             </Col>
                             <Col xs="4" className="text-center ">

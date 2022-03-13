@@ -4,7 +4,7 @@ import types from "../storeTypes"
 
 
 export const getAllTrack = () => async dispatch =>  {
-    dispatch({type: types.API_START})
+    dispatch({type: types.TRACKS.API_START})
     try {
         const res = await new TrackService().getAllTracks()
         if(res.data.success) {
@@ -14,6 +14,6 @@ export const getAllTrack = () => async dispatch =>  {
             throw res.data.message || "Hata Oluştu"
         }
     } catch(e) {
-        dispatch({type: types.API_ERROR, payload: e})
+        dispatch({type: types.TRACKS.API_ERROR, payload: e})
     }
 }

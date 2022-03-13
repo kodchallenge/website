@@ -1,32 +1,33 @@
 import React, { useEffect } from "react"
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import { Badge, Button, Card, CardBody, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap"
 import LoaderSpinner from "../components/spinners/LoaderSpinner"
 import ProblemService from "../services/problem.service"
+import { SetProblem } from "../store/actions/problemActions"
 
 const ProblemDetailPage = () => {
     const [problem, setProblem] = useState(null)
+    const problemState = useSelector(state  => state.problem)
     const [loading, setLoading] = useState(true)
     const [activeTab, setActiveTab] = useState(1)
     const {problemName, trackName} = useParams()
 
+    const dispatch = useDispatch()
     useEffect(() => {
         const problemId = problemName?.split("-")[1]
         if(!problemId) {
             window.location.pathname = "/"
             return;
         }
-        getProblemDetail(problemId)
-    }, [])
-
-    const getProblemDetail = React.useCallback((id) => {
-        const problemService = new ProblemService()
-        problemService.getById(id).then(res => {
-            setProblem(res.data.data)
+        if(!problemState.selectProblem || problemState.selectProblem._id !== problemId) {
+            dispatch(SetProblem(problemId))
+        } else {
+            setProblem(problemState.selectProblem)
             setLoading(false)
-        })
-    }, [])
+        }
+    }, [problemState.selectProblem])
 
     const Tab = ({ index, children }) => {
         return (
@@ -53,11 +54,14 @@ const ProblemDetailPage = () => {
                             <div className="row align-items-center">
                                 <div className="col-md-8">
                                     <div>
-                                        <h3>{problem?.name}</h3>
+                                        <h3>
+                                            <Link to={"/tracks/"+problem?.track?.slug}>{problem?.track?.name}</Link>
+                                            {" "} / {problem?.name}
+                                        </h3>
                                         <div className="text-white">
-                                            <Badge color="success">Kolay</Badge>
+                                            <Badge color="success">{problem?.difficulty ?? "Kolay"}</Badge>
                                             {" "}
-                                            <Badge color="warning">Skor: <strong>40</strong></Badge>
+                                            <Badge color="warning">Skor: <strong>{problem?.score ?? "0"}</strong></Badge>
                                         </div>
                                         <hr />
                                     </div>
@@ -95,7 +99,7 @@ const ProblemDetailPage = () => {
                                                     </div>
                                             </section>
                                             <div className="my-4">
-                                                <Link to="/editor" className="btn btn-danger">Editorü Aç</Link>
+                                                <Link to={`/editor?problem=${problem?._id}`} className="btn btn-danger">Editorü Aç</Link>
                                             </div>
                                         </TabPane>
                                         <TabPane tabId="plainTabs2">
