@@ -1,10 +1,10 @@
 import api from "./api"
 
-const api_url = "/Code"
+const api_url = "/compiler"
 class CodeService {
     
     runCode(data) {
-        return api().post(api_url+"/resruncode", data)
+        return api().post(api_url+"/runcode", data)
     }
 
 }

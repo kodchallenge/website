@@ -15,21 +15,20 @@ const Compiler = () => {
     const [editorHeight, setEditorHeight] = useState(300)
     const [initialHeight, setInitialHeight] = useState(0)
 
-    // const codeService = new CodeService()
     //region Run Code
     const handleRunCodeClick = useCallback(() => {
         setRunning(true)
-        // codeService.runCode({language: editor?.language, code: editorRef.current.getValue()})
-        //     .then(res => {
-        //         //console.log(res.data)
-        //         setRunResult((res.data+"").replaceAll('\n', "<br />"))
-        //     })
-        //     .catch(err => {
-        //         setRunResult(err)
-        //     })
-        //     .finally(() => {
-        //         setRunning(false)
-        //     })
+        CodeService.runCode({language: editor?.language, code: editorRef.current.getValue()})
+            .then(res => {
+                console.log(res.data)
+                setRunResult((res.data.data+"").replaceAll('\n', "<br />"))
+            })
+            .catch(err => {
+                setRunResult(err)
+            })
+            .finally(() => {
+                setRunning(false)
+            })
     }, [editor.language])
     //endregion
     const SplitRunCase = React.useMemo(() => {
