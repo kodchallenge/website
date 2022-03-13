@@ -20,12 +20,6 @@ import {
 import LoaderSpinner from "../components/spinners/LoaderSpinner";
 const TrackListPage = () => {
     const trackState = useSelector(state => state.track)
-    const dispatch = useDispatch()
-
-
-    useEffect(() => {
-        dispatch(getAllTrack())
-    }, [])
 
     return (
         <div>
@@ -56,7 +50,7 @@ const TrackListPage = () => {
                                                         </Col>
                                                         <Col xs="9" sm="10">
                                                             <h3 className="text-dark bold">{track.name ?? "Kategori Adı Bulunamadı"}</h3>
-                                                            <p>Toplam <strong>42</strong> soru bulunuyor.</p>
+                                                            <p>Toplam <strong>{track?.problems?.length ?? 0}</strong> soru bulunuyor.</p>
                                                         </Col>
                                                     </Row>
                                                 </CardBody>
