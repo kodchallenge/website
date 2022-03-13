@@ -2,9 +2,9 @@ import ProblemService from "../../services/problem.service"
 import types from "../storeTypes"
 
 export const SetProblem = problemId => async dispatch =>  {
-    dispatch({type: types.API_START})
+    dispatch({type: types.PROBLEMS.API_START})
     try {
-        const res = await new ProblemService().getProblemById(problemId)
+        const res = await new ProblemService().getById(problemId)
         if(res.data.success) {
             dispatch({type: types.PROBLEMS.SET_PROBLEM, payload: res.data.data})
         }
@@ -12,6 +12,6 @@ export const SetProblem = problemId => async dispatch =>  {
             throw res.data.message || "Hata Oluştu"
         }
     } catch(e) {
-        dispatch({type: types.API_ERROR, payload: e})
+        dispatch({type: types.PROBLEMS.API_ERROR, payload: e})
     }
 }
