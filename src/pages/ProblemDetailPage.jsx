@@ -1,28 +1,33 @@
 import React, { useEffect } from "react"
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import { Badge, Button, Card, CardBody, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap"
 import LoaderSpinner from "../components/spinners/LoaderSpinner"
 import ProblemService from "../services/problem.service"
+import { SetProblem } from "../store/actions/problemActions"
 
 const ProblemDetailPage = () => {
     const [problem, setProblem] = useState(null)
+    const problemState = useSelector(state  => state.problem)
     const [loading, setLoading] = useState(true)
     const [activeTab, setActiveTab] = useState(1)
     const {problemName, trackName} = useParams()
 
+    const dispatch = useDispatch()
     useEffect(() => {
         const problemId = problemName?.split("-")[1]
         if(!problemId) {
             window.location.pathname = "/"
             return;
         }
-        const problemService = new ProblemService()
-        problemService.getById(problemId).then(res => {
-            setProblem(res.data.data)
+        if(!problemState.selectProblem || problemState.selectProblem._id !== problemId) {
+            dispatch(SetProblem(problemId))
+        } else {
+            setProblem(problemState.selectProblem)
             setLoading(false)
-        })
-    }, [])
+        }
+    }, [problemState.selectProblem])
 
     const Tab = ({ index, children }) => {
         return (
@@ -94,7 +99,7 @@ const ProblemDetailPage = () => {
                                                     </div>
                                             </section>
                                             <div className="my-4">
-                                                <Link to="/editor" className="btn btn-danger">Editorü Aç</Link>
+                                                <Link to={`/editor?problem=${problem?._id}`} className="btn btn-danger">Editorü Aç</Link>
                                             </div>
                                         </TabPane>
                                         <TabPane tabId="plainTabs2">
