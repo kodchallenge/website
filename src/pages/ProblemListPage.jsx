@@ -1,31 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { Badge, Button, Card, CardBody, Col, Container, Row } from "reactstrap";
 import LoaderSpinner from "../components/spinners/LoaderSpinner";
 import ProblemService from "../services/problem.service";
 import TrackService from "../services/track.service";
 const ProblemListPage = () => {
-    const [problems, setProblems] = useState(null)
     const [track, setTrack] = useState(null)
+    const trackState = useSelector(x => x.track)
     const [loading, setLoading] = useState(true)
     const { trackName } = useParams()
+    
     useEffect(() => {
-        if (trackName) {
-            getDatas()
+        if (trackName && trackState?.data?.length > 0) {
+            const tracks = trackState.data.find(x => x.slug?.toLowerCase() === trackName.toLowerCase())
+            if(!tracks) {
+                console.log("Kategori yok")
+                window.location.pathname = "/"
+            }
+            setTrack(tracks)
+            setLoading(false)
         }
-    }, [])
-
-    const getDatas = async () => {
-        const problemService = new ProblemService()
-        const trackService = new TrackService()
-        problemService.getByTrackName(trackName).then(res => {
-            setProblems(res.data.data)
-        })
-        await trackService.getTrackBySlug(trackName).then(res => {
-            setTrack(res.data.data)
-        })
-        setLoading(false)
-    }
+    }, [trackState])
 
     return (
         <div className="py-5">
@@ -37,7 +33,7 @@ const ProblemListPage = () => {
                                 <Row>
                                     <Col>
                                         <div className="d-flex align-items-center">
-                                            <img src="https://dg8krxphbh767.cloudfront.net/tracks/cpp.svg" className="img img-fluid track-icon " width={50} height={50} />
+                                            <img src={track?.icon ?? ""} className="img img-fluid track-icon " width={50} height={50} />
                                             <h2 className="my-0 ml-3 bold">{track?.name ?? "Kategori Adı"}</h2>
                                         </div>
                                     </Col>
@@ -84,23 +80,23 @@ const ProblemListPage = () => {
                                     <div>
                                         <h4>Tüm Problemler</h4>
                                     </div>
-                                    {problems?.map((problem, index) => (
+                                    {track?.problems?.map((problem, index) => (
                                         <Card className="shadow border-0 my-3" key={index}>
                                             <CardBody>
                                                 <Row className="align-items-center">
                                                     <Col md="9">
                                                         <h3 className="text-dark">{problem?.name ?? ""}</h3>
                                                         <div className="text-white">
-                                                            <Badge color="green">Kolay</Badge>
+                                                            <Badge color="green">{problem?.difficulty || "Kolay"}</Badge>
                                                             {" "}
-                                                            <Badge color="warning">Skor: <strong>40</strong></Badge>
+                                                            <Badge color="warning">Skor: <strong>{problem?.score || 0}</strong></Badge>
                                                         </div>
                                                         <div className="my-3">
                                                             Başarı Oranı: 86%
                                                         </div>
                                                     </Col>
                                                     <Col md="3">
-                                                        <Link to={`/tracks/${trackName}/${problem.name}-${problem.id}`} className="btn btn-warning">
+                                                        <Link to={`/tracks/${trackName}/${problem.name}-${problem._id}`} className="btn btn-warning">
                                                             Problemi Çöz
                                                         </Link>
                                                     </Col>
