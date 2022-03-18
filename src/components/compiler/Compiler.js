@@ -16,12 +16,18 @@ const Compiler = () => {
     const [initialHeight, setInitialHeight] = useState(0)
 
     //region Run Code
-    const handleRunCodeClick = useCallback(() => {
+    const handleRunCodeClick = () => {
         setRunning(true)
-        CodeService.runCode({language: editor?.language, code: editorRef.current.getValue()})
+        const lang = {
+            language: editor?.language,
+            code: editorRef.current.getValue(),
+            functionName: "helloWorld",
+            params: "1, 5"
+        }
+        CodeService.runCode(lang)
             .then(res => {
                 console.log(res.data)
-                setRunResult((res.data.data+"").replaceAll('\n', "<br />"))
+                setRunResult((res.data.data.result+"").replaceAll('\n', "<br />"))
             })
             .catch(err => {
                 setRunResult(err)
@@ -29,7 +35,7 @@ const Compiler = () => {
             .finally(() => {
                 setRunning(false)
             })
-    }, [editor.language])
+    }
     //endregion
     const SplitRunCase = React.useMemo(() => {
         return (

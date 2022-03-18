@@ -1,28 +1,16 @@
 import MonacoEditor from "@monaco-editor/react";
 import { editor } from "monaco-editor";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DropdownItem, DropdownMenu, DropdownToggle, Input, UncontrolledDropdown } from "reactstrap";
 import { ChangeLanguage } from "../../store/actions/editorActions";
 
 const CodeEditor = ({ editorRef, height }) => {
+    const problemState = useSelector(state => state.problem)
+    const {selectProblem: problem} = problemState
     const editor = useSelector(state => state.editor)
     const dispatch = useDispatch()
     const [language, setLanguage] = useState(editor.language ?? "javascript") //PS: state den gelecek.
-    //region Editor
-
-    const Editor = React.useMemo(() => (
-        <MonacoEditor
-            // height={height}
-            language={language}
-            defaultValue="//test"
-            onMount={(editor, monaco) => {
-                editorRef.current = editor
-            }}
-        />
-    ), [language])
-
-    //endregion
 
     //region Select Language
 
@@ -62,7 +50,14 @@ const CodeEditor = ({ editorRef, height }) => {
         <>
             {SelectLanguage}
             <div id="code-editor" className="code-editor" style={{ height: height, minHeight: 200, maxHeight: "70vh" }}>
-                {Editor}
+                <MonacoEditor
+                    // height={height}
+                    language={language}
+                    defaultValue={problem?.baseCode ?? "//Write your code is here"}
+                    onMount={(editor, monaco) => {
+                        editorRef.current = editor
+                    }}
+                />
             </div>
         </>
     )
