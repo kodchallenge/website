@@ -8,6 +8,8 @@ import CodeService from "../../services/code.service";
 import CodeEditor from "../editor/CodeEditor";
 
 const Compiler = () => {
+    const problemState = useSelector(state => state.problem)
+    const {selectProblem: problem} = problemState
     const editorRef = useRef(null)
     const [running, setRunning] = useState(false)
     const [runResult, setRunResult] = useState("")
@@ -21,8 +23,7 @@ const Compiler = () => {
         const lang = {
             language: editor?.language,
             code: editorRef.current.getValue(),
-            functionName: "helloWorld",
-            params: "1, 5"
+            problem: problem._id
         }
         CodeService.runCode(lang)
             .then(res => {
