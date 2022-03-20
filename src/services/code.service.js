@@ -7,6 +7,10 @@ class CodeService {
         return api().post(api_url+"/runcode", data)
     }
 
+    runTest(data) {
+        return api().post(api_url+"/runtest", data)
+    }
+
 }
 
 export default new CodeService()
