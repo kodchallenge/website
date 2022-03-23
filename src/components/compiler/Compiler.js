@@ -3,9 +3,11 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import SplitPane from "react-split-pane";
 import { Button } from "reactstrap";
+import Swal from "sweetalert2";
 import useQuery from "../../hooks/useQuery";
 import api from "../../services/api";
 import CodeService from "../../services/code.service";
+import ProblemSolutionService from "../../services/problemSolution.service";
 import CodeEditor from "../editor/CodeEditor";
 
 const Compiler = () => {
@@ -16,6 +18,7 @@ const Compiler = () => {
     const editor = useSelector(state => state.editor)
     const [editorHeight, setEditorHeight] = useState(300)
     const [initialHeight, setInitialHeight] = useState(0)
+    const [testData, setTestData] = useState(null)
 
     //region Run Code
     const handleRunCodeClick = () => {
@@ -64,9 +67,10 @@ const Compiler = () => {
             .then(res => {
                 const data = res.data.data
                 let result = ""
-                data.map(x => {
+                data.tests.map(x => {
                     result += CodeTestStyle(x)
                 })
+                setTestData(data)
                 setRunResult(result)
             })
             .catch(err => {
@@ -78,6 +82,22 @@ const Compiler = () => {
     }
     //endregion
 
+    const handleSendCodeClick = () => {
+        Swal.fire({
+            title: "Onaylıyor musunuz?",
+            text: "Kodunuz gönderilecektir. Bu işlem geri alınamaz. Bu problemi çözmüş olarak işaretlenecektir.",
+            icon: 'warning',
+            confirmButtonText: 'Onaylıyorum',
+            cancelButtonText: "İptal",
+            showCancelButton: true,
+        }).then(result => {
+            console.log(result)
+            if(result.isConfirmed && testData) {
+                const solutionService = new ProblemSolutionService()
+                solutionService.sendSolution(testData)
+            }
+        })
+    }
 
     const SplitRunCase = React.useMemo(() => {
         return (
@@ -86,7 +106,7 @@ const Compiler = () => {
                     <div className="">
                         <Button onClick={handleRunCodeClick}>Çalıştır</Button>
                         <Button onClick={handleRunTestClick}>Testleri Başlat</Button>
-                        <Button color="success">Gönder</Button>
+                        <Button color="success" onClick={handleSendCodeClick} disabled={!Boolean(testData)}>Gönder</Button>
                     </div>
                     <div style={{padding: 20, fontSize: 14}} dangerouslySetInnerHTML={
                         {__html:running ? "<p>Çalışıyor</p>" : runResult}
@@ -95,7 +115,7 @@ const Compiler = () => {
                 </div>
             </div>
         )
-    }, [running, runResult, editor.language])
+    }, [running, runResult, editor.language, testData])
 
     const resizeStart = (e) => {
         const codeEditor = document.getElementById("code-editor")
