@@ -29,20 +29,24 @@ function MainFooter() {
                             <div className='text-center'>
                                 <Brand bold/>
                                 <br />
-                                <div className='mt-5 pt-5'>
+                                <div className='my-5 pt-5'>
                                     <Link to="#" className='text-white btn btn-link'>Anasayfa</Link>
                                     <Link to='#' className='text-white btn btn-link'>Blog</Link>
                                     <Link to='#' className='text-white btn btn-link'>Forum</Link>
                                     <Link to='#' className='text-white btn btn-link'>İLETİŞİM</Link>
                                 </div>
-                                <p className='text-warning font-weight-bold pt-5 mt-5'>
+                                <p>v0.2.0</p>
+                                <p>Last Update: 22.03.2022</p>
+                                <p>Developer Mode & Not Open Source</p>
+                                <p>
+                                    <a className='text-danger font-weight-bolder' href="https://github.com/yasintorun" target="_blank">Github</a>
+                                </p>
+                                <p className='text-warning font-weight-bold mt-4'>
                                     &copy; 2022 Tüm Hakları Saklıdır.
                                     <Link to="/" className='text-white'>
                                         &nbsp;KodChallenge
                                     </Link> 
                                 </p>
-                                <p>v0.0.2 - Not Open Source</p>
-                                <p>Developer Mode & Last Update: 20.02.2022</p>
                             </div>
                         </Container>
 

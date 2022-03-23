@@ -18,6 +18,7 @@ function AboutPage() {
                     Kodlama öğrenmek isteyen insanların <strong>Türkçe problem bulamama</strong> sorunu giderebilmek için bu projeyi yapıyorum.< br />
                     Yeni kodlamaya başlayan insanların <strong>online Türkçe soru</strong> çözebileceği bir platform oluşturuyorum. <br />
                     Site içerisinde yarışmalar ve etkinlikler düzenleme imkanı oluşturacağım. <br />
+                    Bunun haricinde şirketlerin kod case oluşturabileceği bunları iş başvurusu yapanlarla paylaşabileceği bir platform hazırlayacağım.<br />
                     Ayrıca blog yazıları ve forum tarzında kullanıcıların birbiri ile iletişim kurabileceği bir sistem hazırlayacağım. <br />
                 </p>
                 <div className='pt-4'>
@@ -30,16 +31,19 @@ function AboutPage() {
                             <strong>Proje yönetimi: </strong> Github
                         </li>
                         <li>
-                            <strong>Frontend: </strong> React
+                            <strong>Frontend: </strong> React - Scss
                         </li>
                         <li>
-                            <strong>Backend: </strong> .Net 5 C# WebAPI
+                            <strong>Backend: </strong> Nodejs - Express
                         </li>
                         <li>
-                            <strong>Veritabanı: </strong> Sql Server (MSSQL)
+                            <strong>Veritabanı: </strong> Mongodb - NoSql
                         </li>
                         <li>
-                            <strong>Code Compiler: </strong> PHP
+                            <strong>Code Compiler: </strong> Nodejs
+                        </li>
+                        <li>
+                            <strong>Code Editor: </strong> React - Monaco
                         </li>
                     </ul>
                 </div>
