@@ -209,3 +209,35 @@ html, body, #root, .App {
   .hover-pointer:hover {
     cursor: pointer;
   }
+
+  .fullpage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .auth-gradient-bg {
+    background-image: radial-gradient(circle, #ffb471, #ffba90, #ffc2ac, #ffcdc5, #ffdada);
+  }
+
+  a[target="_blank"]::after {
+    content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+    margin: 0px 5px;
+  }
+
+  .input-group > .input-group-text {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .input-group {
+    margin-bottom: 10px;
+  }
+
+  .error-messages>p {
+    margin: 5px 0px;
+    color:rgb(255, 148, 86);
+  }
