@@ -9,6 +9,8 @@ import ProblemDetailPage from './pages/ProblemDetailPage';
 import ProblemEditor from './pages/ProblemEditor';
 import { useDispatch } from 'react-redux';
 import { getAllTrack } from './store/actions/trackActions';
+import AuthLayout from './layout/AuthLayout';
+import Signup from './pages/auth/Signup';
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -27,6 +29,9 @@ function App() {
             <Route path='tracks/:trackName/:problemName' element={<ProblemDetailPage />}/>
             <Route path='about-project' element={<AboutPage />}/>
           </Route>
+          <Route path='auth' element={<AuthLayout />}>
+              <Route path='signup' element={<Signup />} />
+            </Route>
         </Routes>
     </div>
   );
