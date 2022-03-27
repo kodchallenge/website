@@ -12,6 +12,7 @@ import { getAllTrack } from './store/actions/trackActions';
 import AuthLayout from './layout/AuthLayout';
 import Signup from './pages/auth/Signup';
 import Signin from './pages/auth/Signin';
+import ProtectedRoute from './components/ProtectedRoute';
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -21,20 +22,23 @@ function App() {
 
   return (
     <div className="App">
-        <Routes>
-          <Route path='editor' element={<ProblemEditor />}/>
-          <Route path='/' element={<Layout />}>
-            <Route path='' element={<MainPage />} />
-            <Route path='tracks/' element={<TrackListPage />}/>
-            <Route path='tracks/:trackName' element={<ProblemListPage />}/>
-            <Route path='tracks/:trackName/:problemName' element={<ProblemDetailPage />}/>
-            <Route path='about-project' element={<AboutPage />}/>
+      <Routes>
+        <Route path='editor' element={<ProblemEditor />} />
+        <Route path='/' element={<Layout />}>
+          <Route exact path='' element={<MainPage />} />
+          <Route path='tracks/' element={<TrackListPage />} />
+          <Route path='tracks/:trackName' element={<ProblemListPage />} />
+          <Route path='tracks/:trackName/:problemName' element={<ProblemDetailPage />} />
+          <Route path='about-project' element={<AboutPage />} />
+          <Route path='' element={<ProtectedRoute />}>
+              <Route path="asd" element={<Signin/>} />
           </Route>
-          <Route path='auth' element={<AuthLayout />}>
-              <Route path='signup' element={<Signup />} />
-              <Route path='signin' element={<Signin />} />
-            </Route>
-        </Routes>
+        </Route>
+        <Route path='auth' element={<AuthLayout />}>
+          <Route path='signup' element={<Signup />} />
+          <Route path='signin' element={<Signin />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

@@ -21,6 +21,10 @@ const types = {
 
     EDITOR: {
         CHANGE_LANGUAGE: "CHANGE_EDITOR_LANGUAGE",
+    },
+
+    AUTH: {
+        SET_AUTH: "SET_AUTH",
     }
 }
 
