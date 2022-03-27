@@ -19,25 +19,24 @@ import authService from '../../services/auth.service';
 import * as Yup from 'yup'
 import Brand from '../../components/Brand';
 import { Link } from 'react-router-dom';
+import CookieService from '../../services/cookie.service';
 
-const Signup = () => {
+const Signin = () => {
     const [loading, setLoading] = useState(false)
     const initialFormValues = {
-        fullname: "",
         username: "",
         password: "",
-        email: "",
     }
 
     const validationSchema = Yup.object().shape({
-        email: Yup.string().required("Eposta zorunlu").email("Eposta adresi zorunlu"),
-        password: Yup.string().required("Şifre Zorunlu").min(6, "Şifre en az 6 haneli olmalıdır"),
+        password: Yup.string().required("Şifre Zorunlu"),
         username: Yup.string().required("Kullanıcı adı zorunlu").min(3, "Kullanıcı adı en az 3 haneli olmalıdır").max(16, "Kullanıcı adı en fazla 16 haneli olmalıdır")
     })
 
     const handleSignup = (values) => {
         setLoading(true)
-        authService.signup(values).then(res => {
+        authService.signin(values).then(res => {
+            CookieService.set("auth", res.data.data)
             Swal.fire({
                 title: "Başarılı",
                 text: res.data.message,
@@ -63,7 +62,37 @@ const Signup = () => {
             <Card className="bg-secondary shadow border-0">
                 <CardHeader className="bg-white pb-5">
                     <div className="text-muted text-center mb-3">
-                        <small>Üye ol</small>
+                        <small>Giriş Yap</small>
+                    </div>
+                    <div className="text-center">
+                        <Button
+                            className="btn-neutral btn-icon mr-4"
+                            color="default"
+                            href="#pablo"
+                            onClick={e => e.preventDefault()}
+                        >
+                            <span className="btn-inner--icon mr-1">
+                                <img
+                                    alt="G"
+                                    src={require("../../assets/img/icons/common/github.svg").default}
+                                />
+                            </span>
+                            <span className="btn-inner--text">Github</span>
+                        </Button>
+                        <Button
+                            className="btn-neutral btn-icon ml-1"
+                            color="default"
+                            href="#pablo"
+                            onClick={e => e.preventDefault()}
+                        >
+                            <span className="btn-inner--icon mr-1">
+                                <img
+                                    alt="G"
+                                    src={require("../../assets/img/icons/common/google.svg").default}
+                                />
+                            </span>
+                            <span className="btn-inner--text">Google</span>
+                        </Button>
                     </div>
                 </CardHeader>
                 <CardBody className="px-lg-5 py-lg-5">
@@ -84,23 +113,9 @@ const Signup = () => {
 
                                 <InputGroup>
                                     <InputGroupText>
-                                        <i class="fa fa-solid fa-envelope"></i>
-                                    </InputGroupText>
-                                    <Input name="email" onChange={props.handleChange} placeholder="Email" type="email" />
-                                </InputGroup>
-
-                                <InputGroup>
-                                    <InputGroupText>
                                         <i class="fa fa-solid fa-lock"></i>
                                     </InputGroupText>
                                     <Input name="password" onChange={props.handleChange} placeholder="Şifre" type="password" />
-                                </InputGroup>
-
-                                <InputGroup>
-                                    <InputGroupText>
-                                        <i class="fa fa-solid fa-user"></i>
-                                    </InputGroupText>
-                                    <Input name="fullname" onChange={props.handleChange} placeholder="Ad Soyad (Opsiyonel)" type="text" />
                                 </InputGroup>
                             </FormGroup>
                             <div className='text-danger error-messages'>
@@ -108,26 +123,6 @@ const Signup = () => {
                                 <p>{props.errors.email}</p>
                                 <p>{props.errors.password}</p>
                             </div>
-                            <Row className="my-4">
-                                <Col xs="12">
-                                    <div className="custom-control custom-control-alternative custom-checkbox">
-                                        <input
-                                            className="custom-control-input"
-                                            id="customCheckRegister"
-                                            type="checkbox"
-                                        />
-                                        <label
-                                            className="custom-control-label"
-                                            htmlFor="customCheckRegister"
-                                        >
-                                            <span>
-                                                <a href="/privacy-policy" target="_blank"> Gizlilik politakasını</a>
-                                                {" "} kabul ediyorum.
-                                            </span>
-                                        </label>
-                                    </div>
-                                </Col>
-                            </Row>
                             
                             <div className="text-center">
                                 <Button
@@ -136,14 +131,14 @@ const Signup = () => {
                                     type="button"
                                     onClick={props.handleSubmit}
                                 >
-                                    {!loading ? "Hesap Oluştur" : "Hesap Oluşturuluyor..."}
+                                    {!loading ? "Giriş yap" : "Giriş yapılıyor..."}
                                 </Button>
                             </div>
                         </Form>
                         )}
                     </Formik>
                     <p className='mt-4'>
-                        Hesabın var mı? O halde <Link to="/auth/signin">Giriş Yap</Link>
+                        Hesabın yok mu? Kolay bir şekilde <Link to="/auth/signup">Üye ol</Link>
                     </p>
                 </CardBody>
             </Card>
@@ -151,4 +146,4 @@ const Signup = () => {
     )
 }
 
-export default React.memo(Signup)
+export default React.memo(Signin)

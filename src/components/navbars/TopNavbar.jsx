@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { Link } from "react-router-dom";
+import * as RouterDom from "react-router-dom";
+import {Link} from "react-router-dom";
 import Headroom from "headroom.js";
 import {
     Button,
@@ -143,16 +144,20 @@ const TopNavbar = () => {
                                     </UncontrolledTooltip>
                                 </NavItem>
                                 <NavItem className="d-none d-lg-block ml-lg-4">
-                                    <Button color="default" >
-                                        <span className="btn-inner--text">
-                                            Üye Ol
-                                        </span>
-                                    </Button>{" "}
-                                    <Button color="warning" >
-                                        <span className="btn-inner--text">
-                                            Giriş Yap
-                                        </span>
-                                    </Button>
+                                    <Link style={{all: "none"}} to="/auth/signup">
+                                        <Button color="default">
+                                            <span className="btn-inner--text">
+                                                Üye Ol
+                                            </span>
+                                        </Button>{" "}
+                                    </Link>
+                                    <Link style={{all: "none"}} to="/auth/signin">
+                                        <Button color="warning" >
+                                            <span className="btn-inner--text text-white">
+                                                Giriş Yap
+                                            </span>
+                                        </Button>
+                                    </Link>
                                 </NavItem>
                             </Nav>
                         </UncontrolledCollapse>

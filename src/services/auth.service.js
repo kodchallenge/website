@@ -5,6 +5,9 @@ class AuthService {
     signup(data) {
         return api().post(api_url+"/signup", data)
     }
+    signin(data) {
+        return api().post(api_url+"/signin", data)
+    }
 
 }
 

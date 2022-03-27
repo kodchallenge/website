@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { getAllTrack } from './store/actions/trackActions';
 import AuthLayout from './layout/AuthLayout';
 import Signup from './pages/auth/Signup';
+import Signin from './pages/auth/Signin';
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -31,6 +32,7 @@ function App() {
           </Route>
           <Route path='auth' element={<AuthLayout />}>
               <Route path='signup' element={<Signup />} />
+              <Route path='signin' element={<Signin />} />
             </Route>
         </Routes>
     </div>
