@@ -1,13 +1,16 @@
 import React from "react";
-import { Route } from "react-router";
+import { Outlet, Route, Routes } from "react-router";
+import ProtectedRoute from "../hoc/ProtectedRoute";
 import Signin from "../pages/auth/Signin";
 
 const AdminRouter = () => {
     return (
-        <>
-            <Route path="asd" element={<Signin />}/>
-        </>
+        <Routes>
+            <Route path="/" element={<Outlet />}>
+                <Route path="asd" element={<p>asd</p>} />
+            </Route>
+        </Routes>
     )
 }
 
-export default React.memo(AdminRouter)
+export default AdminRouter

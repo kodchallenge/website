@@ -20,6 +20,7 @@ import * as Yup from 'yup'
 import Brand from '../../components/Brand';
 import { Link } from 'react-router-dom';
 import CookieService from '../../services/cookie.service';
+import { CookieTypes } from '../../constants';
 
 const Signin = () => {
     const [loading, setLoading] = useState(false)
@@ -36,7 +37,7 @@ const Signin = () => {
     const handleSignup = (values) => {
         setLoading(true)
         authService.signin(values).then(res => {
-            CookieService.set("auth", res.data.data)
+            CookieService.set(CookieTypes.AUTH, res.data.data)
             Swal.fire({
                 title: "Başarılı",
                 text: res.data.message,

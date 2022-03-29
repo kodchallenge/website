@@ -24,8 +24,12 @@ import {
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Brand from '../Brand';
+import { useSelector } from 'react-redux';
+import useAuth from '../../hooks/useAuth';
 const TopNavbar = () => {
     const [collapseClasses, setCollapseClasses] = useState("")
+    const {user} = useSelector(state => state.auth)
+    const {handleLogout} = useAuth()
 
     const onExiting = () => {
         setCollapseClasses("collapsing-out")
@@ -143,22 +147,30 @@ const TopNavbar = () => {
                                         Github hesabım
                                     </UncontrolledTooltip>
                                 </NavItem>
-                                <NavItem className="d-none d-lg-block ml-lg-4">
-                                    <Link style={{all: "none"}} to="/auth/signup">
-                                        <Button color="default">
-                                            <span className="btn-inner--text">
-                                                Üye Ol
-                                            </span>
-                                        </Button>{" "}
-                                    </Link>
-                                    <Link style={{all: "none"}} to="/auth/signin">
-                                        <Button color="warning" >
-                                            <span className="btn-inner--text text-white">
-                                                Giriş Yap
-                                            </span>
-                                        </Button>
-                                    </Link>
-                                </NavItem>
+                                {!user ? (
+                                    <NavItem className="d-none d-lg-block ml-lg-4">
+                                        <Link style={{all: "none"}} to="/auth/signup">
+                                            <Button color="default">
+                                                <span className="btn-inner--text">
+                                                    Üye Ol
+                                                </span>
+                                            </Button>{" "}
+                                        </Link>
+                                        <Link style={{all: "none"}} to="/auth/signin">
+                                            <Button color="warning" >
+                                                <span className="btn-inner--text text-white">
+                                                    Giriş Yap
+                                                </span>
+                                            </Button>
+                                        </Link>
+                                    </NavItem>
+                                    )
+                                    : (
+                                    <NavItem className="ml-lg-4">
+                                        <Button color='danger' onClick={handleLogout}>Çıkış Yap</Button>
+                                    </NavItem>
+                                    )
+                                }
                             </Nav>
                         </UncontrolledCollapse>
                     </div>

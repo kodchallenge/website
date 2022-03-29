@@ -6,3 +6,10 @@ export const SetAuth = (data) => {
         payload: data,
     }
 }
+
+export const LogoutAction = () => {
+    return {
+        type: types.AUTH.LOGOUT,
+        payload: null
+    }
+}

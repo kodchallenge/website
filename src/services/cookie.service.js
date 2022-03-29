@@ -12,9 +12,12 @@ class CookieService {
     }
 
     static set(key, data) {
-        console.log(data)
         const json = JSON.stringify(data)
         Cookie.set(key, json)
+    }
+
+    static delete(key) {
+        Cookie.remove(key)
     }
 }
 

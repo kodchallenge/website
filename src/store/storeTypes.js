@@ -25,6 +25,7 @@ const types = {
 
     AUTH: {
         SET_AUTH: "SET_AUTH",
+        LOGOUT: "LOGOUT_AUTH",
     }
 }
 

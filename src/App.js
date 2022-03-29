@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Route, Routes } from 'react-router';
+import { Outlet, Route, Routes } from 'react-router';
 import Layout from './layout/Layout'
 import AboutPage from './pages/AboutPage';
 import MainPage from './pages/main/MainPage';
@@ -12,7 +12,9 @@ import { getAllTrack } from './store/actions/trackActions';
 import AuthLayout from './layout/AuthLayout';
 import Signup from './pages/auth/Signup';
 import Signin from './pages/auth/Signin';
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './hoc/ProtectedRoute';
+
+const AdminRouter = React.lazy(() => import("./routes/AdminRouter"));
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -30,8 +32,12 @@ function App() {
           <Route path='tracks/:trackName' element={<ProblemListPage />} />
           <Route path='tracks/:trackName/:problemName' element={<ProblemDetailPage />} />
           <Route path='about-project' element={<AboutPage />} />
-          <Route path='' element={<ProtectedRoute />}>
-              <Route path="asd" element={<Signin/>} />
+          <Route element={<ProtectedRoute roles={["admin", "user"]}/>}>
+            <Route path='dashboard/*' element={
+              <React.Suspense fallback={<p>...</p>}>
+                <AdminRouter />
+              </React.Suspense>
+            } />
           </Route>
         </Route>
         <Route path='auth' element={<AuthLayout />}>
