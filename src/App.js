@@ -13,6 +13,7 @@ import AuthLayout from './layout/AuthLayout';
 import Signup from './pages/auth/Signup';
 import Signin from './pages/auth/Signin';
 import ProtectedRoute from './hoc/ProtectedRoute';
+import Router from './routes/Router';
 
 const AdminRouter = React.lazy(() => import("./routes/AdminRouter"));
 function App() {
@@ -24,17 +25,22 @@ function App() {
 
   return (
     <div className="App">
-      <Routes>
+      <Router />
+      {/* <Routes>
         <Route path='editor' element={<ProblemEditor />} />
         <Route path='/' element={<Layout />}>
           <Route exact path='' element={<MainPage />} />
           <Route path='tracks/' element={<TrackListPage />} />
           <Route path='tracks/:trackName' element={<ProblemListPage />} />
-          <Route path='tracks/:trackName/:problemName' element={<ProblemDetailPage />} />
           <Route path='about-project' element={<AboutPage />} />
+          
           <Route element={<ProtectedRoute roles={["admin", "user"]}/>}>
+            <Route path='tracks/:trackName/:problemName' element={<ProblemDetailPage />} />
+          </Route>
+          
+          <Route element={<ProtectedRoute roles={["admin"]}/>}>
             <Route path='dashboard/*' element={
-              <React.Suspense fallback={<p>...</p>}>
+              <React.Suspense fallback  ={<p>...</p>}>
                 <AdminRouter />
               </React.Suspense>
             } />
@@ -44,7 +50,7 @@ function App() {
           <Route path='signup' element={<Signup />} />
           <Route path='signin' element={<Signin />} />
         </Route>
-      </Routes>
+      </Routes> */}
     </div>
   );
 }

@@ -6,8 +6,27 @@ import Signin from "../pages/auth/Signin";
 const AdminRouter = () => {
     return (
         <Routes>
-            <Route path="/" element={<Outlet />}>
-                <Route path="asd" element={<p>asd</p>} />
+            <Route element={<Outlet />}>
+                <Route path="asd" element={<p>
+                    dasod asdk asğdlas pd kasd kasod kasldk asdasdad
+                    addaksdkmad
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    a
+                    sdasdlasd
+                    sdasdlasd
+                    <br />
+                    <br />
+                    sdasdlasd
+                    sdasdlasd
+                    <br />
+                    sdasdlasd
+                    sdasdlasd
+                    sdasdlasd
+                </p>} />
             </Route>
         </Routes>
     )

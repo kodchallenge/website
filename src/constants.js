@@ -3,6 +3,14 @@ const CookieTypes = {
 }
 
 
+const ROLES = {
+    admin: "admin",
+    user: "user",
+    company: "company",
+}
+
+
 export {
-    CookieTypes
+    CookieTypes,
+    ROLES
 }

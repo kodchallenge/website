@@ -4,12 +4,12 @@ import Cookies from 'js-cookie'
 import { useSelector } from 'react-redux'
 import { CookieTypes } from '../constants'
 
-function ProtectedRoute({path, element, exact=false, roles}) {
+function ProtectedRoute({roles}) {
     const {user} = useSelector(state => state.auth)
     const isLogin = Cookies.get(CookieTypes.AUTH) && !!user
 
     if(!isLogin) {
-        return <Navigate to="/not-authorized" replace />
+        return <Navigate to="/unauthorized" replace />
     }
 
     const isAccess = user && user.role && roles?.includes(user.role)
