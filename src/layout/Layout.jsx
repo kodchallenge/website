@@ -8,7 +8,9 @@ const Layout = () => {
     return (
         <>
             <TopNavbar />
-            <Outlet />
+            <div style={{marginTop: 85}}>
+                <Outlet />
+            </div>
             <MainFooter />
         </> 
     )
