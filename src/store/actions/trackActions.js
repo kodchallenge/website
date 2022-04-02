@@ -17,3 +17,18 @@ export const getAllTrack = () => async dispatch =>  {
         dispatch({type: types.TRACKS.API_ERROR, payload: e})
     }
 }
+
+export const addTrack = (data) => async dispatch =>  {
+    dispatch({type: types.TRACKS.API_START})
+    try {
+        const res = await new TrackService().addTrack(data)
+        if(res.data.success) {
+            dispatch({type: types.TRACKS.ADD_TRACK, payload: res.data.data})
+        }
+        else {
+            throw res.data.message || "Hata Oluştu"
+        }
+    } catch(e) {
+        dispatch({type: types.TRACKS.API_ERROR, payload: e})
+    }
+}

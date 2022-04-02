@@ -9,6 +9,7 @@ const types = {
         API_START: "API_START_TRACK",
         API_ERROR: "API_ERROR_TRACK",
         GETALL_TRACK: "TRACK",
+        ADD_TRACK: "ADD_TRACK"
         //CURRENT_TRACK: "CURRENT_TRACK"
     },
 

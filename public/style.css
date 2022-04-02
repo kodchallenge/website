@@ -241,3 +241,9 @@ html, body, #root, .App {
     margin: 5px 0px;
     color:rgb(255, 148, 86);
   }
+
+  .admin-navbar {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: none;
+    border-left: none;
+  }
