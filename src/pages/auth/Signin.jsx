@@ -20,9 +20,12 @@ import * as Yup from 'yup'
 import Brand from '../../components/Brand';
 import { Link } from 'react-router-dom';
 import CookieService from '../../services/cookie.service';
+import { CookieTypes } from '../../constants';
+import useAuth from '../../hooks/useAuth';
 
 const Signin = () => {
     const [loading, setLoading] = useState(false)
+    const {handleSignin} = useAuth()
     const initialFormValues = {
         username: "",
         password: "",
@@ -33,22 +36,9 @@ const Signin = () => {
         username: Yup.string().required("Kullanıcı adı zorunlu").min(3, "Kullanıcı adı en az 3 haneli olmalıdır").max(16, "Kullanıcı adı en fazla 16 haneli olmalıdır")
     })
 
-    const handleSignup = (values) => {
+    const handleSigninClick = (values) => {
         setLoading(true)
-        authService.signin(values).then(res => {
-            CookieService.set("auth", res.data.data)
-            Swal.fire({
-                title: "Başarılı",
-                text: res.data.message,
-                icon: "success",
-            })
-        }).catch(err => {
-            Swal.fire({
-                title: "Hata",
-                text: err.response.data.message,
-                icon: "error",
-            })
-        }).finally(() => {
+        handleSignin(values, () => {
             setLoading(false)
         })
     }
@@ -99,7 +89,7 @@ const Signin = () => {
                     <Formik
                         initialValues={initialFormValues}
                         validationSchema= {validationSchema}
-                        onSubmit={handleSignup}
+                        onSubmit={handleSigninClick}
                     >
                         {props => (
                         <Form role="form">
