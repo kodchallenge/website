@@ -247,3 +247,17 @@ html, body, #root, .App {
     border-right: none;
     border-left: none;
   }
+
+
+  .sidebar .nav-item {
+    padding: 10px 0px;
+    padding-left: 20px;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block !important;
+  }
+
+  .sidebar .nav-item.active {
+    background-color: #343434;
+  }

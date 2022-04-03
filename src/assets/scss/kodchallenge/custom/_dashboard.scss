@@ -1,0 +1,20 @@
+.dashboard {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+
+    .sidebar {
+        width: 15%;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .dashboard-main {
+        flex: 1;
+        height: 100%;
+        overflow: auto;
+    }
+    ul {
+        list-style-type: none;
+    }
+}

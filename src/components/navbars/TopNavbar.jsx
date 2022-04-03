@@ -39,7 +39,9 @@ const TopNavbar = () => {
         setCollapseClasses("")
     };
     useEffect(() => {
-        let headroom = new Headroom(document.getElementById("navbar-main"));
+        let headroom = new Headroom(document.getElementById("navbar-main"), {
+            offset: 100,
+        });
         headroom.init();
     }, [])
     return (

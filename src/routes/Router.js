@@ -24,6 +24,14 @@ const Router = () => {
     return (
         <Routes>
             <Route path='editor' element={<ProblemEditor />} />
+            {/*Sadece admin rolüne sahip kullanıcının erişebileceği linkler */}
+            <Route element={<ProtectedRoute roles={[ROLES.admin]} />}>
+                <Route path='dashboard/*' element={
+                    <React.Suspense fallback={<p>...</p>}>
+                        <AdminRouter />
+                    </React.Suspense>
+                } />
+            </Route>
             <Route path='/' element={<Layout />}>
                 {/* Giriş yapmaya ihtiyaç duyulmayan tüm linkler */}
                 <Route exact path='' element={<MainPage />} />
@@ -34,15 +42,6 @@ const Router = () => {
                 <Route path='auth' element={<AuthLayout />}>
                     <Route path='signup' element={<Signup />} />
                     <Route path='signin' element={<Signin />} />
-                </Route>
-
-                {/*Sadece admin rolüne sahip kullanıcının erişebileceği linkler */}
-                <Route element={<ProtectedRoute roles={[ROLES.admin]} />}>
-                    <Route path='dashboard/*' element={
-                        <React.Suspense fallback={<p>...</p>}>
-                            <AdminRouter />
-                        </React.Suspense>
-                    } />
                 </Route>
 
                 {/*Sadece user rolüne sahip kullanıcının erişebileceği linkler */}
@@ -65,7 +64,7 @@ const Router = () => {
 
                 {/*Giriş yapmış tüm kullanıcıların erişebileceği linkler */}
                 <Route element={<ProtectedRoute roles={Object.values(ROLES)} />}>
-                    
+                    <Route path='tracks/:trackName/:problemName' element={<ProblemDetailPage />} />
                 </Route>
             </Route>
         </Routes>
