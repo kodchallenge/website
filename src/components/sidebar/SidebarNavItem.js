@@ -8,8 +8,6 @@ const SidebarNavItem = ({ to, text }) => {
 
     const location = useLocation()
 
-    console.log(location)
-
     return (
         <NavItem tag={NavLink} to={to} active={location.pathname.includes(to)}>
              {text}

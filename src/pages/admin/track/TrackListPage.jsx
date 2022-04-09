@@ -1,12 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Button, DropdownItem, DropdownMenu, DropdownToggle, Table, UncontrolledDropdown } from 'reactstrap'
 
 const TrackListPage = () => {
 
     const tracks = useSelector(state => state.track)
-
+    const navigate = useNavigate()
     return (
         <div>
             <h1>Tüm Kategoriler</h1>
@@ -43,7 +43,7 @@ const TrackListPage = () => {
                                             className="dropdown-menu-arrow"
                                             right
                                         >
-                                            <DropdownItem>Düzenle</DropdownItem>
+                                            <DropdownItem onClick={() => navigate(`update/${track._id}`)}>Düzenle</DropdownItem>
                                             <DropdownItem divider />
                                             <DropdownItem className='text-danger'>
                                                 Sil

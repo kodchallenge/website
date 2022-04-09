@@ -3,8 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from 'reactstrap'
 import Swal from 'sweetalert2'
-import TrackService from '../../services/track.service'
-import { addTrack } from '../../store/actions/trackActions'
+import TrackService from '../../../services/track.service'
 const AddTrackPage = () => {
     const initialValues = {
         name: "",
