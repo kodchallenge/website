@@ -2,7 +2,7 @@ import api from "./api"
 
 export default class TrackService {
     constructor() {
-        this.api_url = "/tracks"
+        this.api_url = "/tracks/"
     }
 
     getAllTracks() {
@@ -15,5 +15,9 @@ export default class TrackService {
 
     updateTrack(data) {
         return api().put(this.api_url, data)
+    }
+
+    changeTrackStatus(track) {
+        return api().post(this.api_url+"changestatus", track)
     }
 }
