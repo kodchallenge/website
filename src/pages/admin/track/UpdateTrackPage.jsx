@@ -24,7 +24,6 @@ const UpdateTrackPage = () => {
     }, [tracks])
 
     const handleUpdateTrack = (values) => {
-        console.log(values)
         const trackService = new TrackService()
         trackService.updateTrack(values)
             .then(result => {
