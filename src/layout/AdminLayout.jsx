@@ -23,22 +23,6 @@ const AdminLayout = () => {
                     <Outlet />
                 </Container>
             </main>
-            {/* <Container>
-                <Navbar
-                    className="admin-navbar"
-                    expand="lg"
-                    id="admin-navbar"
-                >
-                    <Nav className="navbar-nav-hover align-items-lg-center" navbar>
-                        <NavItem>
-                            <Link to="tracks" className='nav-link'>
-                                Tracks
-                            </Link>
-                        </NavItem>
-                    </Nav>
-                </Navbar>
-            </Container>
-            <Outlet /> */}
         </div>
     )
 }

@@ -12,4 +12,8 @@ export default class TrackService {
     addTrack(data) {
         return api().post(this.api_url, data)
     }
+
+    updateTrack(data) {
+        return api().put(this.api_url, data)
+    }
 }
