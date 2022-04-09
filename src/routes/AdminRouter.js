@@ -1,11 +1,10 @@
 import React from "react";
-import { Outlet, Route, Routes } from "react-router";
-import ProtectedRoute from "../hoc/ProtectedRoute";
+import { Route, Routes } from "react-router";
 import AdminLayout from "../layout/AdminLayout";
+import ProblemListPage from "../pages/admin/problem/ProblemListPage";
 import AddTrackPage from "../pages/admin/track/AddTrackPage";
 import TrackListPage from "../pages/admin/track/TrackListPage";
 import UpdateTrackPage from "../pages/admin/track/UpdateTrackPage";
-import Signin from "../pages/auth/Signin";
 
 const AdminRouter = () => {
     return (
@@ -15,6 +14,7 @@ const AdminRouter = () => {
                 <Route path="tracks" element={<TrackListPage />}/>
                 <Route path="tracks/add" element={<AddTrackPage />}/>
                 <Route path="tracks/update/:id" element={<UpdateTrackPage />}/>
+                <Route path="problems" element={<ProblemListPage />} />
             </Route>
         </Routes>
     )
