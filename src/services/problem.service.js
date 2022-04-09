@@ -6,4 +6,8 @@ export default class ProblemService {
     getById(id) {
         return api().get(api_url+"/"+id)
     }
+
+    getAllProblem() {
+        return api().get(api_url)
+    }
 }
