@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 import AdminLayout from "../layout/AdminLayout";
+import AddProblemPage from "../pages/admin/problem/AddProblemPage";
 import ProblemListPage from "../pages/admin/problem/ProblemListPage";
 import AddTrackPage from "../pages/admin/track/AddTrackPage";
 import TrackListPage from "../pages/admin/track/TrackListPage";
@@ -15,6 +16,7 @@ const AdminRouter = () => {
                 <Route path="tracks/add" element={<AddTrackPage />}/>
                 <Route path="tracks/update/:id" element={<UpdateTrackPage />}/>
                 <Route path="problems" element={<ProblemListPage />} />
+                <Route path="problems/add" element={<AddProblemPage />} />
             </Route>
         </Routes>
     )

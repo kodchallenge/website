@@ -7,6 +7,8 @@ import LoaderSpinner from '../components/spinners/LoaderSpinner'
 import { useDispatch } from "react-redux";
 import { SetProblem } from "../store/actions/problemActions";
 import {useSelector} from 'react-redux'
+import rehypeRaw from "rehype-raw";
+import ReactMarkdown from "react-markdown";
 const ProblemEditor = () => {
     const problemState = useSelector(state => state.problem)
     const {selectProblem: problem} = problemState
@@ -31,7 +33,10 @@ const ProblemEditor = () => {
             <div className="w-100 bg-white">
                 <div className="problem-content px-3 w-100">
                     <h2>Problem</h2>
-                    <div dangerouslySetInnerHTML={{ __html: problem?.description }} />
+                    <ReactMarkdown
+                        children={problem?.description}
+                        rehypePlugins={[rehypeRaw]}
+                    />
                 </div>
             </div>
         )

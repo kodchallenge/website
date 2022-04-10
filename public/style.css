@@ -261,3 +261,17 @@ html, body, #root, .App {
   .sidebar .nav-item.active {
     background-color: #343434;
   }
+
+
+  code {
+    background-color: #f0f0f0;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  blockquote {
+    border-left: 2px solid #ff7979;
+    padding: 0 10px;
+    background: #f0f0f0;
+    border-radius: 3px;
+  }

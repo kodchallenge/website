@@ -18,6 +18,7 @@ const types = {
         API_ERROR: "API_ERROR_PROBLEM",
         GETALL_PROBLEMS: "GETALL_PROBLEMS",
         SET_PROBLEM: "SET_PROBLEM",
+        GET_DIFFICULTIES: "GET_DIFFICULTIES"
     },
 
     EDITOR: {

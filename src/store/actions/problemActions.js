@@ -30,3 +30,19 @@ export const getAllProblem = () => async dispatch => {
         dispatch({type: types.PROBLEMS.API_ERROR, payload: err})
     }
 }
+
+export const getDifficulties = () => async dispatch => {
+    dispatch({type: types.PROBLEMS.API_START})
+    try {
+        const res = await new ProblemService().getProblemDifficulties()
+        if(res.data.success) {
+            console.log(res.data.data)
+            dispatch({type: types.PROBLEMS.GET_DIFFICULTIES, payload: res.data.data})
+        }
+        else {
+            throw res.data.message || "Hata Oluştu"
+        }
+    } catch(err) {
+        dispatch({type: types.PROBLEMS.API_ERROR, payload: err})
+    }
+}

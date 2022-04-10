@@ -93,6 +93,7 @@ const Compiler = () => {
         }).then(result => {
             console.log(result)
             if(result.isConfirmed && testData) {
+                console.log(testData)
                 const solutionService = new ProblemSolutionService()
                 solutionService.sendSolution(testData)
             }

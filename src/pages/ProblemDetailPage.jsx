@@ -1,8 +1,10 @@
 import React, { useEffect } from "react"
 import { useState } from "react"
+import ReactMarkdown from "react-markdown"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import { Badge, Button, Card, CardBody, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap"
+import rehypeRaw from "rehype-raw"
 import LoaderSpinner from "../components/spinners/LoaderSpinner"
 import ProblemService from "../services/problem.service"
 import { SetProblem } from "../store/actions/problemActions"
@@ -93,7 +95,11 @@ const ProblemDetailPage = () => {
                                                         <div>
                                                             <div className="problem-content">
                                                                 <h2>Problem</h2>
-                                                                <div dangerouslySetInnerHTML={{__html: problem?.description}}/>
+                                                                <ReactMarkdown
+                                                                    children={problem?.description}
+                                                                    rehypePlugins={[rehypeRaw]}
+                                                                />
+                                                                {/* <div dangerouslySetInnerHTML={{__html: problem?.description}}/> */}
                                                             </div>
                                                         </div>
                                                     </div>

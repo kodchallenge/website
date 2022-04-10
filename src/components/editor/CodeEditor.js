@@ -22,9 +22,6 @@ const CodeEditor = ({ editorRef, height }) => {
         { value: "java", text: "Java" },
         { value: "python", text: "Python" },
         { value: "javascript", text: "javascript" },
-        { value: "typescript", text: "Typescript" },
-        { value: "kotlin", text: "Kotlin" },
-        { value: "swift", text: "Swift" },
     ]
 
     const handleChangeLanguage = useCallback((e) => {
@@ -53,7 +50,8 @@ const CodeEditor = ({ editorRef, height }) => {
                 <MonacoEditor
                     // height={height}
                     language={language}
-                    defaultValue={problem?.baseCode ?? "//Write your code is here"}
+                    value={problem?.baseCode[language]}
+                    defaultValue={problem?.baseCode[language] ?? "//Write your code is here"}
                     onMount={(editor, monaco) => {
                         editorRef.current = editor
                     }}

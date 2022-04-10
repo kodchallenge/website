@@ -5,6 +5,7 @@ const problemState = {
     selectProblem: null,
     loading: false,
     error: "",
+    difficulties: null
 }
 
 export default function problemReducer(state = problemState, {type, payload}) {
@@ -19,6 +20,8 @@ export default function problemReducer(state = problemState, {type, payload}) {
             return {...state, loading: false, selectProblem: payload}
         case types.PROBLEMS.GETALL_PROBLEMS:
             return {...state, loading: false, data: payload, selectProblem: null}
+        case types.PROBLEMS.GET_DIFFICULTIES:
+            return { ...state, loading: false, difficulties: payload }
         default:
             return {...state}
     }
