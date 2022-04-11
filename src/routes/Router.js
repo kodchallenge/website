@@ -9,6 +9,7 @@ import Layout from '../layout/Layout'
 import AboutPage from '../pages/AboutPage'
 import Signin from '../pages/auth/Signin'
 import Signup from '../pages/auth/Signup'
+import ErrorPage from '../pages/errors/ErrorPage'
 import MainPage from '../pages/main/MainPage'
 import ProblemDetailPage from '../pages/ProblemDetailPage'
 import ProblemEditor from '../pages/ProblemEditor'
@@ -32,17 +33,18 @@ const Router = () => {
                     </React.Suspense>
                 } />
             </Route>
+
+            <Route path='auth' element={<AuthLayout />}>
+                <Route path='signup' element={<Signup />} />
+                <Route path='signin' element={<Signin />} />
+            </Route>
+
             <Route path='/' element={<Layout />}>
                 {/* Giriş yapmaya ihtiyaç duyulmayan tüm linkler */}
                 <Route exact path='' element={<MainPage />} />
                 <Route path='tracks/' element={<TrackListPage />} />
                 <Route path='tracks/:trackName' element={<ProblemListPage />} />
                 <Route path='about-project' element={<AboutPage />} />
-
-                <Route path='auth' element={<AuthLayout />}>
-                    <Route path='signup' element={<Signup />} />
-                    <Route path='signin' element={<Signin />} />
-                </Route>
 
                 {/*Sadece user rolüne sahip kullanıcının erişebileceği linkler */}
                 <Route element={<ProtectedRoute roles={[ROLES.user]} />}>
@@ -67,6 +69,10 @@ const Router = () => {
                     <Route path='tracks/:trackName/:problemName' element={<ProblemDetailPage />} />
                 </Route>
             </Route>
+
+            <Route path='unauthorized' element={<ErrorPage code="401" message="Bu sayfaya erişmek için lütfen giriş yapın" to="/auth/signin" text="Giriş yapmak için tıkla"/>}/>
+            <Route path='forbidden' element={<ErrorPage code="403" message="Bu sayfayı görüntülemeye yetkiniz yok." />}/>
+            <Route path='*' element={<ErrorPage code="404" message="Aradığın içerik bizde mevcut değil." />}/>
         </Routes>
     )
 }
