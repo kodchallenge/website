@@ -96,7 +96,7 @@ const ProblemListPage = () => {
                                                         </div>
                                                     </Col>
                                                     <Col md="3">
-                                                        <Link to={`/tracks/${trackName}/${problem.name}-${problem._id}`} className="btn btn-warning">
+                                                        <Link to={`/tracks/${trackName}/${problem.name?.turkishToEnglish().replace(/[^a-zA-Z0-9]/g, "")}-${problem._id}`} className="btn btn-warning">
                                                             Problemi Çöz
                                                         </Link>
                                                     </Col>

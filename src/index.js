@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { configureStore } from './store/configureStore';
 import './assets/scss/kodchallenge.scss'
+import './Extends'
 
 const store = configureStore()
 
