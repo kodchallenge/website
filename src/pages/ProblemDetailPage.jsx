@@ -7,14 +7,19 @@ import { Badge, Button, Card, CardBody, Col, Container, Nav, NavItem, NavLink, R
 import rehypeRaw from "rehype-raw"
 import LoaderSpinner from "../components/spinners/LoaderSpinner"
 import ProblemService from "../services/problem.service"
+import ProblemSolutionService from "../services/problemSolution.service"
 import { SetProblem } from "../store/actions/problemActions"
-
+import { hopscotch } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 const ProblemDetailPage = () => {
     const [problem, setProblem] = useState(null)
     const problemState = useSelector(state  => state.problem)
+    const auth = useSelector(state => state.auth)
     const [loading, setLoading] = useState(true)
     const [activeTab, setActiveTab] = useState(1)
     const {problemName, trackName} = useParams()
+    const [problemSolution, setProblemSolution] = useState(null)
+    const [otherSolutions, setOtherSolutions] = useState(null)
 
     const dispatch = useDispatch()
     useEffect(() => {
@@ -29,6 +34,16 @@ const ProblemDetailPage = () => {
             setProblem(problemState.selectProblem)
             setLoading(false)
         }
+        const problemSolutionService = new ProblemSolutionService()
+        problemSolutionService.getUserSolutionByProblem(auth.user._id, problemId)
+        .then(result => {
+            setProblemSolution(result.data.data)
+        })
+        problemSolutionService.getProblemSolutions(problemId)
+        .then(result => {
+            setOtherSolutions(result.data.data)
+        console.log(result.data)
+        })
     }, [problemState.selectProblem])
 
     const Tab = ({ index, children }) => {
@@ -110,12 +125,39 @@ const ProblemDetailPage = () => {
                                         </TabPane>
                                         <TabPane tabId="plainTabs2">
                                             <p className="description">
-                                                Eğer kullanıcı problemi çözmüş ise kullanıcının yazdığı kod burada gösterilecek.
+                                                {!problemSolution ? (
+                                                    <p>Problemi çözmediniz</p>
+                                                ) : (
+                                                    <SyntaxHighlighter language="javascript" style={hopscotch}>
+                                                        {problemSolution.codeTest?.code}
+                                                    </SyntaxHighlighter>
+                                                )}
                                             </p>
                                         </TabPane>
                                         <TabPane tabId="plainTabs3">
                                             <p className="description">
-                                                Farklı kullanıcıların çözümleri burada gösterilecek.
+                                                {!otherSolutions ? (
+                                                    <p>Diğer kullanıcıların çözümlerini görmek için öncelikle problemi çözmeniz gerekmektedir.</p>
+                                                ) : (
+                                                    <Row>
+                                                        {otherSolutions.map(sol => (
+                                                            <Col className="border mt-4 shadow px-4 py-2">
+                                                                <Row className="align-items-center justify-content-between px-3">
+                                                                    <div>
+                                                                        <h4>{sol.user?.username}</h4>
+                                                                        <p className="text-warning">Puan: {sol.score}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p className="text-muted">Tarih: {sol.createdAt.split("T")[0].toLongDate()}</p>
+                                                                    </div>
+                                                                </Row>
+                                                                <SyntaxHighlighter language="javascript" style={hopscotch}>
+                                                                    {sol.codeTest?.code}
+                                                                </SyntaxHighlighter>
+                                                            </Col>
+                                                        ))}
+                                                    </Row>
+                                                )}
                                             </p>
                                         </TabPane>
                                     </TabContent>
