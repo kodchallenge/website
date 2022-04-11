@@ -91,11 +91,19 @@ const Compiler = () => {
             cancelButtonText: "İptal",
             showCancelButton: true,
         }).then(result => {
-            console.log(result)
             if(result.isConfirmed && testData) {
-                console.log(testData)
                 const solutionService = new ProblemSolutionService()
-                solutionService.sendSolution(testData)
+                solutionService.sendSolution(testData).then(data => {
+                    Swal.fire({title: "Başarılı", text:"Kodunuz kaydedilmiştir", icon:"success"})
+                    
+                }).catch(err => {
+                    console.log({...err})
+                    Swal.fire({
+                        title: "Başarısız",
+                        text: err.response.data.message ?? "Internal server error",
+                        icon: "error"
+                    })
+                })
             }
         })
     }
