@@ -120,7 +120,11 @@ const ProblemDetailPage = () => {
                                                     </div>
                                             </section>
                                             <div className="my-4">
-                                                <Link to={`/editor?problem=${problem?._id}`} className="btn btn-danger">Editorü Aç</Link>
+                                                {!problemSolution ? (
+                                                    <Link to={`/editor?problem=${problem?._id}`} className="btn btn-danger">Editorü Aç</Link>
+                                                ) : (
+                                                    <Button disabled color="secondary">Bu problemi çözdünüz</Button>
+                                                )}
                                             </div>
                                         </TabPane>
                                         <TabPane tabId="plainTabs2">
