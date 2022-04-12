@@ -1,26 +1,13 @@
 import { Formik } from 'formik';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
     Button,
-    Card,
-    CardHeader,
-    CardBody,
-    Form,
-    Input,
-    Container,
-    Row,
-    Col,
-    FormGroup,
-    InputGroup,
+    Card, CardBody, CardHeader, Form, FormGroup, Input, InputGroup,
     InputGroupText
 } from "reactstrap";
-import Swal from 'sweetalert2';
-import authService from '../../services/auth.service';
-import * as Yup from 'yup'
+import * as Yup from 'yup';
 import Brand from '../../components/Brand';
-import { Link } from 'react-router-dom';
-import CookieService from '../../services/cookie.service';
-import { CookieTypes } from '../../constants';
 import useAuth from '../../hooks/useAuth';
 
 const Signin = () => {

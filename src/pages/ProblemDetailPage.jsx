@@ -1,49 +1,36 @@
-import React, { useEffect } from "react"
-import { useState } from "react"
+import React, { useEffect, useState } from "react"
 import ReactMarkdown from "react-markdown"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import { hopscotch } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { Badge, Button, Card, CardBody, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap"
 import rehypeRaw from "rehype-raw"
 import LoaderSpinner from "../components/spinners/LoaderSpinner"
-import ProblemService from "../services/problem.service"
+import useService from "../hooks/useService"
 import ProblemSolutionService from "../services/problemSolution.service"
 import { SetProblem } from "../store/actions/problemActions"
-import { hopscotch } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import SyntaxHighlighter from 'react-syntax-highlighter';
 const ProblemDetailPage = () => {
     const [problem, setProblem] = useState(null)
     const problemState = useSelector(state  => state.problem)
     const auth = useSelector(state => state.auth)
     const [loading, setLoading] = useState(true)
     const [activeTab, setActiveTab] = useState(1)
-    const {problemName, trackName} = useParams()
-    const [problemSolution, setProblemSolution] = useState(null)
-    const [otherSolutions, setOtherSolutions] = useState(null)
-
+    const {problemName} = useParams()
     const dispatch = useDispatch()
+    
+    const problemId = problemName?.split("-")[1]
+
+    const [problemSolution] = useService(new ProblemSolutionService().getUserSolutionByProblem.bind(null, auth.user?._id, problemId))
+    const [otherSolutions] = useService(new ProblemSolutionService().getProblemSolutions.bind(null, problemId))
+
     useEffect(() => {
-        const problemId = problemName?.split("-")[1]
-        if(!problemId) {
-            window.location.pathname = "/"
-            return;
-        }
         if(!problemState.selectProblem || problemState.selectProblem._id !== problemId) {
             dispatch(SetProblem(problemId))
         } else {
             setProblem(problemState.selectProblem)
             setLoading(false)
         }
-        const problemSolutionService = new ProblemSolutionService()
-        problemSolutionService.getUserSolutionByProblem(auth.user._id, problemId)
-        .then(result => {
-            setProblemSolution(result.data.data)
-        })
-        problemSolutionService.getProblemSolutions(problemId)
-        .then(result => {
-            setOtherSolutions(result.data.data)
-        console.log(result.data)
-        })
     }, [problemState.selectProblem])
 
     const Tab = ({ index, children }) => {
@@ -60,6 +47,11 @@ const ProblemDetailPage = () => {
                 </NavLink>
             </NavItem>
         )
+    }
+
+    if(!problemId) {
+        window.location.pathname = "/"
+        return;
     }
 
     return (
