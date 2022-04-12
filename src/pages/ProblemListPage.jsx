@@ -4,12 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Badge, Button, Card, CardBody, Col, Container, Row } from "reactstrap";
 import LoaderSpinner from "../components/spinners/LoaderSpinner";
 import ProblemService from "../services/problem.service";
-import ScoreBoardService from "../services/scoreboard.service";
+import SingleScoreBoard from "../components/scoreboard/SingleScoreBoard";
 const ProblemListPage = () => {
     const [track, setTrack] = useState(null)
     const trackState = useSelector(x => x.track)
     const [loading, setLoading] = useState(true)
-    const [highScores, setHighScores] = useState(null)
     const { trackName } = useParams()
     
     useEffect(() => {
@@ -21,10 +20,6 @@ const ProblemListPage = () => {
             }
             setTrack(tracks)
             setLoading(false)
-            const scoreBoardService = new ScoreBoardService()
-            scoreBoardService.getHighScoreByTrack(tracks._id).then(result => {
-                setHighScores(result.data.data)
-            })
         }
     }, [trackState])
 
@@ -56,30 +51,7 @@ const ProblemListPage = () => {
 
                                 {/* EN İYİLER LİSTESİ */}
                                 <Col lg="4" className="order-lg-last">
-                                    <Card>
-                                        <CardBody className="py-1">
-                                            <h4 className="text-center mb-3">Bu Bölümün Yıldızları</h4>
-                                            {highScores?.map((score, index) => (
-                                                <>
-                                                    <div className="my-s">
-                                                        <div className="d-flex align-items-center">
-                                                            <h3 className="fw-bold">{index + 1}.</h3>
-                                                            <div className="ml-4 d-flex justify-content-evesnly w-100">
-                                                                <div>
-                                                                    <img className="img img-fluid rounded-circle" src={score.photo} width={60} height={60} />
-                                                                </div>
-                                                                <div className="ml-3">
-                                                                    <h4>{score.username ?? "Adsız"}</h4>
-                                                                    <p className="text-warning">Skor: <strong>{score.score}</strong></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <hr className="mx-5 mt-0" />
-                                                    </div>
-                                                </>
-                                            ))}
-                                        </CardBody>
-                                    </Card>
+                                    {track && (<SingleScoreBoard track={track._id} />)}
                                 </Col>
                                 <Col lg="8" className="order-lg-first">
                                     {/* PROBLEM CARD */}
