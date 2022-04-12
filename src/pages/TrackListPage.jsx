@@ -1,21 +1,10 @@
-import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { getAllTrack } from "../store/actions/trackActions"
-import { Link } from 'react-router-dom'
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 import {
-    Badge,
-    Button,
     Card,
-    CardBody,
-    CardImg,
-    FormGroup,
-    Input,
-    InputGroupAddon,
-    InputGroupText,
-    InputGroup,
-    Container,
-    Row,
-    Col
+    CardBody, Col, Container,
+    Row
 } from "reactstrap";
 import LoaderSpinner from "../components/spinners/LoaderSpinner";
 const TrackListPage = () => {

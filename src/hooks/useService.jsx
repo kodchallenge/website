@@ -21,10 +21,10 @@ const useService = (service, callback) => {
             setError(err.response.data.message ?? "Error occured")
         })
         .finally(() => {
+            callback && callback()
             setLoading(false)
         })
     }, [])
-    console.log("asdad")
 
     return [data, loading, error]
 }

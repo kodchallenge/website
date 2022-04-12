@@ -1,6 +1,5 @@
 import { Formik } from 'formik'
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from 'reactstrap'
 import Swal from 'sweetalert2'
 import TrackService from '../../../services/track.service'
@@ -12,7 +11,6 @@ const AddTrackPage = () => {
         icon: "",
     }
 
-    const dispatch = useDispatch()
     const handleAddTrack = (values) => {
         const trackService = new TrackService()
         trackService.addTrack(values)

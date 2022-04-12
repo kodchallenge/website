@@ -45,15 +45,47 @@ export function InfoAlert(header, text, callBack) {
   })
 }
 
-export function SuccessAlert(header, text, callBack) {
+export function SuccessAlert({header, text, callBack}) {
   Swal.fire({
-    title: header,
-    text: text,
+    title: header ?? "Başarılı",
+    text: text ?? " ",
     icon: 'success',
     confirmButtonText: 'Tamam',
   }).then((result) => {
     if (result.isConfirmed) {
       callBack && callBack()
     }
+  })
+}
+export function ErrorAlert({header, text, callBack}) {
+  Swal.fire({
+    title: header ?? "Hata",
+    text: text ?? "Hata oluştu",
+    icon: 'error',
+    confirmButtonText: 'Tamam',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      callBack && callBack()
+    }
+  })
+}
+export function ServiceMessage(service, options = {
+  message: "",
+  errorMsg: "Internal Server Error",
+  callback: () => {},
+  errorCallback: () => {},
+}) {
+  service()
+  .then(result => {
+    Swal.fire({title: "Başarılı", text: options.message ?? result.data.data.message, icon:"success"})
+    options.callback && options.callback(result.data)
+  })
+  .catch(err => {
+    Swal.fire({
+      title: "Başarısız",
+      text: err.response.data.message || options.errorMsg || "Internal server error",
+      icon: "error"
+    })
+    options.errorCallback && options.errorCallback(err.response.data)
   })
 }

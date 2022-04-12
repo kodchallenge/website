@@ -9,6 +9,7 @@ import api from "../../services/api";
 import CodeService from "../../services/code.service";
 import ProblemSolutionService from "../../services/problemSolution.service";
 import CodeEditor from "../editor/CodeEditor";
+import { ServiceMessage } from "../utils/Alerts";
 
 const Compiler = () => {
     const [problemId] = useQuery("problem")
@@ -92,18 +93,7 @@ const Compiler = () => {
             showCancelButton: true,
         }).then(result => {
             if(result.isConfirmed && testData) {
-                const solutionService = new ProblemSolutionService()
-                solutionService.sendSolution(testData).then(data => {
-                    Swal.fire({title: "Başarılı", text:"Kodunuz kaydedilmiştir", icon:"success"})
-                    
-                }).catch(err => {
-                    console.log({...err})
-                    Swal.fire({
-                        title: "Başarısız",
-                        text: err.response.data.message ?? "Internal server error",
-                        icon: "error"
-                    })
-                })
+                ServiceMessage(new ProblemSolutionService().sendSolution.bind(null, testData), {message: "Kodunuz kaydedilmiştir"})
             }
         })
     }

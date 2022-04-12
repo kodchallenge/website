@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { Badge, Button, Card, CardBody, Col, Container, Row } from "reactstrap";
-import LoaderSpinner from "../components/spinners/LoaderSpinner";
-import ProblemService from "../services/problem.service";
+import { Badge, Card, CardBody, Col, Container, Row } from "reactstrap";
 import SingleScoreBoard from "../components/scoreboard/SingleScoreBoard";
+import LoaderSpinner from "../components/spinners/LoaderSpinner";
 const ProblemListPage = () => {
     const [track, setTrack] = useState(null)
     const trackState = useSelector(x => x.track)

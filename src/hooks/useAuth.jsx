@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
-import Swal from 'sweetalert2'
+import { ErrorAlert, SuccessAlert } from '../components/utils/Alerts'
 import { CookieTypes } from '../constants'
 import authService from '../services/auth.service'
 import CookieService from '../services/cookie.service'
@@ -18,17 +18,9 @@ const useAuth = () => {
     const handleSignin = (values, callback=null) => {
         authService.signin(values).then(res => {
             CookieService.set(CookieTypes.AUTH, res.data.data)
-            Swal.fire({
-                title: "Başarılı",
-                text: res.data.message,
-                icon: "success",
-            })
+            SuccessAlert({text: res.data.message})
         }).catch(err => {
-            Swal.fire({
-                title: "Hata",
-                text: err.response.data.message,
-                icon: "error",
-            })
+            ErrorAlert({text: err.response.data.message})
         }).finally(() => {
             callback && callback()
         })

@@ -1,25 +1,18 @@
-import { Formik } from 'formik'
 import MonacoEditor from "@monaco-editor/react";
-import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import ReactMarkdown from 'react-markdown'
-import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormGroup, Input, Label, Row } from 'reactstrap'
-import Swal from 'sweetalert2'
-import ProblemService from '../../../services/problem.service'
-import { getDifficulties } from '../../../store/actions/problemActions'
-import AddProblemTestCase from './AddProblemTestCase'
+import { Formik } from 'formik';
+import React, { useEffect, useRef, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import rehypeRaw from 'rehype-raw';
+import Swal from 'sweetalert2';
 import { languageDomains } from '../../../languages';
+import ProblemService from '../../../services/problem.service';
+import { getDifficulties } from '../../../store/actions/problemActions';
+import AddProblemTestCase from './AddProblemTestCase';
 
 const languages = languageDomains
-// const languages = [
-//     { value: "c", text: "C", },
-//     { value: "cpp", text: "C++" },
-//     { value: "csharp", text: "C#" },
-//     { value: "java", text: "Java" },
-//     { value: "python", text: "Python" },
-//     { value: "javascript", text: "javascript" },
-// ]
+
 const AddProblemPage = () => {
     const [testCases, setTestCases] = useState([])
     const [isOpenModal, setOpenModal] = useState(null)
