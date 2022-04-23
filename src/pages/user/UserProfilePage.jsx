@@ -50,7 +50,7 @@ const UserProfilePage = () => {
 								</Card>
 								<div className='mt-4'>
 									<p><Link to={""} className="font-weight-bold">Profili Düzenle</Link></p>
-									<p><Link to={""} className="font-weight-bold">Şifre Değiştir</Link></p>
+									<p><Link to={"/user/change-password"} className="font-weight-bold">Şifre Değiştir</Link></p>
 									<p><Link to={""} className="font-weight-bold">Profil Fotoğrafını Değiştir</Link></p>
 								</div>
 							</div>

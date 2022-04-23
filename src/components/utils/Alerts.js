@@ -77,7 +77,7 @@ export function ServiceMessage(service, options = {
 }) {
   service()
   .then(result => {
-    Swal.fire({title: "Başarılı", text: options.message ?? result.data.data.message, icon:"success"})
+    Swal.fire({title: "Başarılı", text: options.message ?? result.data.message, icon:"success"})
     options.callback && options.callback(result.data)
   })
   .catch(err => {
