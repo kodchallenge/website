@@ -9,6 +9,9 @@ class AuthService {
         return api().post(api_url+"/signin", data)
     }
 
+    changePassword(data) {
+        return api().post(api_url+"/changepassword", data)
+    }
 }
 
 export default new AuthService()
