@@ -13,15 +13,14 @@ const useService = (service, callback) => {
     useEffect(() => {
         service()
         .then(result => {
-            console.log(result)
-            setData(result.data.data)
+            setData(result.data?.data)
+            callback && callback(result.data?.data)
         })
         .catch(err => {
             console.log(err)
-            setError(err.response.data.message ?? "Error occured")
+            setError(err.response?.data.message ?? "Error occured")
         })
         .finally(() => {
-            callback && callback()
             setLoading(false)
         })
     }, [])
