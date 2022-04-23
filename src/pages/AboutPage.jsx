@@ -8,7 +8,7 @@ function AboutPage() {
                 <h3>Selam Ben Yasin</h3>
                 <p>
                     Bilgisayar Mühendisliği 4. Sınıf öğrencisiyim. <br />
-                    İmPark şirketinde Bilgisayar Mühendisliği olarak çalışıyorum.<br />
+                    Kurumsal bir firmada Bilgisayar Mühendisliği olarak çalışıyorum.<br />
                     Kariyerimi Web alanında geliştiriyorum.
                 </p>
                 <br />
