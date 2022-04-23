@@ -14,4 +14,8 @@ export default class ProblemSolutionService {
     getProblemSolutions(problemId) {
         return api().get(api_url+problemId)
     }
+
+    getUserSolutions(userId) {
+        return api().get(api_url+`usersolutions?user=${userId}`)
+    }
 }
