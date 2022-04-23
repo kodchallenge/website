@@ -1,35 +1,19 @@
-import React from 'react'
-
-import * as RouterDom from "react-router-dom";
-import {Link} from "react-router-dom";
 import Headroom from "headroom.js";
-import {
-    Button,
-    UncontrolledCollapse,
-    DropdownMenu,
-    DropdownItem,
-    DropdownToggle,
-    UncontrolledDropdown,
-    Media,
-    NavbarBrand,
-    Navbar,
-    NavItem,
-    NavLink,
-    Nav,
-    Container,
-    Row,
-    Col,
-    UncontrolledTooltip
-} from "reactstrap";
-import { useState } from 'react';
-import { useEffect } from 'react';
-import Brand from '../Brand';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link, useNavigate } from "react-router-dom";
+import {
+    Button, Col, Container, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavItem,
+    NavLink, Row, UncontrolledCollapse, UncontrolledDropdown, UncontrolledTooltip
+} from "reactstrap";
 import useAuth from '../../hooks/useAuth';
+import Brand from '../Brand';
+
 const TopNavbar = () => {
     const [collapseClasses, setCollapseClasses] = useState("")
-    const {user} = useSelector(state => state.auth)
-    const {handleLogout} = useAuth()
+    const { user } = useSelector(state => state.auth)
+    const { handleLogout } = useAuth()
+    const navigate = useNavigate()
 
     const onExiting = () => {
         setCollapseClasses("collapsing-out")
@@ -54,7 +38,7 @@ const TopNavbar = () => {
                 <Container>
                     <div className='d-flex align-items-center'>
                         <NavbarBrand className="mr-lg-5" to="/" tag={Link} >
-                            <Brand bold Type="h5"/>
+                            <Brand bold Type="h5" />
                             {/* <img
                                 alt="Brand Logo"
                                 src={require("../../assets/img/kodchallenge_logo.png")}
@@ -151,14 +135,14 @@ const TopNavbar = () => {
                                 </NavItem>
                                 {!user ? (
                                     <NavItem className="d-none d-lg-block ml-lg-4">
-                                        <Link style={{all: "none"}} to="/auth/signup">
+                                        <Link style={{ all: "none" }} to="/auth/signup">
                                             <Button color="default">
                                                 <span className="btn-inner--text">
                                                     Üye Ol
                                                 </span>
                                             </Button>{" "}
                                         </Link>
-                                        <Link style={{all: "none"}} to="/auth/signin">
+                                        <Link style={{ all: "none" }} to="/auth/signin">
                                             <Button color="warning" >
                                                 <span className="btn-inner--text text-white">
                                                     Giriş Yap
@@ -166,11 +150,24 @@ const TopNavbar = () => {
                                             </Button>
                                         </Link>
                                     </NavItem>
-                                    )
+                                )
                                     : (
-                                    <NavItem className="ml-lg-4">
-                                        <Button color='danger' onClick={handleLogout}>Çıkış Yap</Button>
-                                    </NavItem>
+                                        <NavItem className="ml-lg-4">
+                                            <UncontrolledDropdown>
+                                                <DropdownToggle color='transparent'>
+                                                    <img className='rounded-pill' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" width={32} height={32} />
+                                                    {/* <i class="fa-solid fa-ellipsis"></i> */}
+                                                </DropdownToggle>
+                                                <DropdownMenu
+                                                    className="dropdown-menu-arrow mt-5 ml-1"
+                                                >
+                                                    <DropdownItem onClick={() => navigate("/user/profile")}>Profil</DropdownItem>
+                                                    <DropdownItem divider />
+                                                    <DropdownItem onClick={handleLogout} color='danger' className='text-danger'>Çıkış Yap</DropdownItem>
+                                                </DropdownMenu>
+                                            </UncontrolledDropdown>
+                                            {/* <Button color='danger' onClick={handleLogout}>Çıkış Yap</Button> */}
+                                        </NavItem>
                                     )
                                 }
                             </Nav>
