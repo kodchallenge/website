@@ -154,8 +154,8 @@ const TopNavbar = () => {
                                     : (
                                         <NavItem className="ml-lg-4">
                                             <UncontrolledDropdown>
-                                                <DropdownToggle color='transparent'>
-                                                    <img className='rounded-pill' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" width={32} height={32} />
+                                                <DropdownToggle color='transparent' caret className="text-white">
+                                                    <img className='rounded-pill' src={user.photo} width={32} height={32} />
                                                     {/* <i class="fa-solid fa-ellipsis"></i> */}
                                                 </DropdownToggle>
                                                 <DropdownMenu
