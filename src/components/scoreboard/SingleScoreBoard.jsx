@@ -19,7 +19,7 @@ const SingleScoreBoard = ({ track }) => {
                                     <h3 className="fw-bold">{index + 1}.</h3>
                                     <div className="ml-4 d-flex justify-content-evesnly w-100">
                                         <div>
-                                            <img className="img img-fluid rounded-circle" src={score.photo} width={60} height={60} />
+                                            <img className="img rounded-circle" src={score.photo} width={60} height={60} />
                                         </div>
                                         <div className="ml-3">
                                             <h4>{score.username ?? "Adsız"}</h4>
