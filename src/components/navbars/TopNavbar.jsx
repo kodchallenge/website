@@ -80,7 +80,7 @@ const TopNavbar = () => {
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="#" className='nav-link'>
+                                    <Link to="contests" className='nav-link'>
                                         Yarışmalar
                                     </Link>
                                 </NavItem>

@@ -14,13 +14,17 @@ String.prototype.turkishToEnglish = function () {
 }
 
 String.prototype.toLongDate = function () {
-    const d = new Date(this)//date= yyyy-MM-dd
+    let date = this
+    if(this.includes('T')) {
+        date = this.split('T')[0]
+    }
+    const d = new Date(date)//date= yyyy-MM-dd
     if (d instanceof Date && !isNaN(d)) {
         const months = ["", "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Agustos", "Eylül", "Ekim", "Kasım", "Aralık"]
-        let dateValues = this.split('-')
+        let dateValues = date.split('-')
         return (dateValues[2] + " " + months[parseInt(dateValues[1])] + " " + dateValues[0])
     }
-    return this
+    return date
 }
 
 Array.prototype.groupBy = function(keyGetter) {

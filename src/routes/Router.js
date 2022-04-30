@@ -9,6 +9,9 @@ import Layout from '../layout/Layout'
 import AboutPage from '../pages/AboutPage'
 import Signin from '../pages/auth/Signin'
 import Signup from '../pages/auth/Signup'
+import ContestPage from '../pages/contests/ContestPage'
+import ContestsDetailPage from '../pages/contests/ContestsDetailPage'
+import ContestExplorePage from '../pages/contests/ContestsExplorePage'
 import ErrorPage from '../pages/errors/ErrorPage'
 import MainPage from '../pages/main/MainPage'
 import ProblemDetailPage from '../pages/ProblemDetailPage'
@@ -45,6 +48,9 @@ const Router = () => {
                 <Route path='tracks/' element={<TrackListPage />} />
                 <Route path='tracks/:trackName' element={<ProblemListPage />} />
                 <Route path='about-project' element={<AboutPage />} />
+                <Route path='contests' element={<ContestPage />} />
+                <Route path='contests/explore' element={<ContestExplorePage />} />
+                <Route path='contests/explore/:id' element={<ContestsDetailPage />} />
 
                 {/*Sadece user rolüne sahip kullanıcının erişebileceği linkler */}
                 <Route element={<ProtectedRoute roles={[ROLES.user]} />}>
