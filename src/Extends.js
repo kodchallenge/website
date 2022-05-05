@@ -27,6 +27,25 @@ String.prototype.toLongDate = function () {
     return date
 }
 
+
+Number.prototype.toClock = function () {
+    function zeroPad(number, size = 2) {
+        let s = String(number);
+        while (s.length < size) { s = '0' + s; }
+        return s;
+    }
+
+    let seconds = this
+    const hh = parseInt(seconds / 3600, 10);
+
+    seconds %= 3600;
+
+    const mm = parseInt(seconds / 60, 10);
+    const ss = parseInt(seconds % 60, 10);
+    
+    return `${zeroPad(hh)}:${zeroPad(mm)}:${zeroPad(ss)}`;
+}
+
 Array.prototype.groupBy = function(keyGetter) {
     const map = new Map();
     this.forEach((item) => {
@@ -39,4 +58,8 @@ Array.prototype.groupBy = function(keyGetter) {
          }
     });
     return map;
+}
+
+String.prototype.datePassed = function () {
+    return (new Date() > new Date(this))
 }

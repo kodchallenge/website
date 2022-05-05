@@ -32,6 +32,8 @@ const types = {
 
     CONTEST: {
         SET_CONTESTS: "SET_CONTESTS",
+        SET_CONTESTANT: "SET_CONTESTANT",
+        SET_TIMER: "SET_CONTEST_TIMER",
     }
 }
 

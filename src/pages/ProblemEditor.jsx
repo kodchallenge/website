@@ -9,8 +9,10 @@ import { SetProblem } from "../store/actions/problemActions";
 import {useSelector} from 'react-redux'
 import rehypeRaw from "rehype-raw";
 import ReactMarkdown from "react-markdown";
-const ProblemEditor = () => {
+import Clock from "../components/utils/Clock";
+const ProblemEditor = ({isContest}) => {
     const problemState = useSelector(state => state.problem)
+    const {timer} = useSelector(state => state.contest)
     const {selectProblem: problem} = problemState
 
     const [problemId] = useQuery("problem")
@@ -59,7 +61,8 @@ const ProblemEditor = () => {
                                 </NavLink>
                             </Col>
                             <Col xs="4" className="text-center ">
-                                {problem?.name}
+                                {/* {problem?.name} */}
+                                {isContest ? <span className="badge badge-warning">{<Clock date={timer} />}</span> : null}
                             </Col>
                             <Col xs="4" className="text-right">
                                 <Button className="btn-icon p-0" color="transparent">
@@ -79,7 +82,7 @@ const ProblemEditor = () => {
                                 {SplitProblemDesc}
                             </Col>
                             <Col sm="6" className="p-0">
-                                <Compiler />
+                                <Compiler isContest={isContest}/>
                             </Col>
                         </Row>
                     </main>

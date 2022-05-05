@@ -18,9 +18,7 @@ const ContestExplorePage = () => {
             })
         }
     }, [])
-
-    console.log(contests)
-
+    
     return (
         <div>
             <div className='text-center my-5 py-5'>
@@ -39,7 +37,7 @@ const ContestExplorePage = () => {
                                             <Row>
                                                 <Col sm="2">
                                                     <div className="contests-img text-center">
-                                                        <img src={contest.poster} className="img img-block img-fluid"/>
+                                                        <img src={contest.poster} className="rounded img-block img-fluid"/>
                                                     </div>
                                                 </Col>
                                                 <Col sm="10">
@@ -54,10 +52,17 @@ const ContestExplorePage = () => {
                                                         <strong>Yarışma Tarihi: </strong> {contest.startDate.toLongDate()}
                                                     </div>
                                                     <div className='my-4 text-muted'>
-                                                        <strong>18</strong> Kişi Katılıyor.
+                                                        <strong>{contest.totalJoined+10 ?? 0}</strong> Kişi Katılıyor.
                                                     </div>
                                                 </Col>
                                             </Row>
+                                            <div>
+                                                {contest?.startDate.datePassed() && (
+                                                    <Badge color='danger' style={{fontSize: 18, textTransform: "none"}}>
+                                                        Yarışma Tamamlandı.
+                                                    </Badge>
+                                                )}
+                                            </div>
                                         </CardBody>
                                     </Link>
                                 </Card>

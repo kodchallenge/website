@@ -38,7 +38,7 @@ const ProblemListPage = () => {
                         {problems?.data?.map(problem => (
                             <tr>
                                 <td>{problem.name.slice(0, 30)}</td>
-                                <td>{problem.track.name}</td>
+                                <td>{problem.track?.name}</td>
                                 <td>{problem.difficulty}</td>
                                 <td>{problem.score}</td>
                                 <td>

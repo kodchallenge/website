@@ -1,5 +1,6 @@
 const CookieTypes = {
     AUTH: "_kc_u_a",
+    CONTESTANT: "_kc_c_c",
 }
 
 

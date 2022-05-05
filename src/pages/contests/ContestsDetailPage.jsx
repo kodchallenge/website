@@ -1,39 +1,130 @@
-import React from 'react'
-import { Badge, Button, Card, Col, Container, Row, Table } from 'reactstrap'
+import React, { useEffect, useState } from 'react'
+import { Alert, Badge, Button, Card, Col, Container, Row, Table } from 'reactstrap'
+import { Link, useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import LoaderSpinner from '../../components/spinners/LoaderSpinner'
+import ContestService from '../../services/contest.service'
+import Swal from 'sweetalert2'
+const headerInfoStyle = {
+    flexDirection: "column",
+    flex: 1,
+    display: "flex",
+}
 
 const ContestsDetailPage = () => {
+    const { id } = useParams()
+    const { contests } = useSelector(state => state.contest)
+    const { user } = useSelector(state => state.auth)
+    const [contest, setContest] = useState(null)
+    const [isJoined, setJoined] = useState(false)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (!contests) {
+            new ContestService().getAllContest().then(res => {
+                if (res.data.success) {
+                    dispatch({ type: 'SET_CONTESTS', payload: res.data.data })
+                }
+            })
+        }
+        else {
+            const con = contests.find(contest => contest._id === id)
+            setContest(con)
+            if (user?._id && con?._id) {
+                new ContestService().isUserJoinedContest({ user: user._id, contest: con._id }).then(res => {
+                    setJoined(true)
+                })
+            }
+        }
+    }, [contests])
+
+    const handleJoinContest = () => {
+        if (user && contest) {
+            const data = { user: user._id, contest: contest._id }
+            new ContestService().joinContest(data).then(res => {
+                if (res.data.success) {
+                    setJoined(true)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Başarılı',
+                        text: res.data.message,
+                    })
+                }
+            })
+                .catch(err => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        text: err.response.data.message,
+                    })
+                })
+        }
+        else {
+            Swal.fire({
+                title: "Uyarı",
+                text: "Lütfen giriş yapınız",
+                icon: "warning",
+            })
+        }
+    }
+
     return (
-        <div>
-            <div className='text-center mb-5'>
-                <img className='img-fluid' src='https://res.cloudinary.com/kodchallenge/image/upload/v1650823364/main/odullu_yarisma_s30bpx.png' />
-                <h1 className='my-4 fw-bold'>Açılışa Özel 300 TL Ödüllü Algoritma Çözme Yarışması</h1>
-            </div>
-            <Container className='my-5'>
-                <Row className='align-items-center'>
-                    <Col sm="6">
-                        <div className='my-2'>
-                            <Badge color='warning' className='text-white' style={{ fontSize: 18, textTransform: "none" }}>
-                                <strong>Ödül: </strong> 300₺
-                            </Badge>
+        <div className='my-5 py-5'>
+            <LoaderSpinner loading={!contest}>
+                <>
+                    <div className='text-center my-5'>
+                        <h1 className='my-4 fw-bold'>{contest?.title}</h1>
+                        <hr style={{ maxWidth: 200 }} />
+                    </div>
+                    <Container className='my-5'>
+                        <Row className=''>
+                            <Col md="4">
+                                <div style={{ flex: 1 }}>
+                                    <img className='rounded img-fluid' src={contest?.poster} />
+                                </div>
+                            </Col>
+                            <Col md="8" style={{ ...headerInfoStyle }}>
+                                <div style={{ flex: 1 }}>
+                                </div>
+                                <div>
+                                    <div className='my-2'>
+                                        <Badge color='warning' className='text-white' style={{ fontSize: 18, textTransform: "none" }}>
+                                            <strong>Ödül: </strong> {contest?.award}
+                                        </Badge>
+                                    </div>
+                                    <div className='my-2 mb-5'>
+                                        <Badge color='primary' className='text-white' style={{ fontSize: 18, textTransform: "none" }}>
+                                            <strong>Yarışma Tarihi: </strong> {contest?.startDate.toLongDate()}
+                                        </Badge>
+                                    </div>
+                                    <div>
+                                        {contest?.startDate.datePassed() ? (
+                                            <Badge color='danger' style={{fontSize: 18, textTransform: "none"}}>
+                                                Yarışma Tamamlandı.
+                                            </Badge>
+                                        ) : (
+                                            <Button style={{ minWidth: 220 }} color='success' disabled={!user || isJoined} onClick={handleJoinContest}>
+                                                {isJoined ? "KATILDIN" : user ? "Katıl" : "KATILMAK İÇİN GİRİŞ YAPIN"}
+                                            </Button>
+                                        )}
+                                        {user && isJoined && (
+                                            <>
+                                            <hr />
+                                            <Link to="join" className='btn btn-link'>Yarışma Sayfası İçİn Tıklayın</Link>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+                            </Col>
+                        </Row>
+                        <hr />
+                        <div className='my-3'>
+                            <p className='fw-bold'>Açıklama: </p>
+                            <div dangerouslySetInnerHTML={{ __html: contest?.description }} />
                         </div>
-                        <div className='my-2'>
-                            <Badge color='primary' className='text-white' style={{ fontSize: 18, textTransform: "none" }}>
-                                <strong>Yarışma Tarihi: </strong> 12 Nisan 2022
-                            </Badge>
-                        </div>
-                    </Col>
-                    <Col sm="6">
-                        <div className='text-sm-right'>
-                            <Button color='success'>Katıl</Button>
-                        </div>
-                    </Col>
-                </Row>
-                <hr />
-                <div className='my-3'>
-                    <p className='fw-bold'>Açıklama: </p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum necessitatibus, consequatur minus ad soluta unde inventore nesciunt cum aliquam sit nulla vero laudantium corrupti cumque reprehenderit similique dicta veritatis autem. Rem ad libero debitis impedit repellat nulla, voluptate distinctio? Assumenda, ullam animi cupiditate, est non nisi blanditiis dicta voluptatibus ipsum temporibus veritatis ex expedita dolorem fuga, quidem repudiandae ipsa odio illo saepe neque quaerat. Deserunt cupiditate nobis ad aliquam perferendis! Nemo odit impedit expedita magnam debitis, perspiciatis incidunt molestias. Aspernatur inventore unde eum ipsa provident perspiciatis, eaque adipisci similique praesentium aliquam possimus temporibus esse quo accusamus repudiandae magnam molestias iste molestiae eveniet delectus minima facere necessitatibus ducimus. Beatae rem assumenda quibusdam rerum sequi quia dolores cumque. Quasi ea consectetur qui quibusdam fugit quaerat unde quidem ipsa at. Maiores a, ratione sapiente et dolores minima? Minima voluptate mollitia qui aperiam ea nostrum quis cumque reprehenderit quos est eaque suscipit aspernatur, eveniet quibusdam quisquam veritatis fugiat dolorum eos aut iste ratione necessitatibus. Iure fuga voluptatem perspiciatis laudantium quo corrupti. Ullam iure magnam repellendus deserunt possimus eligendi. Pariatur quo nulla alias quas dolores quos, maxime quae placeat voluptatibus beatae doloribus porro nihil expedita eveniet facere, quis asperiores facilis dolorem odio aspernatur hic ab assumenda architecto cum. Accusamus facilis velit vero eveniet culpa alias repellat vitae ad cupiditate amet ipsam, illo, deleniti cum maxime laudantium a delectus ipsa sunt, hic consectetur nisi labore. Ab distinctio maxime, architecto saepe blanditiis sit magnam nostrum eligendi voluptas tempore deleniti rerum non totam vero, ad, quam ipsa rem quo modi tenetur fugit mollitia iusto inventore? Consectetur accusamus pariatur voluptatem at nemo molestiae, laboriosam consequuntur, dicta, sint similique repellendus recusandae? Molestiae minima eligendi explicabo ab. Ab est illum, nostrum blanditiis, impedit ullam animi, quae cupiditate dolores repudiandae ducimus ea mollitia veritatis laborum dignissimos. Voluptatum pariatur inventore ea, assumenda cumque et voluptatem facere excepturi neque consequuntur exercitationem delectus, quasi sunt ex fugit repellat esse sit! Sit quam veritatis laudantium ad optio cupiditate! Explicabo ducimus consectetur tempore! Sequi, nihil obcaecati ex, sint placeat corporis beatae debitis, accusamus ratione numquam incidunt. Ex, assumenda. Officia aperiam cupiditate laboriosam ullam! Cum, non. Repellat, laudantium blanditiis enim earum eligendi quisquam quos quae optio quas. Omnis sapiente eveniet saepe quidem doloremque ducimus itaque laudantium iste explicabo, illum aliquid similique ad obcaecati, necessitatibus enim libero dicta molestiae, perspiciatis voluptatum ex. Ex culpa nesciunt sapiente enim tenetur molestiae eaque dolorem aliquid. Porro excepturi, ullam beatae, maxime voluptas magni ab iste molestias labore quia laboriosam ea quae perspiciatis mollitia laudantium cumque aliquam aspernatur vel. Nemo asperiores consectetur officiis, harum quidem non adipisci velit perferendis quibusdam? Magnam facilis nemo deserunt iusto ab repudiandae laboriosam, sequi ex ut quos quibusdam aliquid. Ut doloribus nemo at consequatur dicta dolorum. Impedit vel sunt repellat. At, voluptatibus. Beatae aliquam corrupti quasi non illum voluptatum alias tempora quisquam debitis harum! Voluptatem nesciunt voluptas accusamus maxime esse dicta sequi facere odit. Distinctio, beatae! Voluptatibus deserunt alias dolorum, quae recusandae sequi sed debitis sint laborum quos doloremque totam maxime voluptates necessitatibus rerum quaerat error mollitia omnis reprehenderit facere eum fugiat! Neque in nulla asperiores beatae fugiat praesentium repellat commodi reiciendis ipsa. Provident explicabo laboriosam perferendis! Tempora quod est omnis esse qui? Consequatur laboriosam, ab ratione corrupti necessitatibus laudantium et quam rerum sequi ducimus exercitationem ipsam vero eligendi itaque repellat laborum nisi aperiam assumenda in a. Fuga beatae nemo tempora illum perferendis accusamus ad voluptatum nesciunt repudiandae velit reiciendis vero nostrum deserunt ipsam, error, sit, adipisci labore. Possimus, fuga et dolore vel, omnis, veniam totam provident natus nisi facilis quis commodi vitae voluptatibus quod? Consectetur numquam corrupti accusamus distinctio earum quidem ipsum omnis nobis eaque cupiditate, magni officiis laudantium animi et autem neque maxime tenetur tempore dolor beatae fugiat repudiandae. Exercitationem inventore sequi quidem quo! Dolorem, at dignissimos. Quis itaque aliquid velit quibusdam provident alias, nihil beatae consectetur dolorum! Adipisci, a exercitationem! Cum, provident nostrum expedita ea consequatur facere. A alias eaque nihil quis reiciendis obcaecati totam, reprehenderit sapiente harum porro et adipisci, repudiandae natus, molestias mollitia! Ipsam, perferendis dignissimos est sequi impedit placeat quod inventore doloremque quibusdam et fuga unde, necessitatibus maiores tenetur vero iure? Fuga similique magni animi atque consequatur quam facilis sapiente, est quod quae! Dolores vero ut perferendis recusandae sed, quod consequatur dolore totam suscipit. Nesciunt nam earum aperiam ipsum sapiente, officiis nihil ducimus illo ad omnis cupiditate iste nulla quam veritatis corporis assumenda optio at aspernatur sequi. Quod, aperiam fugit. Praesentium fuga officia et. Quibusdam sint eum quae aliquid est. Quasi nisi blanditiis sequi? Est odit voluptatibus fuga. Assumenda tempora suscipit, iure deserunt asperiores rem non, quos at unde eos fuga quaerat id sapiente nemo labore. Asperiores voluptatibus, unde id deleniti iusto facere dolore cumque iste laborum voluptatem dolor voluptate rerum nostrum beatae velit dignissimos itaque porro minus, consectetur nulla! Harum quasi commodi praesentium fugiat voluptate. Soluta commodi, recusandae ab a dignissimos ut esse laboriosam numquam, id odit in unde dolores! Sit ad, qui consequuntur reprehenderit sint maiores, deserunt non laboriosam inventore magni magnam numquam nostrum quisquam nulla nam culpa voluptatibus quia distinctio? Eius hic fuga adipisci inventore saepe, voluptas dolore consequuntur? Fugit, sit ad. Voluptatum, provident! Officia rerum beatae voluptatem quam, vel praesentium aut! Quisquam harum soluta animi illo, nostrum quae ipsum repudiandae odio sapiente adipisci exercitationem cumque minima libero ipsa corrupti excepturi illum deserunt earum accusantium! Magni perspiciatis nam fugiat veniam sit minus excepturi quos deleniti dolorum iste debitis sunt magnam vel deserunt ullam quia rerum harum sequi molestias nobis, odit itaque veritatis explicabo repudiandae. Nobis, harum deleniti sed voluptatum nemo voluptate quas eveniet iusto repudiandae impedit quam quo deserunt perferendis maxime adipisci placeat exercitationem molestias quasi nesciunt quae, unde veniam accusantium. Dolore id ea quam repellat dolores numquam commodi velit tempore. Incidunt, exercitationem animi ex officia dolor maxime eveniet! Deserunt possimus optio officiis rerum iure! Illum, et obcaecati quasi cupiditate alias consequatur. Perspiciatis, laborum inventore itaque sequi ullam voluptatem culpa magni provident! Ullam possimus similique distinctio doloribus deleniti qui, tempore ea cumque harum, dignissimos, provident quas placeat quae delectus. Maxime libero ad molestiae est? Eveniet porro accusamus consequuntur assumenda dolores.
-                </div>
-            </Container>
+                    </Container>
+                </>
+            </LoaderSpinner>
         </div>
     )
 }

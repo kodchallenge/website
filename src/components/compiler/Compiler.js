@@ -4,14 +4,16 @@ import { useSelector } from "react-redux";
 import SplitPane from "react-split-pane";
 import { Button } from "reactstrap";
 import Swal from "sweetalert2";
+import { CookieTypes } from "../../constants";
 import useQuery from "../../hooks/useQuery";
 import api from "../../services/api";
 import CodeService from "../../services/code.service";
+import CookieService from "../../services/cookie.service";
 import ProblemSolutionService from "../../services/problemSolution.service";
 import CodeEditor from "../editor/CodeEditor";
 import { ServiceMessage } from "../utils/Alerts";
 
-const Compiler = () => {
+const Compiler = ({isContest}) => {
     const [problemId] = useQuery("problem")
     const editorRef = useRef(null)
     const [running, setRunning] = useState(false)
@@ -92,7 +94,9 @@ const Compiler = () => {
             cancelButtonText: "İptal",
             showCancelButton: true,
         }).then(result => {
+            const contestant = CookieService.get(CookieTypes.CONTESTANT)
             if(result.isConfirmed && testData) {
+                testData.contestant = contestant?._id
                 ServiceMessage(new ProblemSolutionService().sendSolution.bind(null, testData), {message: "Kodunuz kaydedilmiştir"})
             }
         })
