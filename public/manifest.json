@@ -1,15 +1,15 @@
 {
-  "short_name": "Kod Challenge",
-  "name": "Kod Challenge - Creator By Yasin Torun",
+  "short_name": "KodChallenge",
+  "name": "KodChallenge - Türkçe Programlama Platformu. Kendini programlama alanında geliştir. Türkçe programlama soruları çöz, kendini geliştir.",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "kodchallenge_logo.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ff9511",
   "background_color": "#ffffff"
 }

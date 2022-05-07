@@ -108,7 +108,7 @@ const TopNavbar = () => {
                                         id="tooltip184698705"
                                         target="_blank"
                                     >
-                                        <i className="fa fa-linkedin-square" />
+                                        <i className="fa fa-brands fa-linkedin" />
                                         <span className="nav-link-inner--text d-lg-none ml-2">
                                             Linkedin
                                         </span>
@@ -124,7 +124,7 @@ const TopNavbar = () => {
                                         id="tooltip112445449"
                                         target="_blank"
                                     >
-                                        <i className="fa fa-github" />
+                                        <i className="fa fa-brands fa-github" />
                                         <span className="nav-link-inner--text d-lg-none ml-2">
                                             Github
                                         </span>

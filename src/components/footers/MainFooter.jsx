@@ -35,8 +35,8 @@ function MainFooter() {
                                     <Link to='#' className='text-white btn btn-link'>Forum</Link>
                                     <Link to='#' className='text-white btn btn-link'>İLETİŞİM</Link>
                                 </div>
-                                <p>v0.2.0</p>
-                                <p>Last Update: 22.03.2022</p>
+                                <p>v0.3.0</p>
+                                <p>Last Update: 05.05.2022</p>
                                 <p>Developer Mode & Not Open Source</p>
                                 <p>
                                     <a className='text-danger font-weight-bolder' href="https://github.com/yasintorun" target="_blank">Github</a>
