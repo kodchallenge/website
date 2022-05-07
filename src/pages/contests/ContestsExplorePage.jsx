@@ -22,8 +22,8 @@ const ContestExplorePage = () => {
     return (
         <div>
             <div className='text-center my-5 py-5'>
-                <h1>Yarışmalara Katıl</h1>
-                <h3>Yarışmalara ücretsiz bir şekilde katılabilirsin</h3>
+                <h1 className="bold">Yarışmalara Katıl</h1>
+                <h3 className="bold">Yarışmalara ücretsiz bir şekilde katılabilirsin</h3>
                 <p>Yarışmalara katılabilir, programlama becerilerini sergileyebilir, diğer insanlarla rekabet edebilirsin.</p>
             </div>
             <div>

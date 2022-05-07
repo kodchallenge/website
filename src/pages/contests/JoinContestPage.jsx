@@ -26,21 +26,24 @@ const JoinContestPage = () => {
         if (!id) {
             window.location.pathname = "/"
         }
-        else {
+        if(!contestant) {
             contestService.getContestant(user?._id, id).then(res => {
                 if (res.data.success) {
                     dispatch(setContestant(res.data.data))
-                    dispatch(setContestTimer(res.data.data?.startTime))
                     CookieService.set(CookieTypes.CONTESTANT, res.data.data)
                 }
             })
         }
         if (!contests) {
             contestService.getContestById(id).then(res => {
+                dispatch(setContest(res.data.data))
                 setContest(res.data.data)
+                dispatch(setContestTimer(res.data.data?.startDate))
             })
+        } else {
+            setContest(contests.find(contest => contest._id === id))
         }
-    }, [contests])
+    }, [])
 
     const handleStartContest = () => {
         Swal.fire({ title: "Emin misin?", text: "Yarışmayı başlatmak istediğinize emin misiniz?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085d6", cancelButtonColor: "#d33", confirmButtonText: "Evet, başlat!" })
@@ -69,7 +72,7 @@ const JoinContestPage = () => {
             case "starting":
                 return (
                     <div>
-                        <ContestProblemList clock={contestant?.startTime} problems={contest?.problems} />
+                        <ContestProblemList clock={contest?.startDate} problems={contest?.problems} />
                         <div className='text-center'>
                             <Button color='danger' className='my-5' onClick={handleFinishContest}>YARIŞMAYI BİTİR</Button>
                         </div>
@@ -132,14 +135,14 @@ const JoinContestPage = () => {
                 )
         }
     }
-
+    console.log(contest)
     return (
         <div className='my-5 py-5'>
             <div className='my-5 text-center'>
-                <h1 className='fw-bold'>KodChallenge Açılışa Özel 300₺ Ödüllü Algoritma Çözme Yarışması</h1>
+                <h1 className='fw-bold'>{contest?.title}</h1>
                 <div className='position-relative my-5'>
-                    <div className='blur-bg'></div>
-                    <img className='img-fluid rounded blur-front' src='http://balkadu.com/wp-content/uploads/2017/07/400X400.jpg' />
+                    <div className='blur-bg' style={{backgroundImage: `url(${contest?.poster})`}}></div>
+                    <img className='img-fluid rounded blur-front' src={contest?.poster} />
                 </div>
             </div>
             <LoaderSpinner loading={!contestant}>

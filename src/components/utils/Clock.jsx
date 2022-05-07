@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useTimer from '../../hooks/useTimer'
 
-const Clock = ({date = "2022-05-02T11:27:18.590Z"}) => {
+const Clock = ({date = ""}) => {
     // const {timer} = useTimer(parseInt(localStorage.getItem('timer') || 0))
     const [timer, setTimer] = useState(0)
     // useEffect(() => {
