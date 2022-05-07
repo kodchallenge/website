@@ -28,6 +28,8 @@ const ContestUserResult = () => {
         )
     }
 
+    console.log(contestant)
+
     return (
         <div className='my-5 py-5'>
             <Badge color='success' className='d-block my-5 text-center text-white' style={{ fontSize: 20 }}>Tebrİkler yarışmayı tamamladın</Badge>
@@ -36,7 +38,7 @@ const ContestUserResult = () => {
                     <div className='text-center my-4'>
                         <Badge>Tamamlama Süresi: <strong>{(contestant?.endTime/1000)?.toClock() || "hh:mm:ss"}</strong></Badge>
                         <br />
-                        <Badge color='warning'>Toplam Puan: <strong>{"120"}</strong></Badge>
+                        <Badge color='warning'>Toplam Puan: <strong>{contestant?.totalScore ?? "10"}</strong></Badge>
                     </div>
                     <Row className='shadow'>
                         <Col md="4" className='card py-3'>
