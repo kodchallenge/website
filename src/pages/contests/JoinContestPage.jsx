@@ -50,7 +50,7 @@ const JoinContestPage = () => {
             .then((result) => {
                 if (result.isConfirmed && user && contest) {
                     contestService.startContest({ user: user._id, contest: contest._id }).then(res => {
-                        console.log(res.data)
+                        window.location.reload()
                     })
                 }
             })
@@ -61,7 +61,7 @@ const JoinContestPage = () => {
             .then((result) => {
                 if (result.isConfirmed && user && contest) {
                     contestService.finishContest({ user: user._id, contest: contest._id }).then(res => {
-                        console.log(res.data)
+                        window.location.reload()
                     })
                 }
             })
