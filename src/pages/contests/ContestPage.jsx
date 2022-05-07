@@ -16,8 +16,8 @@ const ContestPage = () => {
             </div>
             <div className='my-5'>
                 <Container>
-                    <Row className='w-75 m-auto'>
-                        <Col sm="6" className='p-5'>
+                    <Row className='justify-content-center'>
+                        <Col md="8" lg="4" className='p-5'>
                             <Card className='text-center border-0 shadow'>
                                 <CardImg src='https://kommunity.com/img/features/new/40.png'></CardImg>
                                 <div className='my-4'>
@@ -28,7 +28,7 @@ const ContestPage = () => {
                                 </div>
                             </Card>
                         </Col>
-                        <Col sm="6" className='p-5'>
+                        <Col md="8" lg="4" className='p-5'>
                             <Card className='text-center border-0 shadow'>
                                 <CardImg src='https://kommunity.com/img/features/new/41.png'></CardImg>
                                 <div className='my-4'>
