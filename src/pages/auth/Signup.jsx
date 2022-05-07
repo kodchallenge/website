@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+// import {} from 'react-router'
 import {
     Button,
     Card, CardBody, CardHeader, Col, Form, FormGroup, Input, InputGroup,
@@ -12,6 +13,7 @@ import Brand from '../../components/Brand';
 import authService from '../../services/auth.service';
 
 const Signup = () => {
+    const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const initialFormValues = {
         fullname: "",
@@ -33,6 +35,8 @@ const Signup = () => {
                 title: "Başarılı",
                 text: res.data.message,
                 icon: "success",
+            }).then(result => {
+                navigate("/auth/signin")
             })
         }).catch(err => {
             Swal.fire({
