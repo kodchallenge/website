@@ -18,9 +18,9 @@ const useAuth = () => {
     const handleSignin = (values, callback=null) => {
         authService.signin(values).then(res => {
             CookieService.set(CookieTypes.AUTH, res.data.data)
-            SuccessAlert({text: res.data.message, callBack: () => {
-                window.location.pathname = ""
-            }})
+            window.location.pathname = ""
+            // SuccessAlert({text: res.data.message, callBack: () => {
+            // }})
         }).catch(err => {
             ErrorAlert({text: err.response.data.message})
         }).finally(() => {
