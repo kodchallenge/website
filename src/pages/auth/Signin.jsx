@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
+    Badge,
     Button,
     Card, CardBody, CardHeader, Form, FormGroup, Input, InputGroup,
     InputGroupText
@@ -55,6 +56,7 @@ const Signin = () => {
                                 />
                             </span>
                             <span className="btn-inner--text">Github</span>
+                            <br /><Badge>Yakında</Badge>
                         </Button>
                         <Button
                             className="btn-neutral btn-icon ml-1"
@@ -69,6 +71,7 @@ const Signin = () => {
                                 />
                             </span>
                             <span className="btn-inner--text">Google</span>
+                            <br /><Badge>Yakında</Badge>
                         </Button>
                     </div>
                 </CardHeader>
