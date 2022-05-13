@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { Button, Container, Row, Col } from "reactstrap";
 import Brand from '../../components/Brand';
 
@@ -34,16 +35,16 @@ function MainPage() {
                                             Öğrenirken eğlenmeye hazır mısın?
                                         </p>
                                         <div className="btn-wrapper mt-5">
-                                            <Button color="default" size="lg">
+                                            <Link to={"/auth/signin"} className="btn btn-default btn-lg">
                                                 <span className="btn-inner--text">
                                                     Üye Ol
                                                 </span>
-                                            </Button>{" "}
-                                            <Button color="warning" size="lg">
+                                            </Link>{" "}
+                                            <Link to={"/auth/signin"} className="btn btn-warning btn-lg">
                                                 <span className="btn-inner--text">
                                                     Giriş Yap
                                                 </span>
-                                            </Button>
+                                            </Link>
                                         </div>
                                         <div className="mt-5">
                                             <small className="text-white font-weight-bold mb-0 mr-2">
