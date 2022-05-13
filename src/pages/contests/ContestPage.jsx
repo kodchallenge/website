@@ -19,7 +19,7 @@ const ContestPage = () => {
                     <Row className='justify-content-center'>
                         <Col md="8" lg="4" className='p-5'>
                             <Card className='text-center border-0 shadow'>
-                                <CardImg src='https://kommunity.com/img/features/new/40.png'></CardImg>
+                                <CardImg src='https://res.cloudinary.com/kodchallenge/image/upload/v1652464749/main/join_b6yblw.png'></CardImg>
                                 <div className='my-4'>
                                     <h3 className='fw-bold'>Yarışmalara Katıl</h3>
                                     <div>
@@ -30,7 +30,7 @@ const ContestPage = () => {
                         </Col>
                         <Col md="8" lg="4" className='p-5'>
                             <Card className='text-center border-0 shadow'>
-                                <CardImg src='https://kommunity.com/img/features/new/41.png'></CardImg>
+                                <CardImg src='https://res.cloudinary.com/kodchallenge/image/upload/v1652464749/main/create_dtsln9.png'></CardImg>
                                 <div className='my-4'>
                                     <h3 className='fw-bold'>Yarışma Oluştur</h3>
                                     <div>
