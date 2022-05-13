@@ -85,12 +85,12 @@ const TopNavbar = () => {
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="#" className='nav-link'>
+                                    <Link to="activities" className='nav-link'>
                                         Etkinlikler
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="#" className='nav-link'>
+                                    <Link to="projects" className='nav-link'>
                                         Projeler
                                     </Link>
                                 </NavItem>

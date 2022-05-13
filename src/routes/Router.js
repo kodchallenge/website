@@ -7,6 +7,7 @@ import RoleBasedRoute from '../hoc/RoleBasedRoute'
 import AuthLayout from '../layout/AuthLayout'
 import Layout from '../layout/Layout'
 import AboutPage from '../pages/AboutPage'
+import ActivityPage from '../pages/activities/ActivityPage'
 import Signin from '../pages/auth/Signin'
 import Signup from '../pages/auth/Signup'
 import ContestPage from '../pages/contests/ContestPage'
@@ -18,6 +19,7 @@ import MainPage from '../pages/main/MainPage'
 import ProblemDetailPage from '../pages/ProblemDetailPage'
 import ProblemEditor from '../pages/ProblemEditor'
 import ProblemListPage from '../pages/ProblemListPage'
+import ProjectPage from '../pages/projects/ProjectPage'
 import TrackListPage from '../pages/TrackListPage'
 
 
@@ -50,6 +52,8 @@ const Router = () => {
                 <Route path='tracks/' element={<TrackListPage />} />
                 <Route path='tracks/:trackName' element={<ProblemListPage />} />
                 <Route path='about-project' element={<AboutPage />} />
+                <Route path='projects' element={<ProjectPage />} />
+                <Route path='activities' element={<ActivityPage />} />
                 <Route path='contests' element={<ContestPage />} />
                 <Route path='contests/explore' element={<ContestExplorePage />} />
                 <Route path='contests/explore/:id' element={<ContestsDetailPage />} />

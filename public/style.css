@@ -276,12 +276,20 @@ html, body, #root, .App {
     border-radius: 3px;
   }
 
-
   .contest-top-section {
     background: linear-gradient(0deg,#ffe7d0 15.71%,#fff);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
+  .project-top-section {
+    background: linear-gradient(0deg,#d2e6fd 15.71%,#fff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
+  .activity-top-section {
+    background: linear-gradient(0deg,#b397e4 15.71%,#fff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
   .fw-bold {
     font-weight: bold;
   }
