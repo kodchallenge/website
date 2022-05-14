@@ -36,7 +36,7 @@ const Signup = () => {
                 text: res.data.message,
                 icon: "success",
             }).then(result => {
-                navigate("/auth/signin")
+                navigate("/auth/check-mail")
             })
         }).catch(err => {
             Swal.fire({

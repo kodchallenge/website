@@ -1,56 +1,28 @@
-import React, { useEffect } from 'react'
-import { Outlet, Route, Routes } from 'react-router';
-import Layout from './layout/Layout'
-import AboutPage from './pages/AboutPage';
-import MainPage from './pages/main/MainPage';
-import TrackListPage from './pages/TrackListPage';
-import ProblemListPage from './pages/ProblemListPage';
-import ProblemDetailPage from './pages/ProblemDetailPage';
-import ProblemEditor from './pages/ProblemEditor';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getAllTrack } from './store/actions/trackActions';
-import AuthLayout from './layout/AuthLayout';
-import Signup from './pages/auth/Signup';
-import Signin from './pages/auth/Signin';
-import ProtectedRoute from './hoc/ProtectedRoute';
+import { useLocation } from 'react-router';
 import Router from './routes/Router';
+import { getAllTrack } from './store/actions/trackActions';
 
-const AdminRouter = React.lazy(() => import("./routes/AdminRouter"));
 function App() {
   const dispatch = useDispatch()
+  const { pathname } = useLocation();
+
   useEffect(() => {
     //Base Configures
     dispatch(getAllTrack())
   }, [])
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  }, [pathname])
   return (
     <div className="App">
       <Router />
-      {/* <Routes>
-        <Route path='editor' element={<ProblemEditor />} />
-        <Route path='/' element={<Layout />}>
-          <Route exact path='' element={<MainPage />} />
-          <Route path='tracks/' element={<TrackListPage />} />
-          <Route path='tracks/:trackName' element={<ProblemListPage />} />
-          <Route path='about-project' element={<AboutPage />} />
-          
-          <Route element={<ProtectedRoute roles={["admin", "user"]}/>}>
-            <Route path='tracks/:trackName/:problemName' element={<ProblemDetailPage />} />
-          </Route>
-          
-          <Route element={<ProtectedRoute roles={["admin"]}/>}>
-            <Route path='dashboard/*' element={
-              <React.Suspense fallback  ={<p>...</p>}>
-                <AdminRouter />
-              </React.Suspense>
-            } />
-          </Route>
-        </Route>
-        <Route path='auth' element={<AuthLayout />}>
-          <Route path='signup' element={<Signup />} />
-          <Route path='signin' element={<Signin />} />
-        </Route>
-      </Routes> */}
     </div>
   );
 }

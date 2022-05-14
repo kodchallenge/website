@@ -12,6 +12,14 @@ class AuthService {
     changePassword(data) {
         return api().post(api_url+"/changepassword", data)
     }
+
+    sendResetLink(data) {
+        return api().post(api_url+"/sendresetlink", data)
+    }
+    
+    resetPassword(data) {
+        return api().post(api_url+"/resetpassword", data)
+    }
 }
 
 export default new AuthService()

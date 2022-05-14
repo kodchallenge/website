@@ -69,7 +69,7 @@ const ProblemListPage = () => {
                                                             <Badge color="warning">Skor: <strong>{problem?.score || 0}</strong></Badge>
                                                         </div>
                                                         <div className="my-3">
-                                                            Başarı Oranı: 86%
+                                                            Başarı Oranı: 100%
                                                         </div>
                                                     </Col>
                                                     <Col md="3">

@@ -1,9 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Container, Row, Col } from "reactstrap";
 import Brand from '../../components/Brand';
 
 function MainPage() {
+    const { user } = useSelector(state => state.auth)
+
     return (
         <>
             <main>
@@ -16,10 +19,10 @@ function MainPage() {
                             <span className="span-50" />
                             <span className="span-50" />
                             <span className="span-75" />
-                            <span className="span-100 floating-x" style={{animationDelay: 1}}/>
+                            <span className="span-100 floating-x" style={{ animationDelay: 1 }} />
                             <span className="span-75 floating" />
                             <span className="span-50" />
-                            <span className="span-100 floating" style={{animationDelay: 2}}/>
+                            <span className="span-100 floating" style={{ animationDelay: 2 }} />
                             <span className="span-50" />
                             <span className="span-100" />
                         </div>
@@ -27,28 +30,30 @@ function MainPage() {
                             <div className="col px-0">
                                 <Row className="align-items-center justify-content-center">
                                     <Col className="text-left" lg="6">
-                                        <Brand bold/>
-                                        <p className="lead text-white" style={{fontWeight: 400}}>
+                                        <Brand bold />
+                                        <p className="lead text-white" style={{ fontWeight: 400 }}>
                                             Ücretsiz ve Türkçe sorular ile programlama yeteneğini geliştir. <br />
                                             Ödüllü programlama yarışmalarına katıl.<br />
                                             Her hafta birbirinden eğlenceli kodlama challenge etkinliklerine katıl. <br />
                                             Öğrenirken eğlenmeye hazır mısın?
                                         </p>
-                                        <div className="btn-wrapper mt-5">
-                                            <Link to={"/auth/signin"} className="btn btn-default btn-lg">
-                                                <span className="btn-inner--text">
-                                                    Üye Ol
-                                                </span>
-                                            </Link>{" "}
-                                            <Link to={"/auth/signin"} className="btn btn-warning btn-lg">
-                                                <span className="btn-inner--text">
-                                                    Giriş Yap
-                                                </span>
-                                            </Link>
-                                        </div>
+                                        {!user && (
+                                            <div className="btn-wrapper mt-5">
+                                                <Link to={"/auth/signin"} className="btn btn-default btn-lg">
+                                                    <span className="btn-inner--text">
+                                                        Üye Ol
+                                                    </span>
+                                                </Link>{" "}
+                                                <Link to={"/auth/signin"} className="btn btn-warning btn-lg">
+                                                    <span className="btn-inner--text">
+                                                        Giriş Yap
+                                                    </span>
+                                                </Link>
+                                            </div>
+                                        )}
                                         <div className="mt-5">
                                             <small className="text-white font-weight-bold mb-0 mr-2">
-                                                
+
                                             </small>
                                             {/* <img
                                                 alt="..."

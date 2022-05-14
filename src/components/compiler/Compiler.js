@@ -34,7 +34,7 @@ const Compiler = ({isContest}) => {
         CodeService.runCode(lang)
             .then(res => {
                 console.log(res.data)
-                setRunResult((res.data.data.result+"").replaceAll('\n', "<br />"))
+                setRunResult((res.data.data?.result+"").replaceAll('\n', "<br />"))
             })
             .catch(err => {
                 setRunResult(err)
@@ -66,11 +66,12 @@ const Compiler = ({isContest}) => {
             code: editorRef.current.getValue(),
             problem: problemId
         }
+        console.log(lang)
         CodeService.runTest(lang)
             .then(res => {
                 const data = res.data.data
                 let result = ""
-                data.tests.map(x => {
+                data?.tests.map(x => {
                     result += CodeTestStyle(x)
                 })
                 setTestData(data)

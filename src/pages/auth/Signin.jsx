@@ -98,6 +98,7 @@ const Signin = () => {
                                     <Input name="password" onChange={props.handleChange} placeholder="Şifre" type="password" />
                                 </InputGroup>
                             </FormGroup>
+                            <Link to={"/auth/forgot-password"}>Şifremi unuttum</Link>
                             <div className='text-danger error-messages'>
                                 <p>{props.errors.username}</p>
                                 <p>{props.errors.email}</p>

@@ -8,6 +8,9 @@ import AuthLayout from '../layout/AuthLayout'
 import Layout from '../layout/Layout'
 import AboutPage from '../pages/AboutPage'
 import ActivityPage from '../pages/activities/ActivityPage'
+import CheckMail from '../pages/auth/CheckMail'
+import ForgotPassword from '../pages/auth/ForgotPassword'
+import ResetPassword from '../pages/auth/ResetPassword'
 import Signin from '../pages/auth/Signin'
 import Signup from '../pages/auth/Signup'
 import ContestPage from '../pages/contests/ContestPage'
@@ -44,6 +47,9 @@ const Router = () => {
             <Route path='auth' element={<AuthLayout />}>
                 <Route path='signup' element={<Signup />} />
                 <Route path='signin' element={<Signin />} />
+                <Route path='check-mail' element={<CheckMail />} />
+                <Route path='forgot-password' element={<ForgotPassword />} />
+                <Route path='reset-password' element={<ResetPassword />} />
             </Route>
 
             <Route path='/' element={<Layout />}>

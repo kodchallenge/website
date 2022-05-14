@@ -11,7 +11,7 @@ const ProjectPage = () => {
                     Geliştirdiğin projeleri insanlara tanıt, projene ekip arkadaşları bul. <br />
                     Projenin Github reposunu sisteme yükle. Projeni paylaş
                 </p>
-                <strong className='text-warning'>Birliktelik</strong>
+                <strong className='text-warning'>Happy Coding</strong>
                 <div className='my-4'>
                     <Link to="explore" className='btn btn-primary'>Projeleri Keşfet</Link>
                 </div>
@@ -21,18 +21,18 @@ const ProjectPage = () => {
                     <Row className='justify-content-center'>
                         <Col md="8" lg="4" className='p-5'>
                             <Card className='text-center border-0 shadow'>
-                                <CardImg src='https://kommunity.com/img/features/new/40.png'></CardImg>
+                                <CardImg src='https://res.cloudinary.com/kodchallenge/image/upload/v1652520179/main/projects_yyf9y3.png'></CardImg>
                                 <div className='my-4'>
                                     <h3 className='fw-bold'>Projeleri Gör</h3>
                                     <div>
-                                        <p>İnsanların neler yaptığını, neler geliştridiklerini deneyimle ve gör</p>
+                                        <p>İnsanların neler yaptığını, geliştirdikleri projeleri deneyimle ve gör</p>
                                     </div>
                                 </div>
                             </Card>
                         </Col>
                         <Col md="8" lg="4" className='p-5'>
                             <Card className='text-center border-0 shadow'>
-                                <CardImg src='https://kommunity.com/img/features/new/41.png'></CardImg>
+                                <CardImg src='https://res.cloudinary.com/kodchallenge/image/upload/v1652520179/main/tanit_bv80it.png'></CardImg>
                                 <div className='my-4'>
                                     <h3 className='fw-bold'>Projeni Tanıt</h3>
                                     <div>
@@ -43,7 +43,7 @@ const ProjectPage = () => {
                         </Col>
                         <Col md="8" lg="4" className='p-5'>
                             <Card className='text-center border-0 shadow'>
-                                <CardImg src='https://kommunity.com/img/features/new/41.png'></CardImg>
+                                <CardImg src='https://res.cloudinary.com/kodchallenge/image/upload/v1652520179/main/find_mp3zqv.png'></CardImg>
                                 <div className='my-4'>
                                     <h3 className='fw-bold'>Ekip Bul</h3>
                                     <div>

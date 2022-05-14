@@ -58,11 +58,7 @@ const TopNavbar = () => {
                                 <Row>
                                     <Col className="collapse-brand" xs="6">
                                         <Link to="/">
-                                            KodChallenge
-                                            {/* <img
-                            alt="..."
-                            src={require("assets/img/brand/argon-react.png")}
-                            /> */}
+                                            <Brand Type="p" style={{color: "black"}} bold/>
                                         </Link>
                                     </Col>
                                     <Col className="collapse-close" xs="6">
@@ -134,7 +130,7 @@ const TopNavbar = () => {
                                     </UncontrolledTooltip>
                                 </NavItem>
                                 {!user ? (
-                                    <NavItem className="d-none d-lg-block ml-lg-4">
+                                    <NavItem className="ml-lg-4">
                                         <Link style={{ all: "none" }} to="/auth/signup">
                                             <Button color="default">
                                                 <span className="btn-inner--text">

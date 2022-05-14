@@ -30,7 +30,7 @@ const CodeEditor = ({ editorRef, height }) => {
             const baseLanguages = Object.keys(problem.baseCode)
             setLanguages(langs.filter(x => baseLanguages.some(v => v == x.value)))
             setLanguage(baseLanguages[0])
-            console.log(baseLanguages)
+            dispatch(ChangeLanguage(baseLanguages[0]))
         }
     }, [problem])
 

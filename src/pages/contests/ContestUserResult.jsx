@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import ReactSyntaxHighlighter from 'react-syntax-highlighter'
 import { hopscotch } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-import { Badge, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane } from 'reactstrap'
+import { Alert, Badge, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane } from 'reactstrap'
 import LoaderSpinner from '../../components/spinners/LoaderSpinner'
 
 const ContestUserResult = () => {
@@ -36,7 +36,7 @@ const ContestUserResult = () => {
             <LoaderSpinner loading={!contestant}>
                 <Container>
                     <div className='text-center my-4'>
-                        <Badge>Tamamlama Süresi: <strong>{(contestant?.endTime/1000)?.toClock() || "hh:mm:ss"}</strong></Badge>
+                        <Badge>Tamamlama Süresi: <strong>{(contestant?.endTime / 1000)?.toClock() || "hh:mm:ss"}</strong></Badge>
                         <br />
                         <Badge color='warning'>Toplam Puan: <strong>{contestant?.totalScore ?? "10"}</strong></Badge>
                     </div>
@@ -44,44 +44,50 @@ const ContestUserResult = () => {
                         <Col md="4" className='card py-3'>
                             <div className='mb-4'>Soru Seçiniz</div>
                             <Nav vertical>
-                                {contestant?.solutions.map((solution, index) => (
-                                    <Tab index={index}>{solution?.problem?.name}</Tab>
+                                {contestant?.contest?.problems.map((problem, index) => (
+                                    <Tab index={index}>{problem?.name}</Tab>
                                 ))}
                             </Nav>
                         </Col>
                         <Col md="8">
                             <TabContent activeTab={activeTab}>
-                                {contestant?.solutions?.map((solution, index) => (
+                                {contestant?.contest.problems?.map((problem, index) => (
                                     <TabPane tabId={index}>
                                         <div className='card-body'>
-                                            <div>
-                                                <h5 className='card-title text-center'>{solution.problem?.name}</h5>
-                                                <hr />
-                                                <div>
-                                                    <Badge color='success'>Doğru Çıktı Sayısı: <strong>{solution.codeTest?.rate?.correct}</strong></Badge>
-                                                    <br />
-                                                    <Badge color='danger'>Yanlış Çıktı Sayısı: <strong>{solution.codeTest?.rate?.wrong}</strong></Badge>
-                                                </div>
-                                                <hr />
-                                                <div>
-                                                    <strong>Puan: </strong> {solution?.score ?? 1}
-                                                </div>
-                                            </div>
+                                            <h5 className='card-title text-center'>{problem?.name}</h5>
                                             <hr />
-                                            <div>
-                                                <ReactSyntaxHighlighter showLineNumbers language="javascript" style={hopscotch}>
-                                                    {solution.codeTest?.code}
-                                                </ReactSyntaxHighlighter>
-                                            </div>
+                                            {!contestant.solutions.some(s => s.problem?._id == problem._id) ? (
+                                                <>
+                                                    <Alert color='danger'>Bu soruyu çözmediniz</Alert>
+                                                </>
+                                            ) : (
+                                                contestant.solutions.filter(s => s.problem?._id == problem._id).map(solution => (
+                                                    <div>
+                                                        <div>
+                                                            <Badge color='success'>Doğru Çıktı Sayısı: <strong>{solution.codeTest?.rate?.correct}</strong></Badge>
+                                                            <br />
+                                                            <Badge color='danger'>Yanlış Çıktı Sayısı: <strong>{solution.codeTest?.rate?.wrong}</strong></Badge>
+                                                        </div>
+                                                        <hr />
+                                                        <div>
+                                                            <strong>Puan: </strong> {solution?.score ?? 1}
+                                                        </div>
+                                                        <hr />
+                                                        <ReactSyntaxHighlighter showLineNumbers language="javascript" style={hopscotch}>
+                                                            {solution.codeTest?.code}
+                                                        </ReactSyntaxHighlighter>
+                                                    </div>
+                                                ))
+                                            )}
                                         </div>
                                     </TabPane>
                                 ))}
                             </TabContent>
                         </Col>
                     </Row>
-                </Container>
-            </LoaderSpinner>
-        </div>
+                </Container >
+            </LoaderSpinner >
+        </div >
     )
 }
 
