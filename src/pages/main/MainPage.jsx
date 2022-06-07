@@ -15,7 +15,7 @@ function MainPage() {
                     <section className="section section-hero section-shaped">
                         {/* Background circles */}
                         <div className="shape shape-style-1 shape-dark">
-                            <span className="span-150" />
+                            <span className="span-150 floating" />
                             <span className="span-50" />
                             <span className="span-50" />
                             <span className="span-75" />
@@ -24,7 +24,7 @@ function MainPage() {
                             <span className="span-50" />
                             <span className="span-100 floating" style={{ animationDelay: 2 }} />
                             <span className="span-50" />
-                            <span className="span-100" />
+                            <span className="span-100 floating" />
                         </div>
                         <Container className="shape-container d-flex align-items-center py-lg">
                             <div className="col px-0">
@@ -34,7 +34,7 @@ function MainPage() {
                                         <p className="lead text-white" style={{ fontWeight: 400 }}>
                                             Ücretsiz ve Türkçe sorular ile programlama yeteneğini geliştir. <br />
                                             Ödüllü programlama yarışmalarına katıl.<br />
-                                            Her hafta birbirinden eğlenceli kodlama challenge etkinliklerine katıl. <br />
+                                            Her hafta birbirinden eğlenceli kodlama challenge etkinliklerinde sen de yerini al. <br />
                                             Öğrenirken eğlenmeye hazır mısın?
                                         </p>
                                         {!user && (

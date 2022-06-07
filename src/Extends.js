@@ -61,5 +61,7 @@ Array.prototype.groupBy = function(keyGetter) {
 }
 
 String.prototype.datePassed = function () {
+    const date = new Date(this)
+    console.log(new Date(), date)
     return (new Date() > new Date(this))
 }
