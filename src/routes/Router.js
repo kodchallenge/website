@@ -18,6 +18,7 @@ import ContestsDetailPage from '../pages/contests/ContestsDetailPage'
 import ContestExplorePage from '../pages/contests/ContestsExplorePage'
 import JoinContestPage from '../pages/contests/JoinContestPage'
 import ErrorPage from '../pages/errors/ErrorPage'
+import JoinUsPage from '../pages/JoinUsPage'
 import MainPage from '../pages/main/MainPage'
 import ProblemDetailPage from '../pages/ProblemDetailPage'
 import ProblemEditor from '../pages/ProblemEditor'
@@ -64,6 +65,8 @@ const Router = () => {
                 <Route path='contests/explore' element={<ContestExplorePage />} />
                 <Route path='contests/explore/:id' element={<ContestsDetailPage />} />
                 <Route path='contests/explore/:id/join' element={<JoinContestPage />} />
+                <Route path='joinus' element={<JoinUsPage />} />
+                
 
                 {/*Sadece user rolüne sahip kullanıcının erişebileceği linkler */}
                 <Route element={<ProtectedRoute roles={[ROLES.user]} />}>

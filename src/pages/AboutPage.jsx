@@ -5,48 +5,33 @@ function AboutPage() {
     return (
         <div className='pt-5 mt-5'>
             <Container>
-                <h3>Selam Ben Yasin</h3>
-                <p>
-                    Bilgisayar Mühendisliği 4. Sınıf öğrencisiyim. <br />
-                    Kurumsal bir firmada Bilgisayar Mühendisliği olarak çalışıyorum.<br />
-                    Kariyerimi Web alanında geliştiriyorum.
-                </p>
+                <p>Merhabalar ben Yasin.
+                Ankara Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim. 
+                <b>www.kodchallenge.com</b> sitesini bitirme projem olarak geliştirmekteyim. </p>
                 <br />
-                <h4>Bu site hakkında</h4>
-                <p>
-                    Bu siteyi bahar dönemi bitirme projem olarak geliştiriyorum. <br />
-                    Kodlama öğrenmek isteyen insanların <strong>Türkçe problem bulamama</strong> sorunu giderebilmek için bu projeyi yapıyorum.< br />
-                    Yeni kodlamaya başlayan insanların <strong>online Türkçe soru</strong> çözebileceği bir platform oluşturuyorum. <br />
-                    Site içerisinde yarışmalar ve etkinlikler düzenleme imkanı oluşturacağım. <br />
-                    Bunun haricinde şirketlerin kod case oluşturabileceği bunları iş başvurusu yapanlarla paylaşabileceği bir platform hazırlayacağım.<br />
-                    Ayrıca blog yazıları ve forum tarzında kullanıcıların birbiri ile iletişim kurabileceği bir sistem hazırlayacağım. <br />
-                </p>
-                <div className='pt-4'>
-                    <h3>Projede Kullanılan Teknolojiler Ve Yöntemler</h3>
-                    <ul className="text-left">
-                        <li>
-                            <strong>İş Takibi: </strong> Trello
-                        </li>
-                        <li>
-                            <strong>Proje yönetimi: </strong> Github
-                        </li>
-                        <li>
-                            <strong>Frontend: </strong> React - Scss
-                        </li>
-                        <li>
-                            <strong>Backend: </strong> Nodejs - Express
-                        </li>
-                        <li>
-                            <strong>Veritabanı: </strong> Mongodb - NoSql
-                        </li>
-                        <li>
-                            <strong>Code Compiler: </strong> Nodejs
-                        </li>
-                        <li>
-                            <strong>Code Editor: </strong> React - Monaco
-                        </li>
-                    </ul>
-                </div>
+
+                <p>Programlama ile ilgilenen insanların Türkçe Programlama soruları bulamama sorununu gidermek için geliştirilmiştir. </p>
+                <p>Site içerisinde Programlama soruları bulunmaktadır. Sorular kategorilere ayrılıp ( Algoritma, Veri Yapıları, C, C++ vs) kullanıcıların kategori bazlı soru bulması hedeflenmiştir. </p>
+
+                <p>Ayrıca site içerisinde Yarışma, Etkinlik gibi alt başlıklarda vardır. Gold Üyeliğe sahip herhangi bir kullanıcı etkinlik, Yarışma başlatabilir. </p>
+                <p>Herkese açık olarak paylaşılan yarışma ve etkinliğe site içerisindeki tüm kullanıcılar ücretsiz katılabilir. </p>
+                <p>Yarışmalar ödüllü olmaktadır. Kullanıcıların belli bir sürede bir test yapması hedeflenir. En yüksek puana sahip kullanıcı ödül sahibi olur. </p>
+
+                <p>Etkinlikler, Meydan okumalar(Challenge) programlama öğrenen, bu alanda farklı şeyler deneyimlemek isteyen kişiler için geliştirilmiştir. </p>
+                <p>Etkinlikler sayesinde geliştiricilerin hem farklı konular öğrenmesini hemde eğlenmesi amaçlanmıştır. </p>
+
+                <p>Ayrıca şirketlerin işe alım süreci olan programming case süreci platform içerisinde yapılabilir. </p>
+                <p>Programming Case; programlama alanındaki işe alım yaparken, iş başvurusu yapan kullanıcıların programlama becerilerini ölçen bir süreç. </p>
+                <p>Bu süreçler yabancı siteler üzerinden gerçekleşmekte ve İngilizce olarak yapılmakta. KodChallenge bu süreci tamamen Türkçeleştirip insanlara sunmayı amaçlamıştır. </p>
+                <p>Şirketler platform üzerinden kendi sorularını veya sistem havuzunda yer alan sorulardan test oluşturur. Belli bir süre verilir. Başvuru yapan insanların o süre içerisinde testi yapması beklenir. </p>
+                <p>Bu süreç ücretsiz değildir. Üyelik satın alımı yapan şirketler bu süreci başlatabilir. </p>
+
+                <p>KodChallenge Türk geliştiriciler için geliştirilmiş, Türkçe Kaynak olarak sunulmuş bir platformdur. </p>
+                <p>Platform içerisinde yer alan bir diğer önemli başlık ise Projeler başlığıdır. </p>
+                <p>Kullanıcılar geliştirdikleri projeleri diğer kullanıcılara tanıtmak, ve kendilerine ekip arkadaşı (Github contributor mantığı) bulmasını sağlamaktadır. </p>
+                <p>Bu sayede yaptıkları projeleri tanıtabilir, geliştirme süreci devam eden projeler için ekip arkadaşı bulabilirler. </p>
+                <p>Bu süreci yapabilmeleri için Github hesabını bağlamak ve proje reposu public olmak zorundadır. </p>
+                <p>KodChallenge Open Source projelere önem vermektedir. </p>
             </Container>
         </div>
     )

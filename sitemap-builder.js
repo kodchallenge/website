@@ -5,6 +5,6 @@ const Sitemap = require('../').default;
  
 (
     new Sitemap(router)
-        .build('http://my-site.ru')
+        .build('https://kodchallenge.com')
         .save('./sitemap.xml')
 );
