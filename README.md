@@ -1,20 +1,15 @@
 # Kod Challenge
 
-__Yasin Torun__
+__Owner: Yasin Torun__
 
 <br>
 
-Kod Challenge programlama ile ilgili soruların yer aldığı ve bunları web ortamında editor aracılığıyla çözebileceğimiz bir sitedir.
+__[EN]__
 
-Farklı alanları kategorilere ayırıyoruz. Sitede yer alınması planlanan bazı kategoriler; Algoritma, Veri yapıları, C, C++, C#, Java, Javascript, Html, Css, Python, SQL.
-Her bir problem sadece bir kategoriye ait olabilir. 
+KodChallenge is an application that includes programming questions and you can solve them through the online editor.
+Categories included in the application; Algorithm, Data structures, Object Oriented Programming, C, C++, C#, Java, JavaScript, TypeScript, Python
 
 
-<br>
-
-__Örnek alınan projeler:__ HackerRank, Exercism, Coderbyte
-
-<br>
-___
-Bu Projenin diğer projelerden ayıran en temel özellik __Türkçe bir site__ olmasıdır.
-Projeyi Hem Türkçe hemde İngilizce olacak şekilde design ediyor olacağım.
+__[TR]__
+KodChallenge programlama sorularını online editör ile çözebileceğiniz bir web uygulamasıdır.
+Uygulamada yer alan kategoriler; Algoritma, Veri yapıları, Nesne Yönelimli Programlama, C, C++, C#, Java, JavaScript, TypeScript, Python
