@@ -58,7 +58,7 @@ const TopNavbar = () => {
                                 <Row>
                                     <Col className="collapse-brand" xs="6">
                                         <Link to="/">
-                                            <Brand Type="p" style={{color: "black"}} bold/>
+                                            <Brand Type="p" style={{ color: "black" }} bold />
                                         </Link>
                                     </Col>
                                     <Col className="collapse-close" xs="6">
@@ -93,6 +93,11 @@ const TopNavbar = () => {
                             </Nav>
                             <Nav className="align-items-lg-center ml-lg-auto" navbar>
                                 <NavItem>
+                                    <Link to="joinus" className='nav-link font-weight-bold'>
+                                        Bize Katıl
+                                    </Link>
+                                </NavItem>
+                                <NavItem>
                                     <Link to="about-project" className='nav-link'>
                                         Bu Proje Hakkında
                                     </Link>
@@ -116,7 +121,7 @@ const TopNavbar = () => {
                                 <NavItem>
                                     <NavLink
                                         className="nav-link-icon"
-                                        href="https://github.com/yasintorun"
+                                        href="https://github.com/kodchallenge"
                                         id="tooltip112445449"
                                         target="_blank"
                                     >
