@@ -92,7 +92,7 @@ const TopNavbar = () => {
                                 </NavItem>
                             </Nav>
                             <Nav className="align-items-lg-center ml-lg-auto" navbar>
-                                <NavItem>
+                                {/* <NavItem>
                                     <Link to="joinus" className='nav-link font-weight-bold'>
                                         Bize Katıl
                                     </Link>
@@ -101,7 +101,7 @@ const TopNavbar = () => {
                                     <Link to="about-project" className='nav-link'>
                                         Bu Proje Hakkında
                                     </Link>
-                                </NavItem>
+                                </NavItem> */}
                                 <NavItem>
                                     <NavLink
                                         className="nav-link-icon"
