@@ -136,14 +136,14 @@ const TopNavbar = () => {
                                 </NavItem>
                                 {!user ? (
                                     <NavItem className="ml-lg-4">
-                                        <Link style={{ all: "none" }} to="/auth/signup">
+                                        <Link style={{ all: "none" }} to="/signup">
                                             <Button color="default">
                                                 <span className="btn-inner--text">
                                                     Üye Ol
                                                 </span>
                                             </Button>{" "}
                                         </Link>
-                                        <Link style={{ all: "none" }} to="/auth/signin">
+                                        <Link style={{ all: "none" }} to="/signin">
                                             <Button color="warning" >
                                                 <span className="btn-inner--text text-white">
                                                     Giriş Yap

@@ -9,11 +9,12 @@ import {
 } from "reactstrap";
 import * as Yup from 'yup';
 import Brand from '../../components/Brand';
+import KodInput from '../../components/UI/KodInput';
 import useAuth from '../../hooks/useAuth';
 
 const Signin = () => {
     const [loading, setLoading] = useState(false)
-    const {handleSignin} = useAuth()
+    const { handleSignin } = useAuth()
     const initialFormValues = {
         username: "",
         password: "",
@@ -32,94 +33,74 @@ const Signin = () => {
     }
     return (
         <main>
-            <div className='mb-4 text-center'>
-                <a href="/">
-                    <Brand Type='h3' bold/>
-                </a>
-            </div>
-            <Card className="bg-secondary shadow border-0">
-                <CardHeader className="bg-white pb-5">
-                    <div className="text-muted text-center mb-3">
-                        <small>Giriş Yap</small>
-                    </div>
-                    <div className="text-center">
-                        <Button
-                            className="btn-neutral btn-icon mr-4"
-                            color="default"
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
-                        >
-                            <span className="btn-inner--icon mr-1">
-                                <img
-                                    alt="G"
-                                    src={require("../../assets/img/icons/common/github.svg").default}
-                                />
-                            </span>
-                            <span className="btn-inner--text">Github</span>
-                            <br /><Badge>Yakında</Badge>
-                        </Button>
-                        <Button
-                            className="btn-neutral btn-icon ml-1"
-                            color="default"
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
-                        >
-                            <span className="btn-inner--icon mr-1">
-                                <img
-                                    alt="G"
-                                    src={require("../../assets/img/icons/common/google.svg").default}
-                                />
-                            </span>
-                            <span className="btn-inner--text">Google</span>
-                            <br /><Badge>Yakında</Badge>
-                        </Button>
-                    </div>
-                </CardHeader>
+            <h3 className='auth-title'>⚡ Giriş Yap ⚡</h3>
+            <Card className="auth-card">
+                <div className="text-center">
+                    <Button
+                        className="btn-neutral btn-icon mr-4"
+                        color="warning"
+                        href="#"
+                        onClick={e => e.preventDefault()}
+                    >
+                        <span className="btn-inner--icon mr-1">
+                            <img
+                                alt="G"
+                                src={require("../../assets/img/icons/common/github.svg").default}
+                            />
+                        </span>
+                        <span className="btn-inner--text">Github</span>
+                        <br /><Badge>Yakında</Badge>
+                    </Button>
+                    <Button
+                        className="btn-neutral btn-icon ml-1"
+                        color="default"
+                        href="#pablo"
+                        onClick={e => e.preventDefault()}
+                    >
+                        <span className="btn-inner--icon mr-1">
+                            <img
+                                alt="G"
+                                src={require("../../assets/img/icons/common/google.svg").default}
+                            />
+                        </span>
+                        <span className="btn-inner--text">Google</span>
+                        <br /><Badge>Yakında</Badge>
+                    </Button>
+                </div>
                 <CardBody className="px-lg-5 py-lg-5">
                     <Formik
                         initialValues={initialFormValues}
-                        validationSchema= {validationSchema}
+                        validationSchema={validationSchema}
                         onSubmit={handleSigninClick}
                     >
                         {props => (
-                        <Form role="form">
-                            <FormGroup>
-                                <InputGroup>
-                                    <InputGroupText>
-                                        <i class="fa fa-solid fa-user"></i>
-                                    </InputGroupText>
-                                    <Input name='username' onChange={props.handleChange} placeholder="Kullanıcı Adı" type="text" max={16} min={6} />
-                                </InputGroup>
+                            <Form role="form">
+                                <FormGroup className='d-flex flex-column'>
+                                    <KodInput name='username' onChange={props.handleChange} placeholder="Kullanıcı Adı veya Eposta" type="text" max={16} min={6} />
+                                    <KodInput name="password" onChange={props.handleChange} placeholder="Şifre" type="password" />
+                                </FormGroup>
+                                <Link to={"/auth/forgot-password"}>Şifremi unuttum</Link>
+                                <div className='text-danger error-messages'>
+                                    <p>{props.errors.username}</p>
+                                    <p>{props.errors.email}</p>
+                                    <p>{props.errors.password}</p>
+                                </div>
 
-                                <InputGroup>
-                                    <InputGroupText>
-                                        <i class="fa fa-solid fa-lock"></i>
-                                    </InputGroupText>
-                                    <Input name="password" onChange={props.handleChange} placeholder="Şifre" type="password" />
-                                </InputGroup>
-                            </FormGroup>
-                            <Link to={"/auth/forgot-password"}>Şifremi unuttum</Link>
-                            <div className='text-danger error-messages'>
-                                <p>{props.errors.username}</p>
-                                <p>{props.errors.email}</p>
-                                <p>{props.errors.password}</p>
-                            </div>
-                            
-                            <div className="text-center">
-                                <Button
-                                    className="mt-4"
-                                    color="primary"
-                                    type="button"
-                                    onClick={props.handleSubmit}
-                                >
-                                    {!loading ? "Giriş yap" : "Giriş yapılıyor..."}
-                                </Button>
-                            </div>
-                        </Form>
+                                <div className="text-center">
+                                    <Button
+                                        className="mt-4"
+                                        color="primary"
+                                        type="button"
+                                        onClick={props.handleSubmit}
+                                    >
+                                        {!loading ? "Giriş yap" : "Giriş yapılıyor..."}
+                                    </Button>
+                                </div>
+                            </Form>
                         )}
                     </Formik>
                     <p className='mt-4'>
-                        Hesabın yok mu? Kolay bir şekilde <Link to="/auth/signup">Üye ol</Link>
+                        Hesabın yok mu? <Link className='ml-2' to="/signup">Üye ol</Link>
                     </p>
                 </CardBody>
             </Card>

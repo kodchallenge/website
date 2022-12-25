@@ -10,6 +10,7 @@ import {
 import Swal from 'sweetalert2';
 import * as Yup from 'yup';
 import Brand from '../../components/Brand';
+import KodInput from '../../components/UI/KodInput';
 import authService from '../../services/auth.service';
 
 const Signup = () => {
@@ -50,96 +51,61 @@ const Signup = () => {
     }
     return (
         <main>
-            <div className='mb-4 text-center'>
-                <a href="/">
-                    <Brand Type='h3' bold/>
-                </a>
-            </div>
-            <Card className="bg-secondary shadow border-0">
-                <CardHeader className="bg-white pb-5">
-                    <div className="text-muted text-center mb-3">
-                        <small>Üye ol</small>
-                    </div>
-                </CardHeader>
+            <h3 className='auth-title'>Kayıt Ol 🥳</h3>
+            <Card className="auth-card">
                 <CardBody className="px-lg-5 py-lg-5">
                     <Formik
                         initialValues={initialFormValues}
-                        validationSchema= {validationSchema}
+                        validationSchema={validationSchema}
                         onSubmit={handleSignup}
                     >
                         {props => (
-                        <Form role="form">
-                            <FormGroup>
-                                <InputGroup>
-                                    <InputGroupText>
-                                        <i class="fa fa-solid fa-user"></i>
-                                    </InputGroupText>
-                                    <Input name='username' onChange={props.handleChange} placeholder="Kullanıcı Adı" type="text" max={16} min={6} />
-                                </InputGroup>
+                            <Form role="form">
+                                <FormGroup className='d-flex flex-column'>
+                                    <KodInput name='username' onChange={props.handleChange} placeholder="Kullanıcı Adı" type="text" max={16} min={6} />
+                                    <KodInput name="email" onChange={props.handleChange} placeholder="Email" type="email" />
+                                    <KodInput name="password" onChange={props.handleChange} placeholder="Şifre" type="password" />
+                                    <KodInput name="fullname" onChange={props.handleChange} placeholder="Ad Soyad (Opsiyonel)" type="text" />
+                                </FormGroup>
+                                <div className='text-danger error-messages'>
+                                    <p>{props.errors.username}</p>
+                                    <p>{props.errors.email}</p>
+                                    <p>{props.errors.password}</p>
+                                </div>
+                                <Row className="my-4">
+                                    <Col xs="12">
+                                        <div className="custom-control custom-control-alternative custom-checkbox">
+                                            <input
+                                                className="custom-control-input"
+                                                id="customCheckRegister"
+                                                type="checkbox"
+                                            />
+                                            <label
+                                                className="custom-control-label"
+                                                htmlFor="customCheckRegister"
+                                            >
+                                                <span>
+                                                    <a href="/privacy-policy" target="_blank"> Gizlilik politakasını</a>
+                                                    {" "} kabul ediyorum.
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </Col>
+                                </Row>
 
-                                <InputGroup>
-                                    <InputGroupText>
-                                        <i class="fa fa-solid fa-envelope"></i>
-                                    </InputGroupText>
-                                    <Input name="email" onChange={props.handleChange} placeholder="Email" type="email" />
-                                </InputGroup>
-
-                                <InputGroup>
-                                    <InputGroupText>
-                                        <i class="fa fa-solid fa-lock"></i>
-                                    </InputGroupText>
-                                    <Input name="password" onChange={props.handleChange} placeholder="Şifre" type="password" />
-                                </InputGroup>
-
-                                <InputGroup>
-                                    <InputGroupText>
-                                        <i class="fa fa-solid fa-user"></i>
-                                    </InputGroupText>
-                                    <Input name="fullname" onChange={props.handleChange} placeholder="Ad Soyad (Opsiyonel)" type="text" />
-                                </InputGroup>
-                            </FormGroup>
-                            <div className='text-danger error-messages'>
-                                <p>{props.errors.username}</p>
-                                <p>{props.errors.email}</p>
-                                <p>{props.errors.password}</p>
-                            </div>
-                            <Row className="my-4">
-                                <Col xs="12">
-                                    <div className="custom-control custom-control-alternative custom-checkbox">
-                                        <input
-                                            className="custom-control-input"
-                                            id="customCheckRegister"
-                                            type="checkbox"
-                                        />
-                                        <label
-                                            className="custom-control-label"
-                                            htmlFor="customCheckRegister"
-                                        >
-                                            <span>
-                                                <a href="/privacy-policy" target="_blank"> Gizlilik politakasını</a>
-                                                {" "} kabul ediyorum.
-                                            </span>
-                                        </label>
-                                    </div>
-                                </Col>
-                            </Row>
-                            
-                            <div className="text-center">
-                                <Button
-                                    className="mt-4"
-                                    color="primary"
-                                    type="button"
-                                    onClick={props.handleSubmit}
-                                >
-                                    {!loading ? "Hesap Oluştur" : "Hesap Oluşturuluyor..."}
-                                </Button>
-                            </div>
-                        </Form>
+                                <div className="text-center">
+                                    <Button
+                                        className="mt-4"
+                                        color="primary"
+                                        type="button"
+                                        onClick={props.handleSubmit}
+                                    >
+                                        {!loading ? "Hesap Oluştur" : "Hesap Oluşturuluyor..."}
+                                    </Button>
+                                </div>
+                            </Form>
                         )}
                     </Formik>
-                    <p className='mt-4'>
-                        Hesabın var mı? O halde <Link to="/auth/signin">Giriş Yap</Link>
-                    </p>
                 </CardBody>
             </Card>
         </main>

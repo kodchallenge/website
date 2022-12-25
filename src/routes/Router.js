@@ -5,6 +5,7 @@ import { ROLES } from '../constants'
 import ProtectedRoute from '../hoc/ProtectedRoute'
 import RoleBasedRoute from '../hoc/RoleBasedRoute'
 import AuthLayout from '../layout/AuthLayout'
+import HomeLayout from '../layout/HomeLayout'
 import Layout from '../layout/Layout'
 import AboutPage from '../pages/AboutPage'
 import ActivityPage from '../pages/activities/ActivityPage'
@@ -52,8 +53,11 @@ const Router = () => {
                 <Route path='forgot-password' element={<ForgotPassword />} />
                 <Route path='reset-password' element={<ResetPassword />} />
             </Route>
-
-            <Route exact path='' element={<MainPage />} />
+            <Route path='/' element={<HomeLayout />}>
+                <Route path='signup' exact element={<Signup />} />
+                <Route path='signin' exact element={<Signin />} />
+                <Route exact path='' element={<MainPage />} />
+            </Route>
             <Route path='/' element={<Layout />}>
                 {/* Giriş yapmaya ihtiyaç duyulmayan tüm linkler */}
                 {/* <Route exact path='' element={<MainPage />} /> */}
@@ -93,7 +97,7 @@ const Router = () => {
                 </Route>
             </Route>
 
-            <Route path='unauthorized' element={<ErrorPage code="401" message="Bu sayfaya erişmek için lütfen giriş yapın" to="/auth/signin" text="Giriş yapmak için tıkla" />} />
+            <Route path='unauthorized' element={<ErrorPage code="401" message="Bu sayfaya erişmek için lütfen giriş yapın" to="/signin" text="Giriş yapmak için tıkla" />} />
             <Route path='forbidden' element={<ErrorPage code="403" message="Bu sayfayı görüntülemeye yetkiniz yok." />} />
             <Route path='*' element={<ErrorPage code="404" message="Aradığın içerik bizde mevcut değil." />} />
         </Routes>
