@@ -53,9 +53,10 @@ const Router = () => {
                 <Route path='reset-password' element={<ResetPassword />} />
             </Route>
 
+            <Route exact path='' element={<MainPage />} />
             <Route path='/' element={<Layout />}>
                 {/* Giriş yapmaya ihtiyaç duyulmayan tüm linkler */}
-                <Route exact path='' element={<MainPage />} />
+                {/* <Route exact path='' element={<MainPage />} /> */}
                 <Route path='tracks/' element={<TrackListPage />} />
                 <Route path='tracks/:trackName' element={<ProblemListPage />} />
                 <Route path='about-project' element={<AboutPage />} />
@@ -66,7 +67,7 @@ const Router = () => {
                 <Route path='contests/explore/:id' element={<ContestsDetailPage />} />
                 <Route path='contests/explore/:id/join' element={<JoinContestPage />} />
                 <Route path='joinus' element={<JoinUsPage />} />
-                
+
 
                 {/*Sadece user rolüne sahip kullanıcının erişebileceği linkler */}
                 <Route element={<ProtectedRoute roles={[ROLES.user]} />}>
@@ -92,9 +93,9 @@ const Router = () => {
                 </Route>
             </Route>
 
-            <Route path='unauthorized' element={<ErrorPage code="401" message="Bu sayfaya erişmek için lütfen giriş yapın" to="/auth/signin" text="Giriş yapmak için tıkla"/>}/>
-            <Route path='forbidden' element={<ErrorPage code="403" message="Bu sayfayı görüntülemeye yetkiniz yok." />}/>
-            <Route path='*' element={<ErrorPage code="404" message="Aradığın içerik bizde mevcut değil." />}/>
+            <Route path='unauthorized' element={<ErrorPage code="401" message="Bu sayfaya erişmek için lütfen giriş yapın" to="/auth/signin" text="Giriş yapmak için tıkla" />} />
+            <Route path='forbidden' element={<ErrorPage code="403" message="Bu sayfayı görüntülemeye yetkiniz yok." />} />
+            <Route path='*' element={<ErrorPage code="404" message="Aradığın içerik bizde mevcut değil." />} />
         </Routes>
     )
 }
