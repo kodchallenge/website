@@ -5,6 +5,10 @@ body,
   height: 100%;
 }
 
+.home-page {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
 #root {
   display: none;
 }

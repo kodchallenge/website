@@ -20,3 +20,108 @@
 
 //Custom styling
 @import "kodchallenge/custom";
+
+
+.home-page {
+    background-color: #0A0B0E;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .navbar-brand {
+        font-size: 1.25rem;
+        text-transform: unset;
+    }
+
+    .nav-link {
+        color: #ffffff9c !important;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    .signin-btn {
+        all: unset;
+        font-family: 'Plus Jakarta Sans';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #FFFFFF;
+        background: #4338CA;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        color: #fff !important;
+    }
+
+    &>main {
+        position: relative;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            text-align: center;
+            flex-direction: column;
+            gap: 50px;
+            padding-bottom: 50px;
+
+            @media only screen and (max-width: 990px) {
+                width: 90%;
+                padding-bottom: 10px;
+            }
+
+            .slogan {
+                color: #ffffff9c;
+                font-size: 1.25rem;
+            }
+
+            .consept-header {
+                color: #fff;
+                font-size: 3rem;
+
+                span {
+                    color: #FF7246;
+                }
+            }
+
+            .consept-description {
+                color: rgba(255, 255, 255, 0.4);
+                font-size: 1.125rem;
+            }
+        }
+
+        .join-btn {
+            all: unset;
+            color: #FFFFFF;
+            background: #4338CA;
+            border-radius: 5px;
+            padding: 10px 80px;
+            color: #fff !important;
+        }
+    }
+
+    .home-bg {
+        background-image: url(https://railway.app/illustrations/grid--dark.svg);
+        background-repeat: repeat;
+        position: fixed;
+        inset: 0;
+        height: 100vh;
+        width: 100%;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
+}
